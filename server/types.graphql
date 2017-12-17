@@ -1,0 +1,23 @@
+# The following types define the data model of the example service
+# based on which the GraphQL API is generated
+
+
+type Product @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  name: String!
+  lastVerifiedAt: DateTime
+  maker: Maker! @relation(name: "MakerProducts")
+}
+
+
+type Maker @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  name: String!
+  products: [Product!]! @relation(name: "MakerProducts")
+}

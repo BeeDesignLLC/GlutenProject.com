@@ -1,0 +1,19 @@
+types: ./types.graphql
+
+
+functions:
+  hello:
+    handler:
+      code: src/hello.js
+    type: resolver
+    schema: src/hello.graphql
+
+
+permissions:
+  - operation: Product.read
+  - operation: Maker.read
+
+
+rootTokens:
+  - scripting
+
