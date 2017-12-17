@@ -11,7 +11,7 @@ functions:
 
 permissions:
   - operation: Product.read
-  - operation: Maker.read
+  - operation: Brand.read
 
 
 rootTokens:

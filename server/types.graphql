@@ -9,15 +9,15 @@ type Product @model {
 
   name: String!
   lastVerifiedAt: DateTime
-  maker: Maker! @relation(name: "MakerProducts")
+  brand: Brand! @relation(name: "BrandProducts")
 }
 
 
-type Maker @model {
+type Brand @model {
   id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
 
   name: String!
-  products: [Product!]! @relation(name: "MakerProducts")
+  products: [Product!]! @relation(name: "BrandProducts")
 }
