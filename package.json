@@ -1,0 +1,13 @@
+{
+  "name": "zerogluten",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "git@github.com:BeeDesignLLC/zerogluten.git",
+  "author": "Brandon Bayer <b@bayer.ws>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "exit",
+    "test": "exit"
+  }
+}
