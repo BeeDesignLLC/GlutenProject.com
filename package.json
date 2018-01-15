@@ -1,13 +1,24 @@
 {
-  "name": "zerogluten",
+  "name": "glutenproject",
   "version": "0.1.0",
   "main": "index.js",
-  "repository": "git@github.com:BeeDesignLLC/zerogluten.git",
+  "repository": "git@github.com:BeeDesignLLC/GlutenProject.com.git",
   "author": "Brandon Bayer <b@bayer.ws>",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "exit",
+    "start": "next",
+    "build": "next build",
+    "now-start": "next start",
     "test": "exit"
+  },
+  "dependencies": {
+    "next": "^4.2.3",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "styled-components": "^2.4.0"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.4.0"
   }
 }

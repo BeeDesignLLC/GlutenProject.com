@@ -1,4 +1,4 @@
-# Zerogluten
+# The Gluten Project
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/BeeDesignLLC/zerogluten.svg)](https://greenkeeper.io/)
 
