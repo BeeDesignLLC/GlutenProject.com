@@ -5,7 +5,6 @@ import {space, width, fontSize, color, textAlign} from 'styled-system'
 const Anchor = styled.a.attrs({
   m: props => props.m || 0,
   color: 'green',
-  fontSize: props => (props.menu ? 0 : props.fontSize),
 })`
   ${space}
   ${width}
@@ -14,8 +13,14 @@ const Anchor = styled.a.attrs({
   ${textAlign}
 
   text-decoration: none;
-  text-transform: ${props => (props.menu ? 'uppercase' : 'inherit')};
-  letter-spacing: ${props => (props.menu ? '0.2em' : 'inherit')};
+
+  ${props =>
+    props.menu &&
+    `
+    font-weight: 500;
+    font-feature-settings: "smcp";
+    letter-spacing: 0.15ex;
+  `}
 
   &:hover {
     text-decoration: underline;

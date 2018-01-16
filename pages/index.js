@@ -8,6 +8,7 @@ import SectionHeading from '../components/SectionHeading'
 import LargeText from '../components/LargeText'
 import Text from '../components/Text'
 import SecondaryText from '../components/SecondaryText'
+import CaptionText from '../components/CaptionText'
 import Link from '../components/Link'
 
 type Props = {
@@ -43,6 +44,7 @@ export default class extends React.Component<Props, State> {
           of certified gluten free products. This project is for you, so please tell us
           what is not working, what you need, and what you want!
         </SecondaryText>
+        <CaptionText ml={4}>53 results</CaptionText>
       </Layout>
     )
   }

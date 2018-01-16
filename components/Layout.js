@@ -45,14 +45,14 @@ export default ({children, title = 'The Gluten Project'}: Props) => (
       <header>
         <nav>
           <Link menu href="/">
-            Home
+            home
           </Link>{' '}
           |
           <Link menu href="/about">
-            About
+            about
           </Link>{' '}
           |
-          <Link href="/contact">Contact</Link>
+          <Link href="/contact">contact</Link>
         </nav>
       </header>
 
