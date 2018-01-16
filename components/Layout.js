@@ -48,17 +48,17 @@ export default ({children, title = 'The Gluten Project'}: Props) => (
             home
           </Link>{' '}
           |
-          <Link menu href="/about">
-            about
+          <Link menu href="/manifesto">
+            manifesto
           </Link>{' '}
           |
-          <Link href="/contact">contact</Link>
+          <Link menu href="/who">
+            who&rsquo;s behind this
+          </Link>
         </nav>
       </header>
 
       {children}
-
-      <footer>{'I`m here to stay'}</footer>
     </React.Fragment>
   </ThemeProvider>
 )

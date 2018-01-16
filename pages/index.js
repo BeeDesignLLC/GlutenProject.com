@@ -10,13 +10,14 @@ import Text from '../components/Text'
 import SecondaryText from '../components/SecondaryText'
 import CaptionText from '../components/CaptionText'
 import Link from '../components/Link'
+import SearchInput from '../components/SearchInput'
+import Box from '../components/Box'
 
 type Props = {
   userAgent: string,
 }
-type State = {}
 
-export default class extends React.Component<Props, State> {
+export default class extends React.Component<Props> {
   static async getInitialProps({req}: {req: any}) {
     const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
     return {userAgent}
@@ -44,7 +45,10 @@ export default class extends React.Component<Props, State> {
           of certified gluten free products. This project is for you, so please tell us
           what is not working, what you need, and what you want!
         </SecondaryText>
-        <CaptionText ml={4}>53 results</CaptionText>
+        <CaptionText ml={5}>53 results</CaptionText>
+        <Box p={2}>
+          <SearchInput />
+        </Box>
       </Layout>
     )
   }
