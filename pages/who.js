@@ -10,13 +10,13 @@ export default class extends React.Component<Props> {
   render() {
     return (
       <Layout>
-        <LargeText mb={3}>
+        <LargeText>
           Hi there! We are Brandon and Evelyn Bayer, a young couple currently living in
           Dayton, Ohio. Evelyn has been eating gluten free since 2014 when she realized
           gluten was hurting her ankle.
         </LargeText>
 
-        <LargeText mb={3}>
+        <LargeText>
           Brandon is an entrepreneur, designer, and developer. He’s passionate about
           business and aviation. Follow him on Twitter{' '}
           <Link href="https://twitter.com/beedesignllc">@beedesignllc</Link>.

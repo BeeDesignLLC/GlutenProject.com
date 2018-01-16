@@ -17,9 +17,12 @@ const Anchor = styled.a.attrs({
   ${props =>
     props.menu &&
     `
-    font-weight: 500;
     font-feature-settings: "smcp";
     letter-spacing: 0.15ex;
+    display: block;
+    & + & {
+      margin-top: 0.5rem;
+    }
   `}
 
   &:hover {

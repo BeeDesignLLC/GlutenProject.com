@@ -1,6 +1,7 @@
 // @flow
 import styled from 'styled-components'
-import {space, width, fontSize, color, textAlign} from 'styled-system'
+import {theme, space, width, fontSize, color, textAlign} from 'styled-system'
+import {gridArea} from '../utils/styled'
 
 const Text = styled.p.attrs({
   m: props => props.m || 0,
@@ -12,5 +13,15 @@ const Text = styled.p.attrs({
   ${fontSize}
   ${color}
   ${textAlign}
+  ${gridArea}
+
+  & + & {
+    margin-top: ${theme('space.3')};
+  }
+
+  & > ul {
+    margin: 0;
+    padding-left: ${theme('space.4')};
+  }
 `
 export default Text

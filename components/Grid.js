@@ -1,5 +1,5 @@
 // @flow
-import styled from 'styled-components'
+import {Grid as StyledGrid} from 'styled-css-grid'
 import {
   space,
   width,
@@ -15,10 +15,9 @@ import {
   borderWidth,
   boxShadow,
 } from 'styled-system'
-import {gridArea} from '../utils/styled'
-import {withDynamicTag} from './DynamicTag'
+import {gridRowGap} from '../utils/styled'
 
-const Box = styled.div`
+const Grid = StyledGrid.extend`
   ${space}
   ${width}
   ${color}
@@ -32,8 +31,7 @@ const Box = styled.div`
   ${borderColor}
   ${borderWidth}
   ${boxShadow}
-  ${gridArea}
-
-  display: flex;
+  ${gridRowGap}
 `
-export default withDynamicTag(Box)
+Grid.displayName = 'Grid'
+export default Grid
