@@ -1,23 +1,17 @@
 // @flow
 import * as React from 'react'
-
 import Layout from '../components/Layout'
 import Home from '../components/Home'
+import SearchResults from '../components/SearchResults'
 
-type Props = {
-  userAgent: string,
-}
+type Props = {}
 
 export default class extends React.Component<Props> {
-  static async getInitialProps({req}: {req: any}) {
-    const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
-    return {userAgent}
-  }
-
   render() {
     return (
       <Layout>
-        <Home area="main" />
+        <Home mb={4} />
+        <SearchResults />
       </Layout>
     )
   }

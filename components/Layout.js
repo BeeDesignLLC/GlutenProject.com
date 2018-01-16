@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
 import Head from 'next/head'
+import {InstantSearch} from 'react-instantsearch/dom'
 import {ThemeProvider} from 'styled-components'
 import Grid from './Grid'
 import Box from '../components/Box'
@@ -49,62 +50,72 @@ export default ({children, title = 'The Gluten Project'}: Props) => (
         <title>{title}</title>
       </Head>
 
-      <Grid
-        columns={6}
-        rows="7.5rem"
-        gap="1.5em"
-        rowGap="4em"
-        m={4}
-        areas={[
-          'pageHeading pageHeading search search info info',
-          '. main main main . menu',
-          '. main main main . aside',
-        ]}
+      <InstantSearch
+        appId="C6AKE3UEC4"
+        apiKey="d1a5323f6c1f9c309d0203d37bf61e5d"
+        indexName="products"
       >
-        <PageHeading area="pageHeading" alignSelf="flex-end">
-          35k Certified<br />Gluten Free Products
-        </PageHeading>
-        <SearchInput area="search" alignSelf="flex-end" />
-        <SecondaryText area="info" align="right">
-          Here at The Gluten Project we’re on a mission to unearth every certified gluten
-          free product in the world. All products currently listed are certified by the{' '}
-          <Link href="http://www.gfco.org/">Gluten-Free Certification Organization</Link>{' '}
-          as of January 2017.
-        </SecondaryText>
+        <Grid
+          columns={6}
+          rows="7.5rem"
+          gap="1.5em"
+          rowGap="4em"
+          m={4}
+          areas={[
+            'pageHeading pageHeading search search info info',
+            '. main main main . menu',
+            '. main main main . aside',
+          ]}
+        >
+          <Box area="main" flexDirection="column">
+            {children}
+          </Box>
+          <SearchInput area="search" alignSelf="flex-end" />
 
-        <Box area="main" flexDirection="column">
-          {children}
-        </Box>
+          <PageHeading tag="h2" area="pageHeading" alignSelf="flex-end">
+            35k Certified<br />Gluten Free Products
+          </PageHeading>
 
-        <Box area="menu" tag="nav" flexDirection="column">
-          <Link menu href="/manifesto">
-            manifesto
-          </Link>
-          <Link menu href="/who">
-            who&rsquo;s behind this
-          </Link>
-          <Link menu href="#">
-            send feedback
-          </Link>
-          <Link menu href="#">
-            get help
-          </Link>
-        </Box>
-
-        <Box area="aside" tag="aside" flexDirection="column">
-          <SectionHeading>Help a friend?</SectionHeading>
-          <SecondaryText>
-            Do you know 2 or 3 people who would like to know about this site?
+          <SecondaryText area="info" align="right">
+            Here at The Gluten Project we’re on a mission to unearth every certified
+            gluten free product in the world. All products currently listed are certified
+            by the{' '}
+            <Link href="http://www.gfco.org/">
+              Gluten-Free Certification Organization
+            </Link>{' '}
+            as of January 2017.
           </SecondaryText>
 
-          <SecondaryText>
-            More users enables us to spend more time making this better for the gluten
-            free community.
-          </SecondaryText>
+          <Box area="menu" tag="nav" flexDirection="column">
+            <Link menu href="/manifesto">
+              manifesto
+            </Link>
+            <Link menu href="/who">
+              who&rsquo;s behind this
+            </Link>
+            <Link menu href="#">
+              send feedback
+            </Link>
+            <Link menu href="#">
+              get help
+            </Link>
+          </Box>
 
-          <SecondaryText>Thank you for helping spread the word!</SecondaryText>
-        </Box>
-      </Grid>
+          <Box area="aside" tag="aside" flexDirection="column">
+            <SectionHeading>Help a friend?</SectionHeading>
+            <SecondaryText>
+              Do you know 2 or 3 people who would like to know about this site?
+            </SecondaryText>
+
+            <SecondaryText>
+              More users enables us to spend more time making this better for the gluten
+              free community.
+            </SecondaryText>
+
+            <SecondaryText>Thank you for helping spread the word!</SecondaryText>
+          </Box>
+        </Grid>
+      </InstantSearch>
     </React.Fragment>
   </ThemeProvider>
 )

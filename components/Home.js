@@ -24,15 +24,13 @@ export default class extends React.Component<Props> {
         </LargeText>
 
         <ArticleHeading>Popular Searches</ArticleHeading>
-        <LargeText>
-          <Box flexDirection="column">
-            <Link href="/certified-gluten-free-coffee">Coffee</Link>
-            <Link href="/certified-gluten-free-oats">Oats</Link>
-            <Link href="/certified-gluten-free-probiotics">Probiotics</Link>
-            <Link href="/certified-gluten-free-vitamins">Vitamins</Link>
-            <Link href="/certified-gluten-free-spices">Spices</Link>
-          </Box>
-        </LargeText>
+        <Box flexDirection="column" fontSize={2}>
+          <Link href="/certified-gluten-free-coffee">Coffee</Link>
+          <Link href="/certified-gluten-free-oats">Oats</Link>
+          <Link href="/certified-gluten-free-probiotics">Probiotics</Link>
+          <Link href="/certified-gluten-free-vitamins">Vitamins</Link>
+          <Link href="/certified-gluten-free-spices">Spices</Link>
+        </Box>
       </Box>
     )
   }

@@ -14,14 +14,18 @@ import {
   borderColor,
   borderWidth,
   boxShadow,
+  fontSize,
 } from 'styled-system'
 import {gridArea} from '../utils/styled'
 import {withDynamicTag} from './DynamicTag'
 
-const Box = styled.div`
+const Box = styled.div.attrs({
+  flexDirection: props => props.flexDirection || 'column',
+})`
   ${space}
   ${width}
   ${color}
+  ${fontSize}
   ${flex}
   ${flexDirection}
   ${flexWrap}
