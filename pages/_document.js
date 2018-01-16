@@ -1,7 +1,16 @@
 // @flow
-import React from 'react'
+import * as React from 'react'
 import Document, {Head, Main, NextScript} from 'next/document'
-import {ServerStyleSheet} from 'styled-components'
+import {ServerStyleSheet, injectGlobal} from 'styled-components'
+
+injectGlobal`
+  body {
+    background: #F9F9F9;
+    margin: 0;
+    font-family: prenton, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+`
 
 export default class MyDocument extends Document {
   static getInitialProps({renderPage}: {renderPage: any => any}) {
@@ -16,10 +25,10 @@ export default class MyDocument extends Document {
       <html lang="en">
         <Head>
           <meta charSet="utf-8" />
-          <title key="title">The Gluten Project</title>
           <meta name="description" content="" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+          <link rel="stylesheet" href="https://use.typekit.net/eom3pqo.css" />
           {this.props.styleTags}
         </Head>
         <body>

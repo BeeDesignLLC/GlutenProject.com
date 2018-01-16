@@ -1,11 +1,14 @@
 // @flow
-import React from 'react'
-import styled from 'styled-components'
+import * as React from 'react'
 
-const Title = styled.h1`
-  color: red;
-  font-size: 50px;
-`
+import Layout from '../components/Layout'
+import PageHeading from '../components/PageHeading'
+import ArticleHeading from '../components/ArticleHeading'
+import SectionHeading from '../components/SectionHeading'
+import LargeText from '../components/LargeText'
+import Text from '../components/Text'
+import SecondaryText from '../components/SecondaryText'
+import Link from '../components/Link'
 
 type Props = {
   userAgent: string,
@@ -20,9 +23,27 @@ export default class extends React.Component<Props, State> {
 
   render() {
     return (
-      <div>
-        <Title>Hello World {this.props.userAgent}</Title>
-      </div>
+      <Layout>
+        <PageHeading>35k Certified Gluten Free Products</PageHeading>
+        <ArticleHeading>Find any certified gluten free product</ArticleHeading>
+        <SectionHeading ml={1}>Help a friend?</SectionHeading>
+        <LargeText ml={2}>
+          The Gluten Project is the first and only place to search through the entire list
+          of certified gluten free products. This project is for you, so please tell us
+          what is not working, what you need, and what you want!
+        </LargeText>
+        <Text ml={3}>
+          The Gluten Project is the first and only place to search through the entire list
+          of certified gluten free products. This project is for you, so please{' '}
+          <Link href="/home">tell us</Link> what is not working, what you need, and what
+          you want!
+        </Text>
+        <SecondaryText ml={4}>
+          The Gluten Project is the first and only place to search through the entire list
+          of certified gluten free products. This project is for you, so please tell us
+          what is not working, what you need, and what you want!
+        </SecondaryText>
+      </Layout>
     )
   }
 }
