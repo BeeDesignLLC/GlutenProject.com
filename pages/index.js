@@ -3,16 +3,30 @@ import * as React from 'react'
 import Layout from '../components/Layout'
 import Home from '../components/Home'
 import SearchResults from '../components/SearchResults'
+import {connectStateResults} from 'react-instantsearch/connectors'
 
-type Props = {}
+type Props = {
+  searchState: Object,
+  searchResults: Object,
+  error: string,
+  searching: boolean,
+}
 
-export default class extends React.Component<Props> {
+const Content = connectStateResults(({searchState}: Props) => (
+  <React.Fragment>
+    <Home IF={!searchState.query} area="main" />
+    <SearchResults IF={searchState.query} area="results" />
+  </React.Fragment>
+))
+
+class Index extends React.Component<Props> {
   render() {
     return (
       <Layout>
-        <Home mb={4} />
-        <SearchResults />
+        <Content />
       </Layout>
     )
   }
 }
+
+export default Index

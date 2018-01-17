@@ -10,6 +10,12 @@ injectGlobal`
     font-family: prenton, sans-serif;
     -webkit-text-size-adjust: 100%;
   }
+
+  mark {
+    background: none;
+    color: black;
+    font-weight: 500;
+  }
 `
 
 export default class MyDocument extends Document {

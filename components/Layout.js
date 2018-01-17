@@ -1,10 +1,10 @@
 // @flow
 import * as React from 'react'
 import Head from 'next/head'
-import {InstantSearch} from 'react-instantsearch/dom'
 import {ThemeProvider} from 'styled-components'
 import Grid from './Grid'
 import Box from '../components/Box'
+import SearchBoss from './SearchBoss'
 import PageHeading from '../components/PageHeading'
 import SectionHeading from '../components/SectionHeading'
 import SearchInput from '../components/SearchInput'
@@ -50,29 +50,24 @@ export default ({children, title = 'The Gluten Project'}: Props) => (
         <title>{title}</title>
       </Head>
 
-      <InstantSearch
-        appId="C6AKE3UEC4"
-        apiKey="d1a5323f6c1f9c309d0203d37bf61e5d"
-        indexName="products"
-      >
+      <SearchBoss>
         <Grid
-          columns={6}
-          rows="7.5rem"
-          gap="1.5em"
-          rowGap="4em"
+          columns="[results-start] repeat(5, 1fr) [results-end] 1fr"
+          rows="7.5rem [results-start] 1fr 1fr [results-end]"
+          gap="1.5rem"
+          rowGap="4rem"
           m={4}
           areas={[
-            'pageHeading pageHeading search search info info',
-            '. main main main . menu',
-            '. main main main . aside',
+            'head head search search info info',
+            '.    main main   main   .    menu',
+            '.    main main   main   .    aside',
           ]}
         >
-          <Box area="main" flexDirection="column">
-            {children}
-          </Box>
+          {children}
+
           <SearchInput area="search" alignSelf="flex-end" />
 
-          <PageHeading tag="h2" area="pageHeading" alignSelf="flex-end">
+          <PageHeading tag="h2" area="head" alignSelf="flex-end">
             35k Certified<br />Gluten Free Products
           </PageHeading>
 
@@ -115,7 +110,7 @@ export default ({children, title = 'The Gluten Project'}: Props) => (
             <SecondaryText>Thank you for helping spread the word!</SecondaryText>
           </Box>
         </Grid>
-      </InstantSearch>
+      </SearchBoss>
     </React.Fragment>
   </ThemeProvider>
 )

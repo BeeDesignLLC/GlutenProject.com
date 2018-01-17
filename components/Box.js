@@ -19,7 +19,7 @@ import {
 import {gridArea} from '../utils/styled'
 import {withDynamicTag} from './DynamicTag'
 
-const Box = styled.div.attrs({
+export const RawBox = styled.div.attrs({
   flexDirection: props => props.flexDirection || 'column',
 })`
   ${space}
@@ -40,4 +40,4 @@ const Box = styled.div.attrs({
 
   display: flex;
 `
-export default withDynamicTag(Box)
+export default withDynamicTag(RawBox)
