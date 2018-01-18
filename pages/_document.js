@@ -15,6 +15,7 @@ injectGlobal`
     background: none;
     color: black;
     font-weight: 500;
+    letter-spacing: -0.05ex;
   }
 `
 

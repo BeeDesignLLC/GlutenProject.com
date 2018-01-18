@@ -13,11 +13,14 @@ import {
 } from 'styled-system'
 import {gridArea} from '../utils/styled'
 
-const Heading = styled.h1.attrs({
-  m: props => props.m || 0,
-  mb: props => props.mb || 3,
-})`
+const Heading = styled.h1`
   font-weight: 700;
+  margin: 0 0 ${theme('space.3')};
+
+  p + & {
+    margin-top: ${theme('space.5')};
+  }
+
   ${space}
   ${width}
   ${fontSize}
@@ -27,10 +30,5 @@ const Heading = styled.h1.attrs({
   ${alignItems}
   ${alignSelf}
   ${gridArea}
-
-
-  p + & {
-    margin-top: ${theme('space.5')};
-  }
 `
 export default Heading

@@ -4,15 +4,48 @@ import {theme} from 'styled-system'
 import {Highlight} from 'react-instantsearch/dom'
 import {connectInfiniteHits, connectStateResults} from 'react-instantsearch/connectors'
 import VirtualList from 'react-tiny-virtual-list'
+import Grid from '../components/Grid'
 import Box, {RawBox} from '../components/Box'
 import SectionHeading from '../components/SectionHeading'
+import Text from '../components/Text'
 
-const productHeight = 22
+const productHeight = 21.65
 const brandSectionMargin = 24
 
-const BrandBox = RawBox.extend`
+const BrandBox = RawBox.withComponent('header').extend`
   border-right: solid 3px ${theme('colors.green')};
 `
+
+type ResultRowProps = {
+  item: Object,
+  index: number,
+  style: Object,
+}
+const ResultRow = ({item, index, style}: ResultRowProps) => (
+  <Grid
+    tag="section"
+    key={index}
+    style={style}
+    columns={5}
+    gap="1.5rem"
+    areas={['brand brand products products products']}
+  >
+    <BrandBox
+      area="brand"
+      mb={4}
+      style={{marginTop: 2, paddingRight: '.75rem', marginRight: '-.75rem'}}
+    >
+      <SectionHeading align="right" style={{marginTop: -5}} mb={0}>
+        {item.makerName}
+      </SectionHeading>
+    </BrandBox>
+    <Text area="products" lineHeight={0} mb={4}>
+      {item.products.map(hit => (
+        <Highlight key={hit.objectID} attributeName="name" hit={hit} tagName="mark" />
+      ))}
+    </Text>
+  </Grid>
+)
 
 type Props = {hits: [], hasMore: boolean, refine: any => any, IF: boolean}
 
@@ -26,7 +59,6 @@ const SearchResults = ({
 }: Props) => {
   const consolidatedBrands = []
   const brandHeights = []
-  let totalHeight = 0
 
   hits.forEach(hit => {
     const brandIndex = consolidatedBrands.findIndex(x => x.makerName === hit.makerName)
@@ -36,92 +68,53 @@ const SearchResults = ({
         products: [hit],
       })
       brandHeights.push(productHeight + brandSectionMargin)
-      totalHeight += productHeight + brandSectionMargin
     } else {
       consolidatedBrands[brandIndex].products.push(hit)
       brandHeights[brandIndex] += productHeight
-      totalHeight += productHeight
     }
   })
 
   let refining = false
 
-  const onScroll = (scrollTop, event) => {
-    // console.log('scroll', scrollTop)
-  }
-  const onItemsRendered = ({startIndex, stopIndex}) => {
-    console.log(
-      'render',
-      searching,
-      startIndex,
-      stopIndex,
-      consolidatedBrands.length,
-      hasMore
-    )
-
-    if (!searching && !refining && stopIndex === consolidatedBrands.length - 1) {
-      // refine()
-      refining = true
-      console.warn('REFINE!')
-    }
-  }
+  // const onItemsRendered = ({startIndex, stopIndex}) => {
+  //   console.log(
+  //     'render',
+  //     searching,
+  //     startIndex,
+  //     stopIndex,
+  //     consolidatedBrands.length,
+  //     hasMore
+  //   )
+  //
+  //   if (!searching && !refining && stopIndex === consolidatedBrands.length - 1) {
+  //     // refine()
+  //     refining = true
+  //     console.warn('REFINE!')
+  //   }
+  // }
 
   return (
     IF && (
       <Box {...props}>
-        <VirtualList
-          width="100%"
-          height={800}
-          itemCount={consolidatedBrands.length}
-          itemSize={brandHeights} // Also supports variable heights (array or function getter)
-          onScroll={onScroll}
-          onItemsRendered={onItemsRendered}
-          renderItem={({index, style}) => (
-            <Box flexDirection="row" key={index} style={style}>
-              <BrandBox width={1.98 / 5} align="flex-end" pr={2} mr={2} mb={4} mt={1}>
-                <SectionHeading style={{marginTop: -7}}>
-                  {consolidatedBrands[index].makerName}
-                </SectionHeading>
-              </BrandBox>
-              <Box width={3 / 5}>
-                {consolidatedBrands[index].products.map(hit => (
-                  <Highlight
-                    key={hit.objectID}
-                    attributeName="name"
-                    hit={hit}
-                    tagName="mark"
-                  />
-                ))}
-              </Box>
-            </Box>
-          )}
-        />
+        {consolidatedBrands.map((item, i) => <ResultRow item={item} index={i} />)}
       </Box>
     )
   )
-
   // return (
-  //   <Box {...props}>
-  //     {consolidatedBrands.map(brand => (
-  //       <Box flexDirection="row" key={brand.makerName} mb={4}>
-  //         <Box width={1 / 2} align="flex-end" pr={3}>
-  //           <SectionHeading>{brand.makerName}</SectionHeading>
-  //         </Box>
-  //         <Box width={1 / 2}>
-  //           {brand.products.map(hit => (
-  //             <Highlight
-  //               key={hit.objectID}
-  //               attributeName="name"
-  //               hit={hit}
-  //               tagName="mark"
-  //             />
-  //           ))}
-  //         </Box>
-  //       </Box>
-  //     ))}
-  //
-  //     <button onClick={refine}>LOAD MORE</button>
-  //   </Box>
+  //   IF && (
+  //     <Box {...props}>
+  //       <VirtualList
+  //         width="100%"
+  //         height={800}
+  //         itemCount={consolidatedBrands.length}
+  //         itemSize={brandHeights}
+  //         onItemsRendered={onItemsRendered}
+  //         renderItem={props => (
+  //           <ResultRow item={consolidatedBrands[props.index]} {...props} />
+  //         )}
+  //       />
+  //     </Box>
+  //   )
   // )
 }
 

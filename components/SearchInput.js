@@ -64,12 +64,8 @@ type Props = {
   refine: any => any,
 }
 
-const SearchInput = ({currentRefinement, refine, ...props}: Props) => (
-  <BaseSearchInput
-    value={currentRefinement}
-    onChange={e => refine(e.target.value)}
-    {...props}
-  />
+const SearchInput = ({refine, ...props}: Props) => (
+  <BaseSearchInput onChange={e => refine(e.target.value)} {...props} />
 )
 
 export default connectSearchBox(SearchInput)
