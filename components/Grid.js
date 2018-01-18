@@ -15,12 +15,13 @@ import {
   borderWidth,
   boxShadow,
 } from 'styled-system'
-import {gridRowGap} from '../utils/styled'
+import {gridRowGap, height} from '../utils/styled'
 import {withDynamicTag} from './DynamicTag'
 
 const Grid = StyledGrid.extend`
   ${space}
   ${width}
+  ${height}
   ${color}
   ${flex}
   ${flexDirection}

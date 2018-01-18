@@ -16,7 +16,7 @@ import {
   boxShadow,
   fontSize,
 } from 'styled-system'
-import {gridArea} from '../utils/styled'
+import {gridArea, height} from '../utils/styled'
 import {withDynamicTag} from './DynamicTag'
 
 export const RawBox = styled.div.attrs({
@@ -24,6 +24,7 @@ export const RawBox = styled.div.attrs({
 })`
   ${space}
   ${width}
+  ${height}
   ${color}
   ${fontSize}
   ${flex}

@@ -3,11 +3,23 @@ import * as React from 'react'
 import {theme} from 'styled-system'
 import {Highlight} from 'react-instantsearch/dom'
 import {connectInfiniteHits, connectStateResults} from 'react-instantsearch/connectors'
-import VirtualList from 'react-tiny-virtual-list'
+import {
+  List,
+  InfiniteLoader,
+  AutoSizer,
+  CellMeasurer,
+  CellMeasurerCache,
+} from 'react-virtualized'
+
 import Grid from '../components/Grid'
 import Box, {RawBox} from '../components/Box'
 import SectionHeading from '../components/SectionHeading'
 import Text from '../components/Text'
+
+const cache = new CellMeasurerCache({
+  defaultHeight: 50,
+  fixedWidth: true,
+})
 
 const productHeight = 21.65
 const brandSectionMargin = 24
@@ -16,49 +28,30 @@ const BrandBox = RawBox.withComponent('header').extend`
   border-right: solid 3px ${theme('colors.green')};
 `
 
-type ResultRowProps = {
-  item: Object,
+type RowProps = {
   index: number,
   style: Object,
+  key: any,
 }
-const ResultRow = ({item, index, style}: ResultRowProps) => (
-  <Grid
-    tag="section"
-    key={index}
-    style={style}
-    columns={5}
-    gap="1.5rem"
-    areas={['brand brand products products products']}
-  >
-    <BrandBox
-      area="brand"
-      mb={4}
-      style={{marginTop: 2, paddingRight: '.75rem', marginRight: '-.75rem'}}
-    >
-      <SectionHeading align="right" style={{marginTop: -5}} mb={0}>
-        {item.makerName}
-      </SectionHeading>
-    </BrandBox>
-    <Text area="products" lineHeight={0} mb={4}>
-      {item.products.map(hit => (
-        <Highlight key={hit.objectID} attributeName="name" hit={hit} tagName="mark" />
-      ))}
-    </Text>
-  </Grid>
-)
 
 type Props = {hits: [], hasMore: boolean, refine: any => any, IF: boolean}
 
-const SearchResults = ({
-  hits,
+function SearchResults({
+  /** Are there more items to load? (This information comes from the most recent API request.) */
   hasMore,
-  refine,
+  /** Are we currently loading a page of items? (This may be an in-flight flag in your Redux store for example.) */
   searching,
-  IF = true,
+  /** List of items loaded so far */
+  hits,
+  /** Callback function (eg. Redux action-creator) responsible for loading the next page of items */
+  refine,
+  IF,
   ...props
-}: Props) => {
+}: Props) {
   const consolidatedBrands = []
   const brandHeights = []
+
+  cache.clearAll()
 
   hits.forEach(hit => {
     const brandIndex = consolidatedBrands.findIndex(x => x.makerName === hit.makerName)
@@ -74,48 +67,99 @@ const SearchResults = ({
     }
   })
 
-  let refining = false
+  // If there are more items to be loaded then add an extra row to hold a loading indicator.
+  const rowCount = hasMore ? consolidatedBrands.length + 1 : consolidatedBrands.length
 
-  // const onItemsRendered = ({startIndex, stopIndex}) => {
-  //   console.log(
-  //     'render',
-  //     searching,
-  //     startIndex,
-  //     stopIndex,
-  //     consolidatedBrands.length,
-  //     hasMore
-  //   )
-  //
-  //   if (!searching && !refining && stopIndex === consolidatedBrands.length - 1) {
-  //     // refine()
-  //     refining = true
-  //     console.warn('REFINE!')
-  //   }
-  // }
+  // Only load 1 page of items at a time.
+  // Pass an empty callback to InfiniteLoader in case it asks us to load more than once.
+  // const loadMoreRows = searching ? () => {} : refine
+  const loadMoreRows = () => {}
+
+  // Every row is loaded except for our loading indicator row.
+  const isRowLoaded = ({index}) => !hasMore || index < consolidatedBrands.length
+
+  const RowRenderer = ({index, key, style, parent}: RowProps) => {
+    let item
+
+    if (!isRowLoaded({index})) {
+      return (
+        <Box key={key} style={style}>
+          Loading...
+        </Box>
+      )
+    } else {
+      item = consolidatedBrands[index]
+    }
+
+    return (
+      <CellMeasurer
+        cache={cache}
+        columnIndex={0}
+        key={key}
+        parent={parent}
+        rowIndex={index}
+      >
+        <Grid
+          tag="section"
+          columns={5}
+          gap="1.5rem"
+          areas={['brand brand products products products']}
+          style={style}
+        >
+          <BrandBox
+            area="brand"
+            mb={4}
+            style={{marginTop: 2, paddingRight: '.75rem', marginRight: '-.75rem'}}
+          >
+            <SectionHeading align="right" style={{marginTop: -5}} mb={0}>
+              {item.makerName}
+            </SectionHeading>
+          </BrandBox>
+          <Text area="products" lineHeight={0} mb={4}>
+            {item.products.map(hit => (
+              <Highlight
+                key={hit.objectID}
+                attributeName="name"
+                hit={hit}
+                tagName="mark"
+              />
+            ))}
+          </Text>
+        </Grid>
+      </CellMeasurer>
+    )
+  }
 
   return (
     IF && (
       <Box {...props}>
-        {consolidatedBrands.map((item, i) => <ResultRow item={item} index={i} />)}
+        <InfiniteLoader
+          isRowLoaded={isRowLoaded}
+          loadMoreRows={loadMoreRows}
+          rowCount={rowCount}
+          minimumBatchSize={20}
+          threshold={10}
+        >
+          {({onRowsRendered, registerChild}) => (
+            <AutoSizer defaultHeight={600}>
+              {({height, width}) => (
+                <List
+                  ref={registerChild}
+                  onRowsRendered={onRowsRendered}
+                  rowRenderer={RowRenderer}
+                  rowCount={rowCount}
+                  deferredMeasurementCache={cache}
+                  rowHeight={cache.rowHeight}
+                  height={height}
+                  width={width}
+                />
+              )}
+            </AutoSizer>
+          )}
+        </InfiniteLoader>
       </Box>
     )
   )
-  // return (
-  //   IF && (
-  //     <Box {...props}>
-  //       <VirtualList
-  //         width="100%"
-  //         height={800}
-  //         itemCount={consolidatedBrands.length}
-  //         itemSize={brandHeights}
-  //         onItemsRendered={onItemsRendered}
-  //         renderItem={props => (
-  //           <ResultRow item={consolidatedBrands[props.index]} {...props} />
-  //         )}
-  //       />
-  //     </Box>
-  //   )
-  // )
 }
 
 export default connectInfiniteHits(connectStateResults(SearchResults))

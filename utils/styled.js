@@ -10,3 +10,8 @@ export const gridRowGap = style({
   prop: 'rowGap',
   cssProperty: 'grid-row-gap',
 })
+
+export const height = style({
+  prop: 'height',
+  cssProperty: 'height',
+})
