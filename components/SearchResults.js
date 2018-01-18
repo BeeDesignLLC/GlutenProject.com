@@ -21,9 +21,6 @@ const cache = new CellMeasurerCache({
   fixedWidth: true,
 })
 
-const productHeight = 21.65
-const brandSectionMargin = 24
-
 const BrandBox = RawBox.withComponent('header').extend`
   border-right: solid 3px ${theme('colors.green')};
 `
@@ -32,63 +29,131 @@ type RowProps = {
   index: number,
   style: Object,
   key: any,
+  parent: any,
 }
 
 type Props = {hits: [], hasMore: boolean, refine: any => any, IF: boolean}
+type State = {
+  loadedRowCount: number,
+  loadedPageMap: Object,
+  loadingRowCount: number,
+  consolidatedBrands: [],
+}
 
-function SearchResults({
-  /** Are there more items to load? (This information comes from the most recent API request.) */
-  hasMore,
-  /** Are we currently loading a page of items? (This may be an in-flight flag in your Redux store for example.) */
-  searching,
-  /** List of items loaded so far */
-  hits,
-  /** Callback function (eg. Redux action-creator) responsible for loading the next page of items */
-  refine,
-  IF,
-  ...props
-}: Props) {
-  const consolidatedBrands = []
-  const brandHeights = []
+class SearchResults extends React.Component<Props, State> {
+  state = {
+    loadedPageMap: {},
+    consolidatedBrands: [],
+  }
 
-  cache.clearAll()
+  componentWillMount() {
+    this._computeState(this.props)
+  }
+  componentWillReceiveProps(nextProps) {
+    if (this.props.searchState.query !== nextProps.searchState.query)
+      this.setState({loadedPageMap: {}})
 
-  hits.forEach(hit => {
-    const brandIndex = consolidatedBrands.findIndex(x => x.makerName === hit.makerName)
-    if (brandIndex === -1) {
-      consolidatedBrands.push({
-        makerName: hit.makerName,
-        products: [hit],
-      })
-      brandHeights.push(productHeight + brandSectionMargin)
-    } else {
-      consolidatedBrands[brandIndex].products.push(hit)
-      brandHeights[brandIndex] += productHeight
-    }
-  })
+    if (this.props.hits !== nextProps.hits) this._computeState(nextProps)
+  }
 
-  // If there are more items to be loaded then add an extra row to hold a loading indicator.
-  const rowCount = hasMore ? consolidatedBrands.length + 1 : consolidatedBrands.length
+  _computeState({hits}) {
+    const consolidatedBrands = []
 
-  // Only load 1 page of items at a time.
-  // Pass an empty callback to InfiniteLoader in case it asks us to load more than once.
-  // const loadMoreRows = searching ? () => {} : refine
-  const loadMoreRows = () => {}
+    hits.forEach(hit => {
+      const brandIndex = consolidatedBrands.findIndex(x => x.makerName === hit.makerName)
+      if (brandIndex === -1) {
+        consolidatedBrands.push({
+          makerName: hit.makerName,
+          products: [hit],
+        })
+      } else {
+        consolidatedBrands[brandIndex].products.push(hit)
+      }
+    })
 
-  // Every row is loaded except for our loading indicator row.
-  const isRowLoaded = ({index}) => !hasMore || index < consolidatedBrands.length
+    cache.clearAll()
+    this.setState({consolidatedBrands})
+    console.log('updating state...')
+  }
 
-  const RowRenderer = ({index, key, style, parent}: RowProps) => {
-    let item
+  render() {
+    const {hasMore, IF, ...props} = this.props
 
-    if (!isRowLoaded({index})) {
-      return (
-        <Box key={key} style={style}>
-          Loading...
+    // If there are more items to be loaded then add an extra row to hold a loading indicator.
+    const rowCount = hasMore
+      ? this.state.consolidatedBrands.length + 1
+      : this.state.consolidatedBrands.length
+    // const rowCount = hasMore
+    //   ? this.props.searchResults.nbHits
+    //   : this.state.consolidatedBrands.length
+
+    return (
+      IF && (
+        <Box {...props}>
+          <InfiniteLoader
+            isRowLoaded={this._isRowLoaded}
+            loadMoreRows={this._loadMoreRows}
+            rowCount={rowCount}
+            minimumBatchSize={20}
+            threshold={10}
+          >
+            {({onRowsRendered, registerChild}) => (
+              <AutoSizer defaultHeight={600}>
+                {({height, width}) => (
+                  <List
+                    ref={registerChild}
+                    onRowsRendered={onRowsRendered}
+                    rowRenderer={this._rowRenderer}
+                    rowCount={rowCount}
+                    deferredMeasurementCache={cache}
+                    rowHeight={cache.rowHeight}
+                    height={height}
+                    width={width}
+                  />
+                )}
+              </AutoSizer>
+            )}
+          </InfiniteLoader>
         </Box>
       )
+    )
+  }
+
+  _loadMoreRows = x => {
+    console.log(
+      'load',
+      this.props.searchState.query,
+      this.props.searching,
+      x,
+      this.state.consolidatedBrands.length,
+      'currentPage:',
+      this.props.searchResults.page
+    )
+
+    // if (!this.state.loadedPageMap[this.props.searchResults.page + 1]) {
+    this.props.refine()
+    this.state.loadedPageMap[this.props.searchResults.page + 1] = 'loaded'
+    console.log('loading page', this.props.searchResults.page + 1)
+    // }
+
+    // Only load 1 page of items at a time.
+    // Pass an empty callback to InfiniteLoader in case it asks us to load more than once.
+    // if (!searching) {
+    //   this.props.refine()
+    // }
+    return
+  }
+
+  // Every row is loaded except for our loading indicator row.
+  _isRowLoaded = ({index}) =>
+    !this.props.hasMore || index < this.state.consolidatedBrands.length
+
+  _rowRenderer = ({index, key, style, parent}: RowProps) => {
+    let item
+    if (!this._isRowLoaded({index})) {
+      item = {products: []}
     } else {
-      item = consolidatedBrands[index]
+      item = this.state.consolidatedBrands[index]
     }
 
     return (
@@ -112,7 +177,7 @@ function SearchResults({
             style={{marginTop: 2, paddingRight: '.75rem', marginRight: '-.75rem'}}
           >
             <SectionHeading align="right" style={{marginTop: -5}} mb={0}>
-              {item.makerName}
+              {item.makerName || '...'}
             </SectionHeading>
           </BrandBox>
           <Text area="products" lineHeight={0} mb={4}>
@@ -129,37 +194,6 @@ function SearchResults({
       </CellMeasurer>
     )
   }
-
-  return (
-    IF && (
-      <Box {...props}>
-        <InfiniteLoader
-          isRowLoaded={isRowLoaded}
-          loadMoreRows={loadMoreRows}
-          rowCount={rowCount}
-          minimumBatchSize={20}
-          threshold={10}
-        >
-          {({onRowsRendered, registerChild}) => (
-            <AutoSizer defaultHeight={600}>
-              {({height, width}) => (
-                <List
-                  ref={registerChild}
-                  onRowsRendered={onRowsRendered}
-                  rowRenderer={RowRenderer}
-                  rowCount={rowCount}
-                  deferredMeasurementCache={cache}
-                  rowHeight={cache.rowHeight}
-                  height={height}
-                  width={width}
-                />
-              )}
-            </AutoSizer>
-          )}
-        </InfiniteLoader>
-      </Box>
-    )
-  )
 }
 
 export default connectInfiniteHits(connectStateResults(SearchResults))
