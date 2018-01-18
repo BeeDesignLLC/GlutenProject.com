@@ -24,7 +24,7 @@ export default ({children, title = 'The Gluten Project'}: Props) => (
         <title>{title}</title>
       </Head>
 
-      <Box id="endOfExistence" width="100vw" height="100vh" style={{overflow: 'hidden'}}>
+      <Box id="endOfExistence" className="fullscreen">
         <SearchBoss>
           <Grid
             columns="[results-start] repeat(5, 1fr) [results-end] 1fr"
@@ -32,12 +32,12 @@ export default ({children, title = 'The Gluten Project'}: Props) => (
             gap="1.5rem"
             rowGap="4rem"
             p={4}
-            height="100vh"
             areas={[
               'head head search search info info',
               '.    main main   main   .    menu',
               '.    main main   main   .    aside',
             ]}
+            className="fullscreen"
           >
             {children}
 

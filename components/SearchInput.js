@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import {connectSearchBox} from 'react-instantsearch/connectors'
+import {connectSearchBox, connectStateResults} from 'react-instantsearch/connectors'
 import styled from 'styled-components'
 import {
   space,
@@ -17,6 +17,8 @@ import {
   alignSelf,
 } from 'styled-system'
 import {gridArea} from '../utils/styled'
+import Box from './Box'
+import CaptionText from './CaptionText'
 
 const BaseSearchInput = styled.input.attrs({
   placeholder: 'What can we find for you?',
@@ -62,10 +64,22 @@ const BaseSearchInput = styled.input.attrs({
 type Props = {
   currentRefinement: string,
   refine: any => any,
+  searchResults: Object,
 }
 
-const SearchInput = ({refine, ...props}: Props) => (
-  <BaseSearchInput onChange={e => refine(e.target.value)} {...props} />
+const SearchInput = ({
+  currentRefinement,
+  refine,
+  searchResults,
+  area,
+  ...props
+}: Props) => (
+  <Box justify="flex-end" area={area} style={{position: 'relative'}}>
+    <BaseSearchInput onChange={e => refine(e.target.value)} />
+    <CaptionText style={{position: 'absolute', right: -30, bottom: 5}}>
+      {currentRefinement && searchResults.nbHits}
+    </CaptionText>
+  </Box>
 )
 
-export default connectSearchBox(SearchInput)
+export default connectSearchBox(connectStateResults(SearchInput))

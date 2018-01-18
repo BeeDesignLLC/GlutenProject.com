@@ -17,6 +17,16 @@ injectGlobal`
     font-weight: 500;
     letter-spacing: -0.05ex;
   }
+
+  .fullscreen, .ais-InstantSearch__root {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+
+  div {
+    box-sizing: border-box;
+  }
 `
 
 export default class MyDocument extends Document {
