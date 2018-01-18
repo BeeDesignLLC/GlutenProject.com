@@ -7,8 +7,11 @@ injectGlobal`
   body {
     background: #F9F9F9;
     margin: 0;
-    font-family: prenton, sans-serif;
     -webkit-text-size-adjust: 100%;
+  }
+
+  * {
+    font-family: prenton, sans-serif;
   }
 
   mark {

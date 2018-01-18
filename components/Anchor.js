@@ -6,12 +6,8 @@ const Anchor = styled.a.attrs({
   m: props => props.m || 0,
   color: 'green',
 })`
-  ${space}
-  ${width}
-  ${fontSize}
-  ${color}
-  ${textAlign}
 
+  cursor: pointer;
   text-decoration: none;
 
   ${props =>
@@ -28,5 +24,11 @@ const Anchor = styled.a.attrs({
   &:hover {
     text-decoration: underline;
   }
+
+  ${space}
+  ${width}
+  ${fontSize}
+  ${color}
+  ${textAlign}
 `
 export default Anchor

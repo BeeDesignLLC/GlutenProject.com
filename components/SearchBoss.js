@@ -34,7 +34,7 @@ class SearchBoss extends React.Component<Props, State> {
         onSearchStateChange={this.onSearchStateChange}
         searchState={this.state.searchState}
       >
-        <Configure hitsPerPage={100} />
+        <Configure hitsPerPage={40} />
         {this.props.children}
       </InstantSearch>
     )

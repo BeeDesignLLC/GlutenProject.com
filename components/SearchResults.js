@@ -3,312 +3,76 @@ import * as React from 'react'
 import {theme} from 'styled-system'
 import {Highlight} from 'react-instantsearch/dom'
 import {connectInfiniteHits, connectStateResults} from 'react-instantsearch/connectors'
-import {
-  List,
-  InfiniteLoader,
-  AutoSizer,
-  CellMeasurer,
-  CellMeasurerCache,
-} from 'react-virtualized'
-import InfiniteScroll from 'react-infinite-scroller'
-import throttle from 'p-throttle'
 
 import Grid from '../components/Grid'
 import Box, {RawBox} from '../components/Box'
 import SectionHeading from '../components/SectionHeading'
 import Text from '../components/Text'
-
-const cache = new CellMeasurerCache({
-  defaultHeight: 50,
-  fixedWidth: true,
-})
+import Button from '../components/Button'
 
 const BrandBox = RawBox.withComponent('header').extend`
   border-right: solid 3px ${theme('colors.green')};
 `
 
-type RowProps = {
-  index: number,
-  style: Object,
-  key: any,
-  parent: any,
-}
+type Props = {hits: [], hasMore: boolean, refine: any => any, IF: boolean, area: string}
+const SearchResults = ({hits, IF, area, hasMore, refine}: Props) => {
+  const consolidatedBrands = []
 
-type Props = {hits: [], hasMore: boolean, refine: any => any, IF: boolean}
-type State = {
-  loadedRowCount: number,
-  loadedPageMap: Object,
-  loadingRowCount: number,
-  consolidatedBrands: [],
-}
-
-class SearchResults extends React.Component<Props, State> {
-  state = {
-    loadedPageMap: {},
-    consolidatedBrands: [],
-  }
-
-  componentWillMount() {
-    this._computeState(this.props)
-  }
-  componentWillReceiveProps(nextProps) {
-    if (this.props.searchState.query !== nextProps.searchState.query)
-      this.setState({loadedPageMap: {}})
-
-    if (this.props.hits !== nextProps.hits) this._computeState(nextProps)
-  }
-
-  _computeState({hits}) {
-    const consolidatedBrands = []
-
-    hits.forEach(hit => {
-      const brandIndex = consolidatedBrands.findIndex(x => x.makerName === hit.makerName)
-      if (brandIndex === -1) {
-        consolidatedBrands.push({
-          makerName: hit.makerName,
-          products: [hit],
-        })
-      } else {
-        consolidatedBrands[brandIndex].products.push(hit)
-      }
-    })
-
-    cache.clearAll()
-    this.setState({consolidatedBrands})
-    console.log('updating state...')
-  }
-
-  render() {
-    const {hasMore, IF, ...props} = this.props
-
-    // If there are more items to be loaded then add an extra row to hold a loading indicator.
-    const rowCount = hasMore
-      ? this.state.consolidatedBrands.length + 1
-      : this.state.consolidatedBrands.length
-    // const rowCount = hasMore
-    //   ? this.props.searchResults.nbHits
-    //   : this.state.consolidatedBrands.length
-
-    return (
-      IF && (
-        <Box {...props}>
-          <AutoSizer defaultHeight={600}>
-            {({height, width}) => (
-              <Box height={height} width={width} style={{overflow: 'auto'}}>
-                <InfiniteScroll
-                  pageStart={0}
-                  loadMore={this._loadMoreRows}
-                  hasMore={this.props.hasMore}
-                  loader={
-                    <div className="loader" key={0}>
-                      Loading ...
-                    </div>
-                  }
-                  useWindow={false}
-                >
-                  {this.state.consolidatedBrands.map(item => (
-                    <Grid
-                      tag="section"
-                      columns={5}
-                      gap="1.5rem"
-                      areas={['brand brand products products products']}
-                      key={item.makerName}
-                    >
-                      <BrandBox
-                        area="brand"
-                        mb={4}
-                        style={{
-                          marginTop: 2,
-                          paddingRight: '.75rem',
-                          marginRight: '-.75rem',
-                        }}
-                      >
-                        <SectionHeading align="right" style={{marginTop: -5}} mb={0}>
-                          {item.makerName || '...'}
-                        </SectionHeading>
-                      </BrandBox>
-                      <Text area="products" lineHeight={0} mb={4}>
-                        {item.products.map(hit => (
-                          <Highlight
-                            key={hit.objectID}
-                            attributeName="name"
-                            hit={hit}
-                            tagName="mark"
-                          />
-                        ))}
-                      </Text>
-                    </Grid>
-                  ))}
-                </InfiniteScroll>
-              </Box>
-            )}
-          </AutoSizer>
-        </Box>
-      )
-    )
-  }
-
-  _loadMoreRows = x => {
-    console.log(
-      'load',
-      this.props.searchState.query,
-      this.props.searching,
-      x,
-      this.state.consolidatedBrands.length,
-      'currentPage:',
-      this.props.searchResults.page
-    )
-
-    // if (!this.state.loadedPageMap[this.props.searchResults.page + 1]) {
-    this.props.refine()
-    this.state.loadedPageMap[this.props.searchResults.page + 1] = 'loaded'
-    console.log('loading page', this.props.searchResults.page + 1)
-    // }
-
-    // Only load 1 page of items at a time.
-    // Pass an empty callback to InfiniteLoader in case it asks us to load more than once.
-    // if (!searching) {
-    //   this.props.refine()
-    // }
-    return
-  }
-
-  // Every row is loaded except for our loading indicator row.
-  _isRowLoaded = ({index}) =>
-    !this.props.hasMore || index < this.state.consolidatedBrands.length
-
-  _rowRenderer = ({index, key, style, parent}: RowProps) => {
-    let item
-    if (!this._isRowLoaded({index})) {
-      item = {products: []}
+  hits.forEach(hit => {
+    const brandIndex = consolidatedBrands.findIndex(x => x.makerName === hit.makerName)
+    if (brandIndex === -1) {
+      consolidatedBrands.push({
+        makerName: hit.makerName,
+        products: [hit],
+      })
     } else {
-      item = this.state.consolidatedBrands[index]
+      consolidatedBrands[brandIndex].products.push(hit)
     }
+  })
 
-    return (
-      <CellMeasurer
-        cache={cache}
-        columnIndex={0}
-        key={key}
-        parent={parent}
-        rowIndex={index}
-      >
-        <Grid
-          tag="section"
-          columns={5}
-          gap="1.5rem"
-          areas={['brand brand products products products']}
-          style={style}
-        >
-          <BrandBox
-            area="brand"
-            mb={4}
-            style={{marginTop: 2, paddingRight: '.75rem', marginRight: '-.75rem'}}
-          >
-            <SectionHeading align="right" style={{marginTop: -5}} mb={0}>
-              {item.makerName || '...'}
-            </SectionHeading>
-          </BrandBox>
-          <Text area="products" lineHeight={0} mb={4}>
-            {item.products.map(hit => (
-              <Highlight
-                key={hit.objectID}
-                attributeName="name"
-                hit={hit}
-                tagName="mark"
-              />
-            ))}
-          </Text>
-        </Grid>
-      </CellMeasurer>
+  return (
+    IF && (
+      <Box style={{overflow: 'auto'}} area={area}>
+        {consolidatedBrands.map(item => <Row item={item} key={item.makerName} />)}
+        {hasMore && (
+          <Button onClick={refine} alignSelf="center">
+            load more
+          </Button>
+        )}
+      </Box>
     )
-  }
-}
-
-class NewSearchResults extends React.Component {
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.searchState.query) {
-      this.more.abort()
-    }
-  }
-
-  more = throttle(
-    x => {
-      console.log('load more', x)
-      this.props.refine()
-    },
-    1,
-    100
   )
-
-  render() {
-    const consolidatedBrands = []
-
-    this.props.hits.forEach(hit => {
-      const brandIndex = consolidatedBrands.findIndex(x => x.makerName === hit.makerName)
-      if (brandIndex === -1) {
-        consolidatedBrands.push({
-          makerName: hit.makerName,
-          products: [hit],
-        })
-      } else {
-        consolidatedBrands[brandIndex].products.push(hit)
-      }
-    })
-
-    return (
-      this.props.IF && (
-        <Box style={{overflow: 'auto'}} area={this.props.area}>
-          <InfiniteScroll
-            pageStart={0}
-            initialLoad={true}
-            loadMore={this.more}
-            hasMore={this.props.hasMore}
-            loader={
-              <div className="loader" key={0}>
-                Loading ...
-              </div>
-            }
-            useWindow={false}
-          >
-            {consolidatedBrands.map(item => (
-              <Grid
-                tag="section"
-                columns={5}
-                gap="1.5rem"
-                areas={['brand brand products products products']}
-                key={item.makerName}
-              >
-                <BrandBox
-                  area="brand"
-                  mb={4}
-                  style={{
-                    marginTop: 2,
-                    paddingRight: '.75rem',
-                    marginRight: '-.75rem',
-                  }}
-                >
-                  <SectionHeading align="right" style={{marginTop: -5}} mb={0}>
-                    {item.makerName || '...'}
-                  </SectionHeading>
-                </BrandBox>
-                <Text area="products" lineHeight={0} mb={4}>
-                  {item.products.map(hit => (
-                    <Highlight
-                      key={hit.objectID}
-                      attributeName="name"
-                      hit={hit}
-                      tagName="mark"
-                    />
-                  ))}
-                </Text>
-              </Grid>
-            ))}
-          </InfiniteScroll>
-        </Box>
-      )
-    )
-  }
 }
 
-export default connectInfiniteHits(connectStateResults(NewSearchResults))
+type RowProps = {
+  item: Object,
+}
+const Row = ({item}: RowProps) => (
+  <Grid
+    tag="section"
+    columns={5}
+    gap="1.5rem"
+    areas={['brand brand products products products']}
+  >
+    <BrandBox
+      area="brand"
+      mb={5}
+      style={{
+        marginTop: 2,
+        paddingRight: '.75rem',
+        marginRight: '-.75rem',
+      }}
+    >
+      <SectionHeading align="right" style={{marginTop: -5}} mb={0}>
+        {item.makerName || '...'}
+      </SectionHeading>
+    </BrandBox>
+    <Text area="products" lineHeight={0} mb={5}>
+      {item.products.map(hit => (
+        <Highlight key={hit.objectID} attributeName="name" hit={hit} tagName="mark" />
+      ))}
+    </Text>
+  </Grid>
+)
+
+export default connectInfiniteHits(connectStateResults(SearchResults))
