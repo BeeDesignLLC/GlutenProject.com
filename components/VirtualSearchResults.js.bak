@@ -12,7 +12,7 @@ import {
 } from 'react-virtualized'
 
 import Grid from '../components/Grid'
-import Box, {RawBox} from '../components/Box'
+import Box, {Header} from '../components/Box'
 import SectionHeading from '../components/SectionHeading'
 import Text from '../components/Text'
 
@@ -21,7 +21,7 @@ const cache = new CellMeasurerCache({
   fixedWidth: true,
 })
 
-const BrandBox = RawBox.withComponent('header').extend`
+const BrandBox = Header.extend`
   border-right: solid 3px ${theme('colors.green')};
 `
 

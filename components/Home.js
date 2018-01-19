@@ -6,13 +6,9 @@ import ArticleHeading from '../components/ArticleHeading'
 import LargeText from '../components/LargeText'
 import Link from '../components/Link'
 
-type Props = {if: boolean}
+type Props = {}
 
 export default class extends React.Component<Props> {
-  static defaultProps = {
-    if: true,
-  }
-
   render() {
     const {...props} = this.props
     return (

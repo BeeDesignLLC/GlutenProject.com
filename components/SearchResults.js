@@ -6,14 +6,14 @@ import {Highlight} from 'react-instantsearch/dom'
 import {connectInfiniteHits, connectStateResults} from 'react-instantsearch/connectors'
 
 import Grid from '../components/Grid'
-import Box, {RawBox} from '../components/Box'
+import Box, {Header} from '../components/Box'
 import ArticleHeading from '../components/ArticleHeading'
 import SectionHeading from '../components/SectionHeading'
 import LargeText from '../components/LargeText'
 import Text from '../components/Text'
 import Button from '../components/Button'
 
-const BrandBox = RawBox.withComponent('header').extend`
+const BrandBox = Header.extend`
   border-right: solid 3px ${theme('colors.green')};
 `
 
@@ -21,7 +21,6 @@ type Props = {
   hits: [],
   hasMore: boolean,
   refine: any => any,
-  if: boolean,
   router: Object,
   searchState: Object,
   searchResults: Object,

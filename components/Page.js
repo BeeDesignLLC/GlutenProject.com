@@ -5,7 +5,7 @@ import {withRouter} from 'next/router'
 import {connectStateResults} from 'react-instantsearch/connectors'
 import titleize from 'titleize'
 import Grid from './Grid'
-import Box from '../components/Box'
+import {Nav, Aside} from '../components/Box'
 import PageHeading from '../components/PageHeading'
 import SectionHeading from '../components/SectionHeading'
 import SearchInput from '../components/SearchInput'
@@ -92,7 +92,7 @@ class Page extends React.Component<Props> {
           as of January 2017.
         </SecondaryText>
 
-        <Box area="menu" tag="nav" flexDirection="column">
+        <Nav area="menu" flexDirection="column">
           <Link menu href="/">
             home
           </Link>
@@ -105,9 +105,9 @@ class Page extends React.Component<Props> {
           <Link menu href="#">
             get help
           </Link>
-        </Box>
+        </Nav>
 
-        <Box area="aside" tag="aside" flexDirection="column" flex={1}>
+        <Aside area="aside" flexDirection="column" flex={1}>
           <SectionHeading>Have an opinion?</SectionHeading>
           <SecondaryText>
             Your feedback determines what we do next to improve this site.<br />
@@ -121,7 +121,7 @@ class Page extends React.Component<Props> {
             You may know two or three people who would love this site. Could you do us a
             favor and tell them about it?
           </SecondaryText>
-        </Box>
+        </Aside>
       </Grid>
     )
   }
