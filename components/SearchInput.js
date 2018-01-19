@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
 import {connectSearchBox, connectStateResults} from 'react-instantsearch/connectors'
+import {withRouter} from 'next/router'
 import styled from 'styled-components'
 import {
   space,
@@ -65,6 +66,8 @@ type Props = {
   currentRefinement: string,
   refine: any => any,
   searchResults: Object,
+  area: string,
+  router: Object,
 }
 
 const SearchInput = ({
@@ -72,14 +75,17 @@ const SearchInput = ({
   refine,
   searchResults,
   area,
-  ...props
+  router: {query: {ssrSearchQuery}},
 }: Props) => (
   <Box justify="flex-end" area={area} style={{position: 'relative'}}>
-    <BaseSearchInput onChange={e => refine(e.target.value)} />
+    <BaseSearchInput
+      value={currentRefinement === ssrSearchQuery ? '' : currentRefinement}
+      onChange={e => refine(e.target.value)}
+    />
     <CaptionText style={{position: 'absolute', right: -30, bottom: 5}}>
-      {currentRefinement && searchResults.nbHits}
+      {currentRefinement && searchResults && searchResults.nbHits}
     </CaptionText>
   </Box>
 )
 
-export default connectSearchBox(connectStateResults(SearchInput))
+export default withRouter(connectSearchBox(connectStateResults(SearchInput)))

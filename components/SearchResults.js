@@ -1,12 +1,15 @@
 // @flow
 import * as React from 'react'
+import {withRouter} from 'next/router'
 import {theme} from 'styled-system'
 import {Highlight} from 'react-instantsearch/dom'
 import {connectInfiniteHits, connectStateResults} from 'react-instantsearch/connectors'
 
 import Grid from '../components/Grid'
 import Box, {RawBox} from '../components/Box'
+import ArticleHeading from '../components/ArticleHeading'
 import SectionHeading from '../components/SectionHeading'
+import LargeText from '../components/LargeText'
 import Text from '../components/Text'
 import Button from '../components/Button'
 
@@ -14,8 +17,22 @@ const BrandBox = RawBox.withComponent('header').extend`
   border-right: solid 3px ${theme('colors.green')};
 `
 
-type Props = {hits: [], hasMore: boolean, refine: any => any, IF: boolean, area: string}
-const SearchResults = ({hits, IF, area, hasMore, refine}: Props) => {
+type Props = {
+  hits: [],
+  hasMore: boolean,
+  refine: any => any,
+  if: boolean,
+  router: Object,
+  searchState: Object,
+  searchResults: Object,
+}
+const SearchResults = ({
+  hits,
+  hasMore,
+  refine,
+  router: {query: {ssrSearchQuery}},
+  searchResults,
+}: Props) => {
   const consolidatedBrands = []
 
   hits.forEach(hit => {
@@ -31,8 +48,17 @@ const SearchResults = ({hits, IF, area, hasMore, refine}: Props) => {
   })
 
   return (
-    IF && (
-      <Box style={{overflow: 'auto'}} area={area}>
+    <React.Fragment>
+      {ssrSearchQuery && (
+        <Box area="heading">
+          <ArticleHeading>List of Certified Gluten Free {ssrSearchQuery}</ArticleHeading>
+          <LargeText color="grays.3">
+            All {searchResults && `${searchResults.nbHits} `}items have been certified
+            gluten free by the Gluten-Free Certification Organization as of January 2017.
+          </LargeText>
+        </Box>
+      )}
+      <Box area="main" style={{overflow: 'auto'}}>
         {consolidatedBrands.map(item => <Row item={item} key={item.makerName} />)}
         {hasMore && (
           <Button onClick={refine} alignSelf="center">
@@ -40,7 +66,7 @@ const SearchResults = ({hits, IF, area, hasMore, refine}: Props) => {
           </Button>
         )}
       </Box>
-    )
+    </React.Fragment>
   )
 }
 
@@ -75,4 +101,4 @@ const Row = ({item}: RowProps) => (
   </Grid>
 )
 
-export default connectInfiniteHits(connectStateResults(SearchResults))
+export default withRouter(connectInfiniteHits(connectStateResults(SearchResults)))

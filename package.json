@@ -7,21 +7,24 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "next",
+    "start": "node server.js",
     "build": "next build",
-    "now-start": "next start",
+    "now-start": "NODE_ENV=production node server.js",
     "lint-format": "eslint --ext .js pages --fix",
     "test": "exit",
     "precommit": "lint-staged"
   },
   "dependencies": {
     "next": "^4.2.3",
+    "p-debounce": "^1.0.0",
+    "path-to-regexp": "^2.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-instantsearch": "^4.4.1",
     "styled-components": "^2.4.0",
     "styled-css-grid": "^0.8.1",
-    "styled-system": "^1.1.1"
+    "styled-system": "^1.1.1",
+    "titleize": "^1.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
