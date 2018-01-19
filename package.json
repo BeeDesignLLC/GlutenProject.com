@@ -15,7 +15,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "next": "^4.2.3",
+    "next": "^4.4.0-canary.3",
     "p-debounce": "^1.0.0",
     "path-to-regexp": "^2.1.0",
     "react": "^16.2.0",
@@ -24,7 +24,8 @@
     "styled-components": "^2.4.0",
     "styled-css-grid": "^0.8.1",
     "styled-system": "^1.1.1",
-    "titleize": "^1.0.0"
+    "titleize": "^1.0.0",
+    "uglifyjs-webpack-plugin": "^1.1.6"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
