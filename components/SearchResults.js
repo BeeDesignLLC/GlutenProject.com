@@ -52,8 +52,8 @@ const SearchResults = ({
         <Box area="heading">
           <ArticleHeading>List of Certified Gluten Free {ssrSearchQuery}</ArticleHeading>
           <LargeText color="grays.3">
-            All {searchResults && `${searchResults.nbHits} `}items have been certified
-            gluten free by the Gluten-Free Certification Organization as of January 2017.
+            All {searchResults && `${searchResults.nbHits} `}items have been certified GF
+            by the Gluten-Free Certification Organization as of January 2017.
           </LargeText>
         </Box>
       )}

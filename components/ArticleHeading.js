@@ -2,7 +2,7 @@
 import Heading from './Heading'
 import {withDynamicTag} from './DynamicTag'
 
-const ArticleHeading = Heading.extend.attrs({
+const ArticleHeading = Heading.withComponent('h2').extend.attrs({
   fontSize: props => props.fontSize || 3,
   color: props => props.color || 'grays.1',
 })`

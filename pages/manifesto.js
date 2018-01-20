@@ -2,6 +2,7 @@
 import * as React from 'react'
 import App from '../components/App'
 import Box from '../components/Box'
+import HugeHeading from '../components/HugeHeading'
 import ArticleHeading from '../components/ArticleHeading'
 import LargeTextList from '../components/LargeTextList'
 
@@ -11,6 +12,8 @@ export default class extends React.Component<Props> {
   render() {
     return (
       <App title="Manifesto of The Gluten Project">
+        <HugeHeading>Manifesto</HugeHeading>
+
         <Box area="main">
           <ArticleHeading>We Believe:</ArticleHeading>
           <LargeTextList>

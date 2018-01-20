@@ -2,7 +2,7 @@
 import Heading from './Heading'
 import {withDynamicTag} from './DynamicTag'
 
-const PageHeading = Heading.extend.attrs({
+const PageHeading = Heading.withComponent('h2').extend.attrs({
   fontSize: props => props.fontSize || 4,
 })`
   font-style: italic;

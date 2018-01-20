@@ -24,7 +24,7 @@ class Page extends React.Component<Props> {
   render() {
     const {
       children,
-      title = 'List of 35k Certified Gluten Free Products | The Gluten Project',
+      title = 'List of 35,000 Certified Gluten Free Products | The Gluten Project',
       router,
       searchState,
     } = this.props
@@ -75,10 +75,7 @@ class Page extends React.Component<Props> {
 
         {children}
 
-        <SearchInput area="search" alignSelf="flex-end" />
-
         <PageHeading
-          tag="h2"
           area="head"
           alignSelf="flex-end"
           style={{cursor: 'pointer'}}
@@ -86,6 +83,8 @@ class Page extends React.Component<Props> {
         >
           35k Certified<br />Gluten Free Products
         </PageHeading>
+
+        <SearchInput area="search" alignSelf="flex-end" />
 
         <SecondaryText area="info" align="right" ml="auto">
           The Gluten Project is the first and only place to search through the entire list

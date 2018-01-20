@@ -2,6 +2,7 @@
 import * as React from 'react'
 import App from '../components/App'
 import Box from '../components/Box'
+import HugeHeading from '../components/HugeHeading'
 import LargeText from '../components/LargeText'
 import Link from '../components/Link'
 
@@ -11,6 +12,8 @@ export default class extends React.Component<Props> {
   render() {
     return (
       <App title="Who's Behind The Gluten Project">
+        <HugeHeading>Who</HugeHeading>
+
         <Box area="main">
           <LargeText>
             Hi there! We are Brandon and Evelyn Bayer, a young couple currently living in
