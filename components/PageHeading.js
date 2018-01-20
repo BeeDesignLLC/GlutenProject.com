@@ -6,7 +6,7 @@ const PageHeading = Heading.withComponent('h2').extend.attrs({
   fontSize: props => props.fontSize || 4,
 })`
   font-style: italic;
-  margin-bottom: -7px;
+  margin-bottom: -5px;
   text-align: right;
 `
 PageHeading.displayName = 'PageHeading'
