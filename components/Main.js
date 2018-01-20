@@ -14,17 +14,6 @@ type Props = {
 }
 
 class Main extends React.Component<Props> {
-  // componentDidMount() {
-  //   this.props.router.onRouteChangeComplete = url => {
-  //     console.log('update', url)
-  //     if (url === '/') {
-  //       // Reset search results
-  //       console.log('refine')
-  //       this.props.refine('')
-  //     }
-  //   }
-  // }
-
   render() {
     const {currentRefinement} = this.props
 

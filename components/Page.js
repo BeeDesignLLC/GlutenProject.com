@@ -60,6 +60,8 @@ class Page extends React.Component<Props> {
         p={4}
         areas={gridAreas}
         className="fullscreen"
+        m="auto"
+        style={{maxWidth: '100rem'}}
       >
         <Head>
           <title>
@@ -85,7 +87,7 @@ class Page extends React.Component<Props> {
           35k Certified<br />Gluten Free Products
         </PageHeading>
 
-        <SecondaryText area="info" align="right">
+        <SecondaryText area="info" align="right" ml="auto">
           The Gluten Project is the first and only place to search through the entire list
           of certified gluten free products. All products are certified by the{' '}
           <Link href="http://www.gfco.org/">Gluten-Free Certification Organization</Link>{' '}

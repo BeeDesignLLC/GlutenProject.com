@@ -6,12 +6,16 @@ import {ServerStyleSheet, injectGlobal} from 'styled-components'
 injectGlobal`
   body {
     background: #F9F9F9;
-    margin: 0;
     -webkit-text-size-adjust: 100%;
   }
 
   * {
     font-family: prenton, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
   }
 
   mark {
@@ -21,14 +25,9 @@ injectGlobal`
     letter-spacing: -0.05ex;
   }
 
-  .fullscreen, .ais-InstantSearch__root {
-    height: 100vh;
-    width: 100vw;
+  .fullscreen {
+    min-height: 100vh;
     overflow: hidden;
-  }
-
-  div {
-    box-sizing: border-box;
   }
 `
 

@@ -82,9 +82,15 @@ const SearchInput = ({
       value={currentRefinement === ssrSearchQuery ? '' : currentRefinement}
       onChange={e => refine(e.target.value)}
     />
-    <CaptionText style={{position: 'absolute', right: -30, bottom: 5}}>
-      {currentRefinement && searchResults && searchResults.nbHits}
-    </CaptionText>
+    {currentRefinement &&
+      searchResults && (
+        <CaptionText
+          width="100%"
+          style={{position: 'absolute', left: 'calc(100% + 0.5rem)', bottom: 9}}
+        >
+          {searchResults.nbHits} results
+        </CaptionText>
+      )}
   </Box>
 )
 

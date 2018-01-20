@@ -3,8 +3,11 @@ import {theme} from 'styled-system'
 import LargeText from './LargeText'
 
 const LargeTextList = LargeText.withComponent('ul').extend`
-    margin: 0;
-    padding-left: ${theme('space.4')};
+  padding-left: ${theme('space.4')};
+
+  & > li + li {
+    margin-top: ${theme('space.2')};
+  }
 `
 
 export const LargeTextListItem = LargeText.withComponent('li')

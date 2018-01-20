@@ -57,7 +57,7 @@ const SearchResults = ({
           </LargeText>
         </Box>
       )}
-      <Box area="main" style={{overflow: 'auto'}}>
+      <Box area="main" style={{overflow: 'auto', maxHeight: '100%'}}>
         {consolidatedBrands.map(item => <Row item={item} key={item.makerName} />)}
         {hasMore && (
           <Button onClick={refine} alignSelf="center">
