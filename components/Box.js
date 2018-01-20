@@ -18,7 +18,7 @@ import {
   cleanElement,
   propTypes,
 } from 'styled-system'
-import {gridArea, height} from '../utils/styled'
+import {gridArea, height, justifySelf} from '../utils/styled'
 
 const BoxPropTypes = {
   ...propTypes.space,
@@ -65,6 +65,7 @@ const Box = styled(CleanDiv)`
   ${borderWidth}
   ${boxShadow}
   ${gridArea}
+  ${justifySelf}
 `
 
 export const Header = Box.withComponent(CleanHeader)

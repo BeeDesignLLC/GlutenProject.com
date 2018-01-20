@@ -1,7 +1,6 @@
 // @flow
 import styled from 'styled-components'
 import {
-  theme,
   space,
   width,
   fontSize,
@@ -11,15 +10,12 @@ import {
   alignItems,
   alignSelf,
 } from 'styled-system'
-import {gridArea} from '../utils/styled'
+import {gridArea, justifySelf} from '../utils/styled'
 
-const Heading = styled.h1`
+const Heading = styled.h1.attrs({
+  mb: props => (props.mb !== undefined ? props.mb : 3),
+})`
   font-weight: 700;
-  margin: 0 0 ${theme('space.3')};
-
-  p + & {
-    margin-top: ${theme('space.5')};
-  }
 
   ${space}
   ${width}
@@ -30,5 +26,6 @@ const Heading = styled.h1`
   ${alignItems}
   ${alignSelf}
   ${gridArea}
+  ${justifySelf}
 `
 export default Heading

@@ -15,3 +15,8 @@ export const height = style({
   prop: 'height',
   cssProperty: 'height',
 })
+
+export const justifySelf = style({
+  prop: 'justifySelf',
+  cssProperty: 'justify-self',
+})

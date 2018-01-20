@@ -1,7 +1,16 @@
 // @flow
 import styled from 'styled-components'
-import {theme, space, width, fontSize, color, textAlign, lineHeight} from 'styled-system'
-import {gridArea} from '../utils/styled'
+import {
+  theme,
+  space,
+  width,
+  fontSize,
+  color,
+  textAlign,
+  lineHeight,
+  alignSelf,
+} from 'styled-system'
+import {gridArea, justifySelf} from '../utils/styled'
 
 const Text = styled.p`
   font-size: ${theme('fontSizes.1')};
@@ -28,5 +37,7 @@ const Text = styled.p`
   ${textAlign}
   ${lineHeight}
   ${gridArea}
+  ${justifySelf}
+  ${alignSelf}
 `
 export default Text

@@ -6,6 +6,7 @@ import {connectStateResults} from 'react-instantsearch/connectors'
 import titleize from 'titleize'
 import Grid from './Grid'
 import {Nav, Aside} from '../components/Box'
+import Logo from '../components/Logo'
 import PageHeading from '../components/PageHeading'
 import SectionHeading from '../components/SectionHeading'
 import SearchInput from '../components/SearchInput'
@@ -86,7 +87,7 @@ class Page extends React.Component<Props> {
 
         <SearchInput area="search" alignSelf="flex-end" />
 
-        <SecondaryText area="info" align="right" ml="auto">
+        <SecondaryText area="info" align="right" justifySelf="flex-end">
           The Gluten Project is the first and only place to search through the entire list
           of certified gluten free products. All products are certified by the{' '}
           <Link href="http://www.gfco.org/">Gluten-Free Certification Organization</Link>{' '}
@@ -117,11 +118,13 @@ class Page extends React.Component<Props> {
             <Link href="#">Send feedback to Brandon</Link>
           </SecondaryText>
 
-          <SectionHeading>Thankful?</SectionHeading>
+          <SectionHeading mt={5}>Thankful?</SectionHeading>
           <SecondaryText>
             You may know two or three people who would love this site. Could you do us a
             favor and tell them about it?
           </SecondaryText>
+
+          <Logo mt="auto" mb={0} />
         </Aside>
       </Grid>
     )

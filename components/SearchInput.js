@@ -23,9 +23,8 @@ import CaptionText from './CaptionText'
 
 const BaseSearchInput = styled.input.attrs({
   placeholder: 'What can we find for you?',
-  // width: props => props.width || '100%',
-  fontSize: props => props.fontSize || 1,
-  bg: props => props.bg || 'greenLight',
+  fontSize: props => (props.fontSize !== undefined ? props.fontSize : 1),
+  bg: props => (props.bg !== undefined ? props.bg : 'greenLight'),
   type: 'text',
 })`
   ${space}
