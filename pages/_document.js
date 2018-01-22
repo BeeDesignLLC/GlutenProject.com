@@ -29,6 +29,12 @@ injectGlobal`
     min-height: 100vh;
     overflow: hidden;
   }
+
+  @media (min-width: 800px) and (min-height: 800px) {
+    .fullscreen {
+      height: 100vh;
+    }
+  }
 `
 
 export default class MyDocument extends Document {

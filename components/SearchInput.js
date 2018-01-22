@@ -42,6 +42,7 @@ const BaseSearchInput = styled.input.attrs({
   ${gridArea}
 
   border: none;
+  outline: none;
   height: 2rem;
   border-radius: 10rem;
   font-family: prenton, sans-serif;

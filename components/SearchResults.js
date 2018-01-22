@@ -13,6 +13,8 @@ import LargeText from '../components/LargeText'
 import Text from '../components/Text'
 import Button from '../components/Button'
 
+const RowGrid = Grid.withComponent('section')
+
 const BrandBox = Header.extend`
   border-right: solid 3px ${theme('colors.green')};
 `
@@ -73,7 +75,7 @@ type RowProps = {
   item: Object,
 }
 const Row = ({item}: RowProps) => (
-  <Grid
+  <RowGrid
     tag="section"
     columns={5}
     gap="1.5rem"
@@ -97,7 +99,7 @@ const Row = ({item}: RowProps) => (
         <Highlight key={hit.objectID} attributeName="name" hit={hit} tagName="mark" />
       ))}
     </Text>
-  </Grid>
+  </RowGrid>
 )
 
 export default withRouter(connectInfiniteHits(connectStateResults(SearchResults)))

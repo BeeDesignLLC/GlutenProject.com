@@ -16,9 +16,10 @@ import {
   boxShadow,
 } from 'styled-system'
 import {gridArea, gridRowGap, height} from '../utils/styled'
-import {withDynamicTag} from './DynamicTag'
 
 const Grid = StyledGrid.extend`
+  grid-auto-rows: auto;
+
   ${space}
   ${width}
   ${height}
@@ -37,4 +38,4 @@ const Grid = StyledGrid.extend`
   ${gridArea}
 `
 Grid.displayName = 'Grid'
-export default withDynamicTag(Grid)
+export default Grid

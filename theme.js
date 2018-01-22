@@ -10,9 +10,7 @@ const desktopFontSizes = scale(1.4, 1.3).map(x => `${x}ex`)
 // const mobileFontSizes = scale(1.3, 1.3).map(x => `${x}ex`)
 
 export default {
-  // breakpoints: [
-  //   32, 48, 64
-  // ],
+  breakpoints: ['32rem', '70rem', '100rem'],
   // This makes a fibonacci sequences with 1ex, but replaces 1ex with 0.5rem so local font-size doesn't affect it.
   space: [0, '0.25rem', '0.5rem', '1rem', '1.5rem', '2.5rem', '4rem', '7.5rem'],
   fontSizes: desktopFontSizes,

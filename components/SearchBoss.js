@@ -57,7 +57,10 @@ class SearchBoss extends React.Component<Props, State> {
     const {query} = this.state.searchState
 
     if (query) {
-      nextRoute = `/certified-gluten-free-${query.split(' ').join('-')}`
+      nextRoute = `/certified-gluten-free-${query
+        .toLowerCase()
+        .split(' ')
+        .join('-')}`
     } else {
       nextRoute = '/'
     }

@@ -12,6 +12,15 @@ import SectionHeading from '../components/SectionHeading'
 import SearchInput from '../components/SearchInput'
 import SecondaryText from '../components/SecondaryText'
 import Link from './Link'
+import theme from '../theme'
+
+const MasterGrid = Grid.extend`
+  grid-row-gap: ${theme.space[5]};
+
+  @media (min-height: 800px) {
+    grid-row-gap: ${theme.space[6]};
+  }
+`
 
 type Props = {
   children?: React.Node,
@@ -53,12 +62,11 @@ class Page extends React.Component<Props> {
     }
 
     return (
-      <Grid
+      <MasterGrid
         columns={6}
         rows="7.5rem auto 1fr"
-        gap="1.5rem"
-        rowGap="4rem"
-        p={4}
+        gap={theme.space[4]}
+        p={[3, 3, 4]}
         areas={gridAreas}
         className="fullscreen"
         m="auto"
@@ -119,7 +127,7 @@ class Page extends React.Component<Props> {
           </SecondaryText>
 
           <SectionHeading mt={5}>Thankful?</SectionHeading>
-          <SecondaryText>
+          <SecondaryText mb={4}>
             You can best show your support by telling others about The Gluten Project.
           </SecondaryText>
           {/* <SecondaryText> */}
@@ -129,7 +137,7 @@ class Page extends React.Component<Props> {
 
           <Logo mt="auto" mb={0} />
         </Aside>
-      </Grid>
+      </MasterGrid>
     )
   }
 }

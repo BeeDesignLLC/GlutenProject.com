@@ -30,9 +30,11 @@ const Button = styled.button`
   font-size: ${theme('fontSizes.1')};
   font-weight: normal;
   margin: 0;
-  padding: 0.2rem 0.6rem 0.35rem;
+  padding: 0.3rem 1rem 0.5rem;
   font-feature-settings: "smcp";
   letter-spacing: 0.15ex;
+  flex-shrink: 0;
+  outline: none;
 
   ${space}
   ${width}
