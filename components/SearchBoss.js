@@ -11,6 +11,7 @@ type Props = {
 }
 type State = {
   searchState: Object,
+  production: boolean,
 }
 
 const debouncedRouterPush = debounce(Router.push, 500)
@@ -21,6 +22,7 @@ const match = route('/certified-gluten-free-:searchQuery')
 class SearchBoss extends React.Component<Props, State> {
   state = {
     searchState: {query: this.props.ssrSearchQuery || ''},
+    production: false,
   }
 
   componentDidMount() {
@@ -39,6 +41,10 @@ class SearchBoss extends React.Component<Props, State> {
           },
         }))
       }
+    }
+
+    if (window.location.host === 'glutenproject.com') {
+      this.setState({production: true})
     }
   }
 
@@ -77,7 +83,7 @@ class SearchBoss extends React.Component<Props, State> {
         onSearchStateChange={this.onSearchStateChange}
         searchState={this.state.searchState}
       >
-        <Configure hitsPerPage={40} />
+        <Configure hitsPerPage={40} analytics={this.state.production} />
         {this.props.children}
       </InstantSearch>
     )
