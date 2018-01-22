@@ -13,8 +13,16 @@ const match = route('/certified-gluten-free-:ssrSearchQuery')
 
 app.prepare().then(() => {
   createServer((req, res) => {
+    // WARNING WARNING WARNING WARNING WARNING WARNING WARNING
+    // This prevents search engines from indexing anything except for the production instance
+    if (req.headers.host !== 'glutenproject.com') {
+      res.setHeader('x-robots-tag', 'noindex, nofollow')
+    }
+    // WARNING WARNING WARNING WARNING WARNING WARNING WARNING
+
     const {pathname, query} = parse(req.url, true)
     const params = match(pathname)
+
     if (params === false) {
       handle(req, res)
       return
