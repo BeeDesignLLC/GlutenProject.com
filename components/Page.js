@@ -105,7 +105,7 @@ class Page extends React.Component<Props> {
             who&rsquo;s behind this
           </Link>
           <Link menu href="#">
-            get help
+            ask a question
           </Link>
         </Nav>
 
@@ -120,9 +120,12 @@ class Page extends React.Component<Props> {
 
           <SectionHeading mt={5}>Thankful?</SectionHeading>
           <SecondaryText>
-            You may know two or three people who would love this site. Could you do us a
-            favor and tell them about it?
+            You can best show your support by telling others about The Gluten Project.
           </SecondaryText>
+          {/* <SecondaryText> */}
+          {/*   You may know two or three people who would love this site. Could you do us a */}
+          {/*   favor and tell them about it? */}
+          {/* </SecondaryText> */}
 
           <Logo mt="auto" mb={0} />
         </Aside>
