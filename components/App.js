@@ -11,6 +11,18 @@ type Props = {
 }
 
 class App extends React.Component<Props> {
+  componentDidMount() {
+    window.Intercom('boot', {
+      app_id: 's97lyn5h',
+      horizontal_padding: 25,
+      vertical_padding: 25,
+    })
+
+    this.props.router.onRouteChangeComplete = () => {
+      window.Intercom('update')
+    }
+  }
+
   render() {
     const {router, ...props} = this.props
 

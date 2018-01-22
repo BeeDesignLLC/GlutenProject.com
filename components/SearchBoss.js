@@ -61,6 +61,8 @@ class SearchBoss extends React.Component<Props, State> {
         .toLowerCase()
         .split(' ')
         .join('-')}`
+
+      window.Intercom('trackEvent', 'searched')
     } else {
       nextRoute = '/'
     }

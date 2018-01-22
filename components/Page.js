@@ -12,6 +12,7 @@ import SectionHeading from '../components/SectionHeading'
 import SearchInput from '../components/SearchInput'
 import SecondaryText from '../components/SecondaryText'
 import Link from './Link'
+import {AnchorButton} from './Anchor'
 import theme from '../theme'
 
 const MasterGrid = Grid.extend`
@@ -106,15 +107,15 @@ class Page extends React.Component<Props> {
           <Link menu href="/">
             home
           </Link>
-          <Link menu href="/manifesto">
+          <Link menu href="/manifesto" mt={2}>
             manifesto
           </Link>
-          <Link menu href="/who">
+          <Link menu href="/who" mt={2}>
             who&rsquo;s behind this
           </Link>
-          <Link menu href="#">
+          <AnchorButton menu onClick={() => window.Intercom('showNewMessage')} mt={2}>
             ask a question
-          </Link>
+          </AnchorButton>
         </Nav>
 
         <Aside area="aside" flexDirection="column" flex={1}>
@@ -123,7 +124,12 @@ class Page extends React.Component<Props> {
             Your feedback determines what we do next to improve this site.<br />
           </SecondaryText>
           <SecondaryText>
-            <Link href="#">Send feedback to Brandon</Link>
+            <AnchorButton
+              inheritContext
+              onClick={() => window.Intercom('showNewMessage')}
+            >
+              Send feedback to Brandon
+            </AnchorButton>
           </SecondaryText>
 
           <SectionHeading mt={5}>Thankful?</SectionHeading>

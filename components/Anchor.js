@@ -1,6 +1,6 @@
 // @flow
 import styled from 'styled-components'
-import {space, width, fontSize, color, textAlign} from 'styled-system'
+import {space, width, fontSize, color, textAlign, theme} from 'styled-system'
 
 const Anchor = styled.a.attrs({
   m: props => (props.m !== undefined ? props.m : 0),
@@ -9,6 +9,8 @@ const Anchor = styled.a.attrs({
 
   cursor: pointer;
   text-decoration: none;
+  font-style: inherit;
+  font-size: ${props => (props.menu ? theme('fontSizes.1') : 'inherit')};
 
   ${props =>
     props.menu &&
@@ -16,9 +18,6 @@ const Anchor = styled.a.attrs({
     font-feature-settings: "smcp";
     letter-spacing: 0.15ex;
     display: block;
-    & + & {
-      margin-top: 0.5rem;
-    }
   `}
 
   &:hover {
@@ -31,4 +30,10 @@ const Anchor = styled.a.attrs({
   ${color}
   ${textAlign}
 `
+
+export const AnchorButton = Anchor.withComponent('button').extend`
+  text-align: unset;
+  background-color: unset;
+`
+
 export default Anchor
