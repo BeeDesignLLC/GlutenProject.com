@@ -50,8 +50,11 @@ export default class MyDocument extends Document {
       <html lang="en">
         <Head>
           <meta charSet="utf-8" />
-          <meta name="description" content="" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta
+            name="description"
+            content="The Gluten Project is the first and only place to search through the entire list of certified gluten free products."
+          />
+          {/* <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
 
           <link rel="stylesheet" href="https://use.typekit.net/eom3pqo.css" />
           {this.props.styleTags}
