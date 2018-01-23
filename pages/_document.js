@@ -63,6 +63,23 @@ export default class MyDocument extends Document {
             }}
           />
           {/* END INTERCOM SCRIPT */}
+
+          {/* START Global site tag (gtag.js) - Google Analytics */}
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-107144503-2"
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107144503-2');
+`,
+            }}
+          />
+          {/* END Global site tag (gtag.js) - Google Analytics */}
         </Head>
         <body>
           <Main />
