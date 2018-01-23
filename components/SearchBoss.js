@@ -49,8 +49,6 @@ class SearchBoss extends React.Component<Props, State> {
   }
 
   onSearchStateChange = (searchState: Object) => {
-    //eslint-disable-next-line
-    console.log('newSearchState', searchState)
     this.setState({searchState}, this.updateUrl)
   }
 
@@ -65,22 +63,22 @@ class SearchBoss extends React.Component<Props, State> {
         .join('-')}`
 
       if (this.state.production) {
-        window.ga('send', 'event', 'Search', 'searched')
-        window.Intercom('trackEvent', 'searched')
+        window.ga && window.ga('send', 'event', 'Search', 'searched')
+        window.Intercom && window.Intercom('trackEvent', 'searched')
       }
     } else {
       nextRoute = '/'
     }
 
-    if (this.props.ssrSearchQuery) {
+    if (this.props.ssrSearchQuery || (Router.pathname == '/' && !query)) {
       //eslint-disable-next-line
-      console.log('updating ssr url', query, nextRoute)
+      console.log('updating standard url', query, nextRoute)
 
       // Previous state was SSR OR query is now empty. Need to pushState
       Router.push('/', nextRoute)
     } else if (query) {
       //eslint-disable-next-line
-      console.log('updating url', query, nextRoute)
+      console.log('updating query url', query, nextRoute)
 
       // Previous state was client side search change. replaceState to not fill up browser history
       // debouncedRouterReplace('/', nextRoute, {shallow: true})

@@ -134,7 +134,7 @@ const Row = ({item}: RowProps) => (
             )
             if (window.location.host === 'glutenproject.com') {
               window.Intercom('trackEvent', 'clicked-product')
-              window.ga('send', 'event', 'Search', 'clicked-product')
+              window.ga && window.ga('send', 'event', 'Search', 'clicked-product')
             }
           }}
         >
