@@ -3,6 +3,7 @@ const {parse} = require('url')
 const next = require('next')
 const pathMatch = require('path-match')
 const titleize = require('titleize')
+const {join} = require('path')
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -22,6 +23,12 @@ app.prepare().then(() => {
 
     const {pathname, query} = parse(req.url, true)
     const params = match(pathname)
+
+    const rootStaticFiles = ['/robots.txt', '/sitemap.xml', '/favicon.ico']
+    if (rootStaticFiles.indexOf(pathname) > -1) {
+      const path = join(__dirname, 'static', pathname)
+      app.serveStatic(req, res, path)
+    }
 
     if (params === false) {
       handle(req, res)
