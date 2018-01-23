@@ -59,6 +59,19 @@ export default class MyDocument extends Document {
           <link rel="stylesheet" href="https://use.typekit.net/eom3pqo.css" />
           {this.props.styleTags}
 
+          {/* START TRACKJS SCRIPT */}
+          <script
+            type="text/javascript"
+            dangerouslySetInnerHTML={{
+              __html: `window._trackJs = { token: '0c9abe494614451c9fa2161acfbbb8db' };`,
+            }}
+          />
+          <script
+            type="text/javascript"
+            src="https://cdn.trackjs.com/releases/current/tracker.js"
+          />
+          {/* END TRACKJS SCRIPT */}
+
           {/* START INTERCOM SCRIPT */}
           <script
             dangerouslySetInnerHTML={{
