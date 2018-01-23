@@ -118,7 +118,7 @@ const Row = ({item}: RowProps) => (
         {item.makerName || '...'}
       </SectionHeading>
     </BrandBox>
-    <Text area="products" lineHeight={0} mb={5}>
+    <Box area="products" mb={5}>
       {item.products.map(hit => (
         <ProductBox
           key={hit.objectID}
@@ -138,14 +138,16 @@ const Row = ({item}: RowProps) => (
             }
           }}
         >
-          <Highlight attributeName="name" hit={hit} tagName="mark" />
+          <Text>
+            <Highlight attributeName="name" hit={hit} tagName="mark" />
+          </Text>
           <Hr className="productHover" />
-          <AnchorButton className="productHover" mr={3}>
-            Find Where To Buy
-          </AnchorButton>
+          <Text className="productHover" mr={3}>
+            <AnchorButton>Find Where To Buy</AnchorButton>
+          </Text>
         </ProductBox>
       ))}
-    </Text>
+    </Box>
   </RowGrid>
 )
 
