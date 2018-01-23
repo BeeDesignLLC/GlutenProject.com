@@ -4,7 +4,7 @@ import App from '../components/App'
 import Box from '../components/Box'
 import HugeHeading from '../components/HugeHeading'
 import LargeText from '../components/LargeText'
-import Link from '../components/Link'
+import Anchor from '../components/Anchor'
 import Image from '../components/Image'
 
 type Props = {}
@@ -28,13 +28,17 @@ export default class extends React.Component<Props> {
           <LargeText>
             Brandon is an entrepreneur, designer, developer, and independent consultant.
             He’s passionate about business and aviation. Follow him on Twitter{' '}
-            <Link href="https://twitter.com/beedesignllc">@beedesignllc</Link>.
+            <Anchor href="https://twitter.com/beedesignllc" target="_blank">
+              @beedesignllc
+            </Anchor>.
           </LargeText>
 
           <LargeText>
             Evelyn is self-taught seamstress and fashion designer. She’s passionate about
             sewing, healthy eating, and entrepreneurship. Follow her on Instagram{' '}
-            <Link href="https://www.instagram.com/sew.petite/">@sew.petite</Link>.
+            <Anchor href="https://www.instagram.com/sew.petite/" target="_blank">
+              @sew.petite
+            </Anchor>.
           </LargeText>
 
           <Box p={6} alignItems="center">

@@ -12,6 +12,7 @@ import SectionHeading from '../components/SectionHeading'
 import SearchInput from '../components/SearchInput'
 import SecondaryText from '../components/SecondaryText'
 import Link from './Link'
+import Anchor from './Anchor'
 import {AnchorButton} from './Anchor'
 import theme from '../theme'
 
@@ -99,7 +100,9 @@ class Page extends React.Component<Props> {
         <SecondaryText area="info" align="right" justifySelf="flex-end">
           The Gluten Project is the first and only place to search through the entire list
           of certified gluten free products. All products are certified by the{' '}
-          <Link href="http://www.gfco.org/">Gluten-Free Certification Organization</Link>{' '}
+          <Anchor href="http://www.gfco.org/" target="_blank">
+            Gluten-Free Certification Organization
+          </Anchor>{' '}
           as of January 2017.
         </SecondaryText>
 

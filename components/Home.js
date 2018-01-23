@@ -6,6 +6,7 @@ import ArticleHeading from '../components/ArticleHeading'
 import LargeText from '../components/LargeText'
 import LargeTextList from '../components/LargeTextList'
 import Link from '../components/Link'
+import Anchor from '../components/Anchor'
 
 type Props = {}
 
@@ -25,9 +26,9 @@ export default class extends React.Component<Props> {
           <LargeTextList mt={4}>
             <li>
               Everything certified by the{' '}
-              <Link href="http://www.gfco.org/">
+              <Anchor href="http://www.gfco.org/" target="_blank">
                 Gluten-Free Certification Organization
-              </Link>{' '}
+              </Anchor>{' '}
               (GFCO)
             </li>
             <li>Comprehensive list of all certified products</li>
