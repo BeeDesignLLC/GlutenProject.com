@@ -125,7 +125,6 @@ const Row = ({item}: RowProps) => (
           flexDirection="row"
           justify="space-between"
           onClick={() => {
-            window.Intercom('trackEvent', 'clicked-product')
             window.Intercom(
               'showNewMessage',
               `Where can I buy:
@@ -133,6 +132,10 @@ const Row = ({item}: RowProps) => (
 
 (📣 Dear visitor, until we get links on the website, we're messaging them to you on-demand!)`
             )
+            if (window.location.host === 'glutenproject.com') {
+              window.Intercom('trackEvent', 'clicked-product')
+              window.ga('send', 'event', 'Search', 'clicked-product')
+            }
           }}
         >
           <Highlight attributeName="name" hit={hit} tagName="mark" />

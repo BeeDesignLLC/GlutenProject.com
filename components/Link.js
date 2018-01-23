@@ -9,11 +9,10 @@ type Props = {
   href?: any,
   as?: any,
   replace?: boolean,
-  onClick?: any,
 }
 
-const Link = ({children, menu, href, as, replace, onClick, ...props}: Props) => (
-  <NextLink prefetch passHref href={href} as={as} replace={replace} onClick={onClick}>
+const Link = ({children, menu, href, as, replace, ...props}: Props) => (
+  <NextLink prefetch passHref href={href} as={as} replace={replace}>
     <Anchor menu={menu} {...props}>
       {children}
     </Anchor>

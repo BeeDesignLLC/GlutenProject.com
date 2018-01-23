@@ -62,7 +62,10 @@ class SearchBoss extends React.Component<Props, State> {
         .split(' ')
         .join('-')}`
 
-      window.Intercom('trackEvent', 'searched')
+      if (this.state.production) {
+        window.ga('send', 'event', 'Search', 'searched')
+        window.Intercom('trackEvent', 'searched')
+      }
     } else {
       nextRoute = '/'
     }
