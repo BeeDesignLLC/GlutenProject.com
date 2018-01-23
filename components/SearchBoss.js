@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react'
 import Router from 'next/router'
-import pathMatch from 'path-match'
 import {InstantSearch, Configure} from 'react-instantsearch/dom'
 import debounce from 'p-debounce'
 
@@ -16,8 +15,6 @@ type State = {
 
 const debouncedRouterPush = debounce(Router.push, 500)
 // const debouncedRouterReplace = debounce(Router.replace, 500)
-const route = pathMatch()
-const match = route('/certified-gluten-free-:searchQuery')
 
 class SearchBoss extends React.Component<Props, State> {
   state = {
@@ -26,23 +23,6 @@ class SearchBoss extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    Router.onRouteChangeComplete = url => {
-      const params = match(url)
-      const urlQuery = params.searchQuery || ''
-      const inputQuery = this.state.searchState.query
-
-      if (urlQuery !== inputQuery) {
-        //eslint-disable-next-line
-        console.log('setting query from URL')
-        this.setState(({searchState}) => ({
-          searchState: {
-            ...searchState,
-            query: urlQuery.split('-').join(' '),
-          },
-        }))
-      }
-    }
-
     if (window.location.host === 'glutenproject.com') {
       this.setState({production: true})
     }
