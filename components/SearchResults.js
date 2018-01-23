@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react'
 import {withRouter} from 'next/router'
-import styled from 'styled-components'
 import {theme} from 'styled-system'
 import {Highlight} from 'react-instantsearch/dom'
 import {connectInfiniteHits, connectStateResults} from 'react-instantsearch/connectors'
@@ -12,8 +11,7 @@ import ArticleHeading from '../components/ArticleHeading'
 import SectionHeading from '../components/SectionHeading'
 import LargeText from '../components/LargeText'
 import Text from '../components/Text'
-import {AnchorButton} from '../components/Anchor'
-import Button from '../components/Button'
+import Button, {TinyButton} from '../components/Button'
 
 const RowGrid = Grid.withComponent('section')
 
@@ -21,14 +19,14 @@ const BrandBox = Header.extend`
   border-right: solid 3px ${theme('colors.green')};
 `
 
-const Hr = styled.hr`
-  flex-grow: 1;
-  height: 0;
-  border: 1px solid ${theme('colors.grays.3')};
-  align-self: center;
-  margin: 0 ${theme('space.3')};
-  min-width: ${theme('space.3')};
-`
+// const Hr = styled.hr`
+//   flex-grow: 1;
+//   height: 0;
+//   border: 1px solid ${theme('colors.grays.3')};
+//   align-self: center;
+//   margin: 0 ${theme('space.3')};
+//   min-width: ${theme('space.3')};
+// `
 
 const ProductBox = Box.extend`
   &:not(:hover) > .productHover {
@@ -36,9 +34,9 @@ const ProductBox = Box.extend`
   }
 
   &:hover {
-    padding-left: ${theme('space.2')};
   }
 `
+// padding-left: ${theme('space.2')};
 // cursor: pointer;
 // text-decoration: underline;
 // color: ${theme('colors.green')};
@@ -123,14 +121,13 @@ const Row = ({item}: RowProps) => (
         <ProductBox
           key={hit.objectID}
           flexDirection="row"
-          justify="space-between"
           onClick={() => {
             window.Intercom(
               'showNewMessage',
               `Where can I buy:
 — ${hit.name} (${hit.makerName})
 
-(📣 Dear visitor, until we get links on the website, we're messaging them to you on-demand!)`
+(📣 Note: until we get links on the website, we're messaging them to you on-demand!)`
             )
             if (window.location.host === 'glutenproject.com') {
               window.Intercom('trackEvent', 'clicked-product')
@@ -138,12 +135,11 @@ const Row = ({item}: RowProps) => (
             }
           }}
         >
+          <TinyButton className="productHover" mr={2}>
+            find
+          </TinyButton>
           <Text>
             <Highlight attributeName="name" hit={hit} tagName="mark" />
-          </Text>
-          <Hr className="productHover" />
-          <Text className="productHover" mr={3}>
-            <AnchorButton>Find Where To Buy</AnchorButton>
           </Text>
         </ProductBox>
       ))}

@@ -54,4 +54,10 @@ const Button = styled.button`
   ${boxShadow}
   ${gridArea}
 `
+
+export const TinyButton = Button.extend`
+  font-size: ${theme('fontSizes.0')};
+  padding: 0rem 0.5rem 0.1rem;
+`
+
 export default Button
