@@ -26,10 +26,6 @@ const Text = styled.p`
     padding-left: ${theme('space.4')};
   }
 
-  & > span.ais-Highlight {
-    display: block;
-  }
-
   ${space}
   ${width}
   ${fontSize}

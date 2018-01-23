@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
 import {withRouter} from 'next/router'
+import styled from 'styled-components'
 import {theme} from 'styled-system'
 import {Highlight} from 'react-instantsearch/dom'
 import {connectInfiniteHits, connectStateResults} from 'react-instantsearch/connectors'
@@ -11,6 +12,7 @@ import ArticleHeading from '../components/ArticleHeading'
 import SectionHeading from '../components/SectionHeading'
 import LargeText from '../components/LargeText'
 import Text from '../components/Text'
+import {AnchorButton} from '../components/Anchor'
 import Button from '../components/Button'
 
 const RowGrid = Grid.withComponent('section')
@@ -18,6 +20,28 @@ const RowGrid = Grid.withComponent('section')
 const BrandBox = Header.extend`
   border-right: solid 3px ${theme('colors.green')};
 `
+
+const Hr = styled.hr`
+  flex-grow: 1;
+  height: 0;
+  border: 1px solid ${theme('colors.grays.3')};
+  align-self: center;
+  margin: 0 ${theme('space.3')};
+  min-width: ${theme('space.3')};
+`
+
+const ProductBox = Box.extend`
+  &:not(:hover) > .productHover {
+    display: none;
+  }
+
+  &:hover {
+    padding-left: ${theme('space.2')};
+  }
+`
+// cursor: pointer;
+// text-decoration: underline;
+// color: ${theme('colors.green')};
 
 type Props = {
   hits: [],
@@ -96,7 +120,27 @@ const Row = ({item}: RowProps) => (
     </BrandBox>
     <Text area="products" lineHeight={0} mb={5}>
       {item.products.map(hit => (
-        <Highlight key={hit.objectID} attributeName="name" hit={hit} tagName="mark" />
+        <ProductBox
+          key={hit.objectID}
+          flexDirection="row"
+          justify="space-between"
+          onClick={() => {
+            window.Intercom('trackEvent', 'clicked-product')
+            window.Intercom(
+              'showNewMessage',
+              `Where can I buy:
+— ${hit.name} (${hit.makerName})
+
+(📣 Dear visitor, until we get links on the website, we're messaging them to you on-demand!)`
+            )
+          }}
+        >
+          <Highlight attributeName="name" hit={hit} tagName="mark" />
+          <Hr className="productHover" />
+          <AnchorButton className="productHover" mr={3}>
+            Find Where To Buy
+          </AnchorButton>
+        </ProductBox>
       ))}
     </Text>
   </RowGrid>

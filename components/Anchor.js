@@ -34,6 +34,7 @@ const Anchor = styled.a.attrs({
 export const AnchorButton = Anchor.withComponent('button').extend`
   text-align: unset;
   background-color: unset;
+  flex-shrink: 0;
 `
 
 export default Anchor
