@@ -20,6 +20,7 @@ class App extends React.Component<Props> {
 
     this.props.router.onRouteChangeComplete = () => {
       window.Intercom('update')
+      window.gtag && window.gtag('event', 'page_view')
     }
   }
 

@@ -43,7 +43,7 @@ class SearchBoss extends React.Component<Props, State> {
         .join('-')}`
 
       if (this.state.production) {
-        window.ga && window.ga('send', 'event', 'Search', 'searched')
+        window.gtag && window.gtag('event', 'search', {search_term: query})
         window.Intercom && window.Intercom('trackEvent', 'searched')
       }
     } else {
