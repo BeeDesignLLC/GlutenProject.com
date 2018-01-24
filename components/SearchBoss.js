@@ -44,6 +44,7 @@ class SearchBoss extends React.Component<Props, State> {
           (this.state.searchState.query && this.state.searchState.query.trim()) || ''
         const urlQuery = (Router.query.q && Router.query.q.trim()) || ''
         if (currentQuery != urlQuery) {
+          // console.log('UPDATE_FROM_URL')
           this.setState(state => ({
             searchState: {
               ...state.searchState,
@@ -57,28 +58,31 @@ class SearchBoss extends React.Component<Props, State> {
 
   onSearchStateChange = (searchState: Object) => {
     const newQuery = searchState.query.trim()
-    searchState.query = newQuery
 
     if (!this.state.searchState.query && newQuery) {
       // Starting search
+      // console.log('NEW_SEARCH')
       debouncedRouterReplace.cancel()
       Router.replace(`/search?q=${newQuery}`, urlForQuery(newQuery), {
         shallow: true,
       })
     } else if (Router.query.ssr && this.state.searchState.query && newQuery) {
       // Starting search from SSR page
+      // console.log('NEW_SEARCH_FROM_SSR')
       debouncedRouterReplace.cancel()
       Router.replace(`/search?q=${newQuery}`, urlForQuery(newQuery), {
         shallow: true,
       })
     } else if (this.state.searchState.query && !newQuery) {
       // Ending search
+      // console.log('END_SEARCH')
       debouncedRouterReplace.cancel()
       Router.push('/search', '/search', {
         shallow: true,
       })
-    } else {
+    } else if (this.state.searchState.query !== newQuery) {
       // Changing search
+      // console.log('CHANGE_SEARCH')
       debouncedRouterReplace(`/search?q=${newQuery}`, urlForQuery(newQuery), {
         shallow: true,
       })
