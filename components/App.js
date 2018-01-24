@@ -19,8 +19,10 @@ class App extends React.Component<Props> {
     })
 
     this.props.router.onRouteChangeComplete = () => {
-      window.Intercom('update')
-      window.gtag && window.gtag('event', 'page_view')
+      if (window.location.host === 'glutenproject.com') {
+        window.Intercom('update')
+        window.gtag && window.gtag('event', 'page_view')
+      }
     }
   }
 
@@ -29,7 +31,7 @@ class App extends React.Component<Props> {
 
     return (
       <ThemeProvider theme={theme}>
-        <SearchBoss ssrSearchQuery={router.query.ssrSearchQuery}>
+        <SearchBoss q={router.query.q}>
           <Page {...props} />
         </SearchBoss>
       </ThemeProvider>

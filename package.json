@@ -15,8 +15,9 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "debounce-fn": "^1.0.0",
+    "micro": "^9.1.0",
     "next": "^4.4.0-canary.3",
-    "p-debounce": "^1.0.0",
     "path-to-regexp": "^2.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

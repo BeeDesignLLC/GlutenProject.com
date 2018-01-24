@@ -4,6 +4,7 @@ import {withRouter} from 'next/router'
 import {theme} from 'styled-system'
 import {Highlight} from 'react-instantsearch/dom'
 import {connectInfiniteHits, connectStateResults} from 'react-instantsearch/connectors'
+import titleize from 'titleize'
 
 import Grid from '../components/Grid'
 import Box, {Header} from '../components/Box'
@@ -53,7 +54,7 @@ const SearchResults = ({
   hits,
   hasMore,
   refine,
-  router: {query: {ssrSearchQuery}},
+  router: {query: {ssr, q}},
   searchResults,
 }: Props) => {
   const consolidatedBrands = []
@@ -72,9 +73,9 @@ const SearchResults = ({
 
   return (
     <React.Fragment>
-      {ssrSearchQuery && (
+      {ssr && (
         <Box area="heading">
-          <ArticleHeading>List of Certified Gluten Free {ssrSearchQuery}</ArticleHeading>
+          <ArticleHeading>List of Certified Gluten Free {titleize(q)}</ArticleHeading>
           <LargeText color="grays.3">
             All {searchResults && `${searchResults.nbHits} `}items have been certified GF
             by the Gluten-Free Certification Organization as of January 2017.

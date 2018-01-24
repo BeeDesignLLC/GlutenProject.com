@@ -2,30 +2,29 @@
 import * as React from 'react'
 import Router from 'next/router'
 import {InstantSearch, Configure} from 'react-instantsearch/dom'
-import debounce from 'p-debounce'
+import debounce from 'debounce-fn'
+import {urlForQuery} from '../utils/misc'
 
 type Props = {
   children?: React.Node,
-  ssrSearchQuery?: string,
+  q?: string,
 }
 type State = {
   searchState: Object,
   production: boolean,
 }
 
-const debouncedRouterPush = debounce(Router.push, 500)
-// const debouncedRouterReplace = debounce(Router.replace, 500)
+const debouncedRouterReplace = debounce(Router.replace, {wait: 700})
 
 class SearchBoss extends React.Component<Props, State> {
   state = {
-    searchState: {query: this.props.ssrSearchQuery || ''},
+    searchState: {query: this.props.q || ''},
     production: false,
   }
 
   componentDidMount() {
-    console.log('Boss mounted with query:', Router.query.q)
     this.setState({
-      searchState: {query: Router.query.q},
+      searchState: {query: Router.query.q || ''},
     })
 
     if (Router.pathname === '/search') {
@@ -35,61 +34,53 @@ class SearchBoss extends React.Component<Props, State> {
     if (window.location.host === 'glutenproject.com') {
       this.setState({production: true})
     }
+
+    Router.onRouteChangeComplete = () => {
+      if (
+        Router.asPath.startsWith('/search') ||
+        Router.asPath.startsWith('/certified-gluten-free')
+      ) {
+        if (this.state.searchState.query != Router.query.q) {
+          this.setState(state => ({
+            searchState: {
+              ...state.searchState,
+              query: Router.query.q || '',
+            },
+          }))
+        }
+      }
+    }
   }
 
   onSearchStateChange = (searchState: Object) => {
     if (!this.state.searchState.query && searchState.query) {
       // Starting search
-      Router.push({
-        pathname: '/search',
-        query: {q: searchState.query},
+      debouncedRouterReplace.cancel()
+      Router.replace(`/search?q=${searchState.query}`, urlForQuery(searchState.query), {
+        shallow: true,
       })
-      console.log('Starting search')
+    } else if (Router.query.ssr && this.state.searchState.query && searchState.query) {
+      // Starting search from SSR page
+      debouncedRouterReplace.cancel()
+      Router.push(`/search?q=${searchState.query}`, urlForQuery(searchState.query), {
+        shallow: true,
+      })
     } else if (this.state.searchState.query && !searchState.query) {
       // Ending search
-      Router.push('/')
-      console.log('Ending search')
+      debouncedRouterReplace.cancel()
+      Router.push('/search', '/search', {
+        shallow: true,
+      })
     } else {
       // Changing search
-      console.log('Changing search')
+      debouncedRouterReplace(
+        `/search?q=${searchState.query}`,
+        urlForQuery(searchState.query),
+        {shallow: true}
+      )
     }
 
     this.setState({searchState})
-    // this.setState({searchState}, this.updateUrl)
-  }
-
-  updateUrl = () => {
-    let nextRoute
-    const {query} = this.state.searchState
-
-    if (query) {
-      nextRoute = `/certified-gluten-free-${query
-        .toLowerCase()
-        .split(' ')
-        .join('-')}`
-
-      if (this.state.production) {
-        window.gtag && window.gtag('event', 'search', {search_term: query})
-        window.Intercom && window.Intercom('trackEvent', 'searched')
-      }
-    } else {
-      nextRoute = '/'
-    }
-
-    // if (this.props.ssrSearchQuery || (Router.pathname == '/' && !query)) {
-    //   //eslint-disable-next-line
-    //   console.log('updating standard url', query, nextRoute)
-    //
-    //   // Previous state was SSR OR query is now empty. Need to pushState
-    //   Router.push('/', nextRoute)
-    // } else if (query) {
-    //   //eslint-disable-next-line
-    //   console.log('updating query url', query, nextRoute)
-    //
-    //   // Previous state was client side search change. replaceState to not fill up browser history
-    //   // debouncedRouterReplace('/', nextRoute, {shallow: true})
-    //   debouncedRouterPush('/', nextRoute)
-    // }
   }
 
   render() {

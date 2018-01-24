@@ -40,10 +40,10 @@ class Page extends React.Component<Props> {
       router,
       searchState,
     } = this.props
-    const {ssrSearchQuery} = router.query
+    const {ssr} = router.query
 
     let gridAreas
-    if (ssrSearchQuery) {
+    if (ssr) {
       gridAreas = [
         'head head    search  search  info info',
         '.    heading heading heading .    menu',

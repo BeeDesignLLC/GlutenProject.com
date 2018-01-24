@@ -1,44 +1,43 @@
-const {createServer} = require('http')
+const micro = require('micro')
 const {parse} = require('url')
-const next = require('next')
-const pathMatch = require('path-match')
-const titleize = require('titleize')
 const {join} = require('path')
+const next = require('next')
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({dev})
 const handle = app.getRequestHandler()
-const route = pathMatch()
-const match = route('/certified-gluten-free-:ssrSearchQuery')
+const {matchSearchRoute, queryFromUrlParam} = require('./utils/misc')
+
+const server = micro(async (req, res) => {
+  // WARNING WARNING WARNING WARNING WARNING WARNING WARNING
+  // This prevents search engines from indexing anything except for the production instance
+  if (req.headers.host !== 'glutenproject.com') {
+    res.setHeader('x-robots-tag', 'noindex, nofollow')
+  }
+  // WARNING WARNING WARNING WARNING WARNING WARNING WARNING
+
+  const parsedUrl = parse(req.url, true)
+  const {pathname, query} = parsedUrl
+
+  const searchRoute = matchSearchRoute(pathname)
+  if (searchRoute) {
+    query.ssr = true
+    query.q = queryFromUrlParam(searchRoute.searchParam)
+    return app.render(req, res, '/search', query)
+  }
+
+  const rootStaticFiles = ['/robots.txt', '/sitemap.xml', '/favicon.ico']
+  if (rootStaticFiles.indexOf(pathname) > -1) {
+    const path = join(__dirname, 'static', pathname)
+    return app.serveStatic(req, res, path)
+  }
+
+  return handle(req, res, parsedUrl)
+})
 
 app.prepare().then(() => {
-  createServer((req, res) => {
-    // WARNING WARNING WARNING WARNING WARNING WARNING WARNING
-    // This prevents search engines from indexing anything except for the production instance
-    if (req.headers.host !== 'glutenproject.com') {
-      res.setHeader('x-robots-tag', 'noindex, nofollow')
-    }
-    // WARNING WARNING WARNING WARNING WARNING WARNING WARNING
-
-    const {pathname, query} = parse(req.url, true)
-    const params = match(pathname)
-
-    const rootStaticFiles = ['/robots.txt', '/sitemap.xml', '/favicon.ico']
-    if (rootStaticFiles.indexOf(pathname) > -1) {
-      const path = join(__dirname, 'static', pathname)
-      app.serveStatic(req, res, path)
-    }
-
-    if (params === false) {
-      handle(req, res)
-      return
-    }
-    if (params.ssrSearchQuery) {
-      params.ssrSearchQuery = titleize(params.ssrSearchQuery.split('-').join(' '))
-    }
-    app.render(req, res, '/', Object.assign(params, query))
-  }).listen(port, err => {
+  server.listen(port, err => {
     if (err) throw err
     // eslint-disable-next-line
     console.log(`> Ready on http://localhost:${port}`)

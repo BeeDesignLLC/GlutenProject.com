@@ -7,6 +7,7 @@ import LargeText from '../components/LargeText'
 import LargeTextList from '../components/LargeTextList'
 import Link from '../components/Link'
 import Anchor from '../components/Anchor'
+import {urlForQuery} from '../utils/misc'
 
 type Props = {}
 
@@ -40,21 +41,15 @@ export default class extends React.Component<Props> {
 
           <ArticleHeading mt={5}>Popular Searches</ArticleHeading>
           <Box flexDirection="column" fontSize={2}>
-            <Link href="/" as="/certified-gluten-free-coffee">
-              Coffee
-            </Link>
-            <Link href="/" as="/certified-gluten-free-oats">
-              Oats
-            </Link>
-            <Link href="/" as="/certified-gluten-free-probiotics">
-              Probiotics
-            </Link>
-            <Link href="/" as="/certified-gluten-free-vitamins">
-              Vitamins
-            </Link>
-            <Link href="/" as="/certified-gluten-free-spices">
-              Spices
-            </Link>
+            {['Coffee', 'Oats', 'Probiotics', 'Vitamins', 'Spices'].map(item => (
+              <Link
+                href={`/search?q=${item.toLowerCase()}`}
+                as={urlForQuery(item)}
+                key={item}
+              >
+                {item}
+              </Link>
+            ))}
           </Box>
         </Box>
       </React.Fragment>
