@@ -23,13 +23,39 @@ class SearchBoss extends React.Component<Props, State> {
   }
 
   componentDidMount() {
+    console.log('Boss mounted with query:', Router.query.q)
+    this.setState({
+      searchState: {query: Router.query.q},
+    })
+
+    if (Router.pathname === '/search') {
+      window.document.querySelector('#searchInput').focus()
+    }
+
     if (window.location.host === 'glutenproject.com') {
       this.setState({production: true})
     }
   }
 
   onSearchStateChange = (searchState: Object) => {
-    this.setState({searchState}, this.updateUrl)
+    if (!this.state.searchState.query && searchState.query) {
+      // Starting search
+      Router.push({
+        pathname: '/search',
+        query: {q: searchState.query},
+      })
+      console.log('Starting search')
+    } else if (this.state.searchState.query && !searchState.query) {
+      // Ending search
+      Router.push('/')
+      console.log('Ending search')
+    } else {
+      // Changing search
+      console.log('Changing search')
+    }
+
+    this.setState({searchState})
+    // this.setState({searchState}, this.updateUrl)
   }
 
   updateUrl = () => {
@@ -50,20 +76,20 @@ class SearchBoss extends React.Component<Props, State> {
       nextRoute = '/'
     }
 
-    if (this.props.ssrSearchQuery || (Router.pathname == '/' && !query)) {
-      //eslint-disable-next-line
-      console.log('updating standard url', query, nextRoute)
-
-      // Previous state was SSR OR query is now empty. Need to pushState
-      Router.push('/', nextRoute)
-    } else if (query) {
-      //eslint-disable-next-line
-      console.log('updating query url', query, nextRoute)
-
-      // Previous state was client side search change. replaceState to not fill up browser history
-      // debouncedRouterReplace('/', nextRoute, {shallow: true})
-      debouncedRouterPush('/', nextRoute)
-    }
+    // if (this.props.ssrSearchQuery || (Router.pathname == '/' && !query)) {
+    //   //eslint-disable-next-line
+    //   console.log('updating standard url', query, nextRoute)
+    //
+    //   // Previous state was SSR OR query is now empty. Need to pushState
+    //   Router.push('/', nextRoute)
+    // } else if (query) {
+    //   //eslint-disable-next-line
+    //   console.log('updating query url', query, nextRoute)
+    //
+    //   // Previous state was client side search change. replaceState to not fill up browser history
+    //   // debouncedRouterReplace('/', nextRoute, {shallow: true})
+    //   debouncedRouterPush('/', nextRoute)
+    // }
   }
 
   render() {

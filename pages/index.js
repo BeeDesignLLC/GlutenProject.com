@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import App from '../components/App'
-import Main from '../components/Main'
+import Home from '../components/Home'
 
 type Props = {}
 
@@ -9,7 +9,7 @@ class Index extends React.Component<Props> {
   render() {
     return (
       <App>
-        <Main />
+        <Home />
       </App>
     )
   }

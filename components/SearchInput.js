@@ -75,12 +75,14 @@ const SearchInput = ({
   refine,
   searchResults,
   area,
-  router: {query: {ssrSearchQuery}},
+  router: {pathname, push, query: {ssrSearchQuery}},
 }: Props) => (
   <Box justify="flex-end" area={area} style={{position: 'relative'}}>
     <BaseSearchInput
+      id="searchInput"
       value={currentRefinement === ssrSearchQuery ? '' : currentRefinement}
       onChange={e => refine(e.target.value)}
+      onFocus={() => (pathname !== '/search' ? push('/search') : null)}
     />
     {currentRefinement &&
       searchResults && (
