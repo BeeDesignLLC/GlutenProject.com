@@ -12,6 +12,8 @@ type Props = {
 
 class App extends React.Component<Props> {
   componentDidMount() {
+    this.props.router.prefetch('/search')
+
     window.Intercom('boot', {
       app_id: 's97lyn5h',
       horizontal_padding: 25,
