@@ -40,11 +40,14 @@ class SearchBoss extends React.Component<Props, State> {
         Router.asPath.startsWith('/search') ||
         Router.asPath.startsWith('/certified-gluten-free')
       ) {
-        if (this.state.searchState.query != Router.query.q) {
+        const currentQuery =
+          (this.state.searchState.query && this.state.searchState.query.trim()) || ''
+        const urlQuery = (Router.query.q && Router.query.q.trim()) || ''
+        if (currentQuery != urlQuery) {
           this.setState(state => ({
             searchState: {
               ...state.searchState,
-              query: Router.query.q || '',
+              query: urlQuery,
             },
           }))
         }
@@ -53,19 +56,22 @@ class SearchBoss extends React.Component<Props, State> {
   }
 
   onSearchStateChange = (searchState: Object) => {
-    if (!this.state.searchState.query && searchState.query) {
+    const newQuery = searchState.query.trim()
+    searchState.query = newQuery
+
+    if (!this.state.searchState.query && newQuery) {
       // Starting search
       debouncedRouterReplace.cancel()
-      Router.replace(`/search?q=${searchState.query}`, urlForQuery(searchState.query), {
+      Router.replace(`/search?q=${newQuery}`, urlForQuery(newQuery), {
         shallow: true,
       })
-    } else if (Router.query.ssr && this.state.searchState.query && searchState.query) {
+    } else if (Router.query.ssr && this.state.searchState.query && newQuery) {
       // Starting search from SSR page
       debouncedRouterReplace.cancel()
-      Router.push(`/search?q=${searchState.query}`, urlForQuery(searchState.query), {
+      Router.replace(`/search?q=${newQuery}`, urlForQuery(newQuery), {
         shallow: true,
       })
-    } else if (this.state.searchState.query && !searchState.query) {
+    } else if (this.state.searchState.query && !newQuery) {
       // Ending search
       debouncedRouterReplace.cancel()
       Router.push('/search', '/search', {
@@ -73,11 +79,9 @@ class SearchBoss extends React.Component<Props, State> {
       })
     } else {
       // Changing search
-      debouncedRouterReplace(
-        `/search?q=${searchState.query}`,
-        urlForQuery(searchState.query),
-        {shallow: true}
-      )
+      debouncedRouterReplace(`/search?q=${newQuery}`, urlForQuery(newQuery), {
+        shallow: true,
+      })
     }
 
     this.setState({searchState})
