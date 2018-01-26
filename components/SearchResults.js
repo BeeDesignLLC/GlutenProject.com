@@ -134,6 +134,7 @@ const Row = ({item}: RowProps) => (
               window.Intercom('trackEvent', 'clicked-product')
               window.gtag &&
                 window.gtag('event', 'clicked-product', {
+                  event_category: 'engagement',
                   event_label: `${hit.name} (${hit.makerName})`,
                 })
             }
