@@ -44,7 +44,7 @@ export default class MyDocument extends Document {
     const page = renderPage(App => props => sheet.collectStyles(<App {...props} />))
     const styleTags = sheet.getStyleElement()
 
-    const production = req ? req.host === 'glutenproject.com' : false
+    const production = req ? req.headers.host === 'glutenproject.com' : false
     return {...page, styleTags, production}
   }
 
