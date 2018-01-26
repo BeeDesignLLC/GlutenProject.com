@@ -18,7 +18,7 @@ import {
   cleanElement,
   propTypes,
 } from 'styled-system'
-import {gridArea, height, justifySelf} from '../utils/styled'
+import {gridArea, height, justifySelf, numberOrString} from '../utils/styled'
 
 const BoxPropTypes = {
   ...propTypes.space,
@@ -35,6 +35,7 @@ const BoxPropTypes = {
   ...propTypes.borderWidth,
   ...propTypes.boxShadow,
   ...propTypes.fontSize,
+  justifySelf: numberOrString,
 }
 const CleanDiv = cleanElement('div')
 CleanDiv.propTypes = BoxPropTypes

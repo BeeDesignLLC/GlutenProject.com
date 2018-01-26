@@ -1,5 +1,6 @@
 // @flow
 import {style} from 'styled-system'
+import PropTypes from 'prop-types'
 
 export const gridArea = style({
   prop: 'area',
@@ -20,3 +21,5 @@ export const justifySelf = style({
   prop: 'justifySelf',
   cssProperty: 'justify-self',
 })
+
+export const numberOrString = PropTypes.oneOfType([PropTypes.number, PropTypes.string])
