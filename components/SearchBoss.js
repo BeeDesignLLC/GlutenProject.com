@@ -15,6 +15,13 @@ type State = {
 }
 
 const debouncedRouterReplace = debounce(Router.replace, {wait: 700})
+const debouncedTrackSearch = debounce(
+  query => {
+    window.gtag && window.gtag('event', 'search', {search_term: query})
+    window.Intercom && window.Intercom('trackEvent', 'searched')
+  },
+  {wait: 700}
+)
 
 class SearchBoss extends React.Component<Props, State> {
   state = {
@@ -86,6 +93,10 @@ class SearchBoss extends React.Component<Props, State> {
       debouncedRouterReplace(`/search?q=${newQuery}`, urlForQuery(newQuery), {
         shallow: true,
       })
+    }
+
+    if (this.state.production && newQuery) {
+      debouncedTrackSearch(newQuery)
     }
 
     this.setState({searchState})
