@@ -7,7 +7,7 @@ import {connectInfiniteHits, connectStateResults} from 'react-instantsearch/conn
 import titleize from 'titleize'
 
 import Grid from '../components/Grid'
-import Box, {Header} from '../components/Box'
+import Box from '../components/Box'
 import ArticleHeading from '../components/ArticleHeading'
 import SectionHeading from '../components/SectionHeading'
 import LargeText from '../components/LargeText'
@@ -16,7 +16,7 @@ import Button, {TinyButton} from '../components/Button'
 
 const RowGrid = Grid.withComponent('section')
 
-const BrandBox = Header.extend`
+const BrandBox = Box.extend`
   border-right: solid 3px ${theme('colors.green')};
 `
 
@@ -75,7 +75,9 @@ const SearchResults = ({
     <React.Fragment>
       {ssr && (
         <Box area="heading">
-          <ArticleHeading>List of Certified Gluten Free {titleize(q)}</ArticleHeading>
+          <ArticleHeading tag="h1">
+            List of Certified Gluten Free {titleize(q)}
+          </ArticleHeading>
           <LargeText color="grays.3">
             All {searchResults && `${searchResults.nbHits} `}products have been certified
             gluten free by GFCO as of January 2017.
@@ -113,7 +115,7 @@ const Row = ({item}: RowProps) => (
         marginRight: '-.75rem',
       }}
     >
-      <SectionHeading align="right" style={{marginTop: -5}} mb={0}>
+      <SectionHeading tag="h4" align="right" style={{marginTop: -5}} mb={0}>
         {item.makerName || '...'}
       </SectionHeading>
     </BrandBox>
