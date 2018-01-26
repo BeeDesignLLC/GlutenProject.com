@@ -34,12 +34,7 @@ type Props = {
 
 class Page extends React.Component<Props> {
   render() {
-    const {
-      children,
-      title = 'List of 35,000 Certified Gluten Free Products | The Gluten Project',
-      router,
-      searchState,
-    } = this.props
+    const {children, title = 'The Gluten Project', router, searchState} = this.props
     const {ssr} = router.query
 
     let gridAreas
@@ -97,14 +92,15 @@ class Page extends React.Component<Props> {
 
         <SearchInput area="search" alignSelf="flex-end" />
 
-        <SecondaryText area="info" align="right" justifySelf="flex-end">
-          The Gluten Project is the first and only place to search through the entire list
-          of certified gluten free products. All products are certified by the{' '}
-          <Anchor href="http://www.gfco.org/" target="_blank">
-            Gluten-Free Certification Organization
-          </Anchor>{' '}
-          as of January 2017.
-        </SecondaryText>
+        <Aside area="info" justifySelf="flex-end">
+          <SecondaryText align="right">
+            All products are certified by the{' '}
+            <Anchor href="http://www.gfco.org/" target="_blank">
+              Gluten-Free Certification Organization
+            </Anchor>{' '}
+            as of January 2017.
+          </SecondaryText>
+        </Aside>
 
         <Nav area="menu" flexDirection="column">
           <Link menu href="/">

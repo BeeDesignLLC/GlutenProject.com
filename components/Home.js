@@ -16,13 +16,13 @@ export default class extends React.Component<Props> {
     const {...props} = this.props
     return (
       <React.Fragment>
-        <HugeHeading>The Gluten Project</HugeHeading>
-
         <Box area="main" flexDirection="column" {...props}>
-          <ArticleHeading>Find Any Certified Gluten Free Product</ArticleHeading>
+          <ArticleHeading tag="h1">
+            Find All Certified Gluten Free Products
+          </ArticleHeading>
           <LargeText>
-            The Gluten Project is the first and only place to search through the entire
-            list of certified gluten free products.{' '}
+            The Gluten Project is the first and only place you can find the entire list of
+            certified gluten free products.{' '}
           </LargeText>
           <LargeTextList mt={4}>
             <li>
@@ -32,14 +32,14 @@ export default class extends React.Component<Props> {
               </Anchor>{' '}
               (GFCO)
             </li>
-            <li>Comprehensive list of all certified products</li>
+            <li>Comprehensive list of all certified gluten free products</li>
             <li>
               Built to make it easy for us to find and buy certified GF products for
               Evelyn who has (undiagnosed) Celiac disease
             </li>
           </LargeTextList>
 
-          <ArticleHeading mt={5}>Popular Searches</ArticleHeading>
+          <ArticleHeading mt={5}>Popular Product Searches</ArticleHeading>
           <Box flexDirection="column" fontSize={2}>
             {[
               'Nuts',
@@ -62,6 +62,8 @@ export default class extends React.Component<Props> {
             ))}
           </Box>
         </Box>
+
+        <HugeHeading tag="h2">The Gluten Project</HugeHeading>
       </React.Fragment>
     )
   }

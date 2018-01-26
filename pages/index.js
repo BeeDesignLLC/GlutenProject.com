@@ -8,7 +8,7 @@ type Props = {}
 class Index extends React.Component<Props> {
   render() {
     return (
-      <App>
+      <App title="Find All Certified Gluten Free Products | The Gluten Project">
         <Home />
       </App>
     )
