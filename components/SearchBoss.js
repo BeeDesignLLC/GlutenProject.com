@@ -1,13 +1,16 @@
 // @flow
 import * as React from 'react'
 import Router from 'next/router'
-import {InstantSearch, Configure} from 'react-instantsearch/dom'
 import debounce from 'debounce-fn'
 import {urlForQuery} from '../utils/misc'
+import {Configure} from 'react-instantsearch/dom'
+import InstantSearch from './InstantSearch'
 
 type Props = {
   children?: React.Node,
   q?: string,
+  initialSearchState: Object,
+  initialResultsState: Object,
 }
 type State = {
   searchState: Object,
@@ -25,7 +28,7 @@ const debouncedTrackSearch = debounce(
 
 class SearchBoss extends React.Component<Props, State> {
   state = {
-    searchState: {query: this.props.q || ''},
+    searchState: this.props.initialSearchState || {query: this.props.q || ''},
     production: false,
   }
 
@@ -35,7 +38,8 @@ class SearchBoss extends React.Component<Props, State> {
     })
 
     if (Router.pathname === '/search') {
-      window.document.querySelector('#searchInput').focus()
+      const searchInput = window.document.querySelector('#searchInput')
+      if (searchInput) searchInput.focus()
     }
 
     if (window.location.host === 'glutenproject.com') {
@@ -108,6 +112,7 @@ class SearchBoss extends React.Component<Props, State> {
         appId="C6AKE3UEC4"
         apiKey="d1a5323f6c1f9c309d0203d37bf61e5d"
         indexName="products"
+        resultsState={this.props.initialResultsState}
         onSearchStateChange={this.onSearchStateChange}
         searchState={this.state.searchState}
       >

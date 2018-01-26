@@ -3,11 +3,13 @@ import * as React from 'react'
 import {withRouter} from 'next/router'
 import {ThemeProvider} from 'styled-components'
 import SearchBoss from './SearchBoss'
-import Page from './Page'
+import Layout from './Layout'
 import theme from '../theme'
 
 type Props = {
   router: Object,
+  initialSearchState: Object,
+  initialResultsState: Object,
 }
 
 class App extends React.Component<Props> {
@@ -30,11 +32,14 @@ class App extends React.Component<Props> {
 
   render() {
     const {router, ...props} = this.props
-
     return (
       <ThemeProvider theme={theme}>
-        <SearchBoss q={router.query.q}>
-          <Page {...props} />
+        <SearchBoss
+          q={router && router.query.q}
+          initialSearchState={this.props.initialSearchState}
+          initialResultsState={this.props.initialResultsState}
+        >
+          <Layout {...props} />
         </SearchBoss>
       </ThemeProvider>
     )
