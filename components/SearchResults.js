@@ -76,7 +76,7 @@ const SearchResults = ({
       {ssr && (
         <Box area="heading">
           <ArticleHeading tag="h1">
-            List of Certified Gluten Free {titleize(q)}
+            List of All Certified Gluten Free {titleize(q)}
           </ArticleHeading>
           <LargeText color="grays.3">
             All {searchResults && `${searchResults.nbHits} `}products have been certified

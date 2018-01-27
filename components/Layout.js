@@ -72,7 +72,7 @@ class Page extends React.Component<Props> {
         <Head>
           <title>
             {searchState.query
-              ? `Certified Gluten Free ${titleize(
+              ? `List of All Certified Gluten Free ${titleize(
                   searchState.query
                 )} | The Gluten Project`
               : title}
