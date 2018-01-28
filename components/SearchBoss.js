@@ -74,16 +74,28 @@ class SearchBoss extends React.Component<Props, State> {
       // Starting search
       // console.log('NEW_SEARCH')
       debouncedRouterReplace.cancel()
-      Router.replace(`/search?q=${newQuery}`, urlForQuery(newQuery), {
-        shallow: true,
-      })
-    } else if (Router.query.ssr && this.state.searchState.query && newQuery) {
+      Router.replace(
+        {pathname: '/search', query: {...Router.query, q: newQuery}},
+        urlForQuery(newQuery),
+        {
+          shallow: true,
+        }
+      )
+    } else if (Router.query.ssr && this.state.searchState.query !== newQuery) {
       // Starting search from SSR page
       // console.log('NEW_SEARCH_FROM_SSR')
+
+      // Remove ssr from url query
+      //eslint-disable-next-line no-unused-vars
+      const {ssr, ...urlQuery} = Router.query
       debouncedRouterReplace.cancel()
-      Router.replace(`/search?q=${newQuery}`, urlForQuery(newQuery), {
-        shallow: true,
-      })
+      Router.replace(
+        {pathname: '/search', query: {...urlQuery, q: newQuery}},
+        urlForQuery(newQuery),
+        {
+          shallow: true,
+        }
+      )
     } else if (this.state.searchState.query && !newQuery) {
       // Ending search
       // console.log('END_SEARCH')
@@ -94,9 +106,13 @@ class SearchBoss extends React.Component<Props, State> {
     } else if (this.state.searchState.query !== newQuery) {
       // Changing search
       // console.log('CHANGE_SEARCH')
-      debouncedRouterReplace(`/search?q=${newQuery}`, urlForQuery(newQuery), {
-        shallow: true,
-      })
+      debouncedRouterReplace(
+        {pathname: '/search', query: {...Router.query, q: newQuery}},
+        urlForQuery(newQuery),
+        {
+          shallow: true,
+        }
+      )
     }
 
     if (this.state.production && newQuery) {

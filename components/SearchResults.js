@@ -133,7 +133,7 @@ const Row = ({item}: RowProps) => (
 (📣 Note: until we get links on the website, we're messaging them to you on-demand!)`
             )
             if (window.location.host === 'glutenproject.com') {
-              window.Intercom('trackEvent', 'clicked-product')
+              window.Intercom && window.Intercom('trackEvent', 'clicked-product')
               window.gtag &&
                 window.gtag('event', 'clicked-product', {
                   event_category: 'engagement',
