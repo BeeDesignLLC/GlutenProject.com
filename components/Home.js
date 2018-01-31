@@ -17,11 +17,11 @@ export default class extends React.Component<Props> {
     return (
       <React.Fragment>
         <Box area="main" flexDirection="column" {...props}>
-          <ArticleHeading tag="h1">
+          <ArticleHeading tag="h1" className="mobile-hide">
             Find All Certified Gluten Free Products
           </ArticleHeading>
           <LargeText>
-            The Gluten Project is the first and only place you can find the entire list of
+            The Gluten Project is the first and only place to find the entire list of
             certified gluten free products.{' '}
           </LargeText>
           <LargeTextList mt={4}>
@@ -39,8 +39,8 @@ export default class extends React.Component<Props> {
             </li>
           </LargeTextList>
 
-          <ArticleHeading mt={5}>Popular Product Searches</ArticleHeading>
-          <Box flexDirection="column" fontSize={2}>
+          <ArticleHeading mt={[6, 5]}>Popular Product Searches</ArticleHeading>
+          <Box flexDirection="column" fontSize={2} align={['center', 'left']}>
             {[
               'Nuts',
               'Coffee',

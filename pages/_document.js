@@ -2,12 +2,23 @@
 import * as React from 'react'
 import Document, {Head, Main, NextScript} from 'next/document'
 import {ServerStyleSheet, injectGlobal} from 'styled-components'
+import theme from '../theme'
 import TrackingScripts from '../components/TrackingScripts'
+
+// THIS IS FOR PREVENT SCROLL ON TAP
+// html,body{
+// 	-webkit-overflow-scrolling : touch !important;
+// 	overflow: auto !important;
+// 	height: 100% !important;
+// }
 
 injectGlobal`
   body {
     background: #F9F9F9;
     -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   * {
@@ -16,7 +27,28 @@ injectGlobal`
     margin: 0;
     padding: 0;
     border: 0;
+    outline: none;
     vertical-align: baseline;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  [tabindex], a, area, button, input, label, select, summary, textarea {
+    touch-action: manipulation;
+  }
+
+  .screen-reader-text {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
 
   mark {
@@ -26,16 +58,21 @@ injectGlobal`
     letter-spacing: -0.05ex;
   }
 
+  [role="button"], button {
+    cursor: pointer;
+  }
+
   .fullscreen {
     min-height: 100vh;
     overflow: hidden;
   }
 
-  @media (min-width: 800px) and (min-height: 800px) {
-    .fullscreen {
-      height: 100vh;
-    }
-  }
+
+  @media (max-width: ${theme.breakpoints[0]}) {
+    .mobile-hide {
+			display: none;
+		}
+	}
 `
 
 export default class MyDocument extends Document {
@@ -57,7 +94,7 @@ export default class MyDocument extends Document {
             name="description"
             content="The Gluten Project is the first and only place to search through the entire list of certified gluten free products."
           />
-          {/* <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
 
           <link rel="stylesheet" href="https://use.typekit.net/eom3pqo.css" />
           {this.props.styleTags}

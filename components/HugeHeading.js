@@ -4,6 +4,7 @@ import {theme} from 'styled-system'
 import {withDynamicTag} from './DynamicTag'
 
 const HugeHeading = Heading.extend`
+  display: none;
   color: ${theme('colors.greenLight')};
   font-size: 8vw;
   font-style: italic;
@@ -15,6 +16,10 @@ const HugeHeading = Heading.extend`
   bottom: 0;
   user-select: none;
   z-index: -1;
+
+  @media (min-width: ${theme('breakpoints.0')}) {
+    display: unset;
+  }
 `
 HugeHeading.displayName = 'HugeHeading'
 export default withDynamicTag(HugeHeading)

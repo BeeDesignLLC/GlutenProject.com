@@ -71,6 +71,8 @@ const Box = styled(CleanDiv)`
 
 export const Header = Box.withComponent(CleanHeader)
 export const Nav = Box.withComponent(CleanNav)
-export const Aside = Box.withComponent(CleanAside)
+export const Aside = Box.withComponent(CleanAside).extend`
+  width: 100%;
+`
 
 export default Box

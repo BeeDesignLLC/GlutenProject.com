@@ -5,7 +5,7 @@ import {withRouter} from 'next/router'
 import {connectStateResults} from 'react-instantsearch/connectors'
 import titleize from 'titleize'
 import Grid from './Grid'
-import {Nav, Aside} from '../components/Box'
+import Box, {Nav, Aside} from '../components/Box'
 import Logo from '../components/Logo'
 import PageHeading from '../components/PageHeading'
 import SectionHeading from '../components/SectionHeading'
@@ -14,10 +14,98 @@ import SecondaryText from '../components/SecondaryText'
 import Link from './Link'
 import Anchor from './Anchor'
 import {AnchorButton} from './Anchor'
+import {HomeIcon, ManifestoIcon, WhoIcon, HelpIcon} from './Icons'
 import theme from '../theme'
 
+const getSmallScreenAreas = ({home, ssrQuery}) => {
+  if (home) {
+    return `
+    'search'
+    'head'
+    'main'
+    'info'
+    'menu'
+    'aside'
+	`
+  } else if (ssrQuery) {
+    return `
+    'search'
+    'heading'
+    'main'
+    'info'
+    'menu'
+    'aside'
+	`
+  } else {
+    return `
+    'search'
+    'main'
+    'info'
+    'menu'
+    'aside'
+	`
+  }
+}
+
+const getMediumScreenAreas = ({home, ssrQuery}) => {
+  if (ssrQuery) {
+    return `
+      'head search info'
+      'heading heading   menu'
+      'main    main    aside'
+	`
+  } else if (home) {
+    return `
+      'head search info'
+      'main main    menu'
+      'main main    aside'
+	`
+  } else {
+    return `
+      'head search info'
+      'main main    menu'
+      'main main    aside'
+	`
+  }
+}
+const getLargeScreenAreas = ({ssrQuery, searching}) => {
+  if (ssrQuery) {
+    return `
+      'head head    search  search  info info'
+      '.    heading heading heading .    menu'
+      'main main    main    main    main aside'
+	`
+  } else if (searching) {
+    return `
+      'head head search search info info'
+      'main main main   main   main menu'
+      'main main main   main   main aside'
+	`
+  } else {
+    return `
+      'head head search search info info'
+      '.    main main   main   .    menu'
+      '.    main main   main   .    aside'
+	`
+  }
+}
+
 const MasterGrid = Grid.extend`
-  grid-row-gap: ${theme.space[5]};
+  max-width: 100rem;
+  grid-gap: ${theme.space[6]};
+  grid-template-areas: ${getSmallScreenAreas};
+
+  @media (min-width: ${theme.breakpoints[0]}) {
+    grid-template-areas: ${getMediumScreenAreas};
+    grid-template-columns: 1fr 1fr minmax(auto, 13rem);
+    grid-template-rows: 7.5rem auto 1fr;
+    grid-gap: ${theme.space[4]};
+  }
+
+  @media (min-width: ${theme.breakpoints[1]}) {
+    grid-template-areas: ${getLargeScreenAreas};
+    grid-template-columns: repeat(5, 1fr) minmax(13rem, 1fr);
+  }
 
   @media (min-height: 800px) {
     grid-row-gap: ${theme.space[6]};
@@ -35,39 +123,16 @@ type Props = {
 class Page extends React.Component<Props> {
   render() {
     const {children, title = 'The Gluten Project', router, searchState} = this.props
-    const {ssr} = router.query
-
-    let gridAreas
-    if (ssr) {
-      gridAreas = [
-        'head head    search  search  info info',
-        '.    heading heading heading .    menu',
-        'main main    main    main    main aside',
-      ]
-    } else if (searchState.query) {
-      gridAreas = [
-        'head head search search info info',
-        'main main main   main   main menu',
-        'main main main   main   main aside',
-      ]
-    } else {
-      gridAreas = [
-        'head head search search info info',
-        '.    main main   main   .    menu',
-        '.    main main   main   .    aside',
-      ]
-    }
 
     return (
       <MasterGrid
-        columns={6}
-        rows="7.5rem auto 1fr"
-        gap={theme.space[4]}
+        columns={null}
+        ssrQuery={router.query.ssr}
+        home={router.pathname === '/'}
+        searching={router.pathname === '/search'}
         p={[3, 3, 4]}
-        areas={gridAreas}
-        className="fullscreen"
         m="auto"
-        style={{maxWidth: '100rem'}}
+        className="fullscreen"
       >
         <Head>
           <title>
@@ -85,15 +150,17 @@ class Page extends React.Component<Props> {
           area="head"
           alignSelf="flex-end"
           style={{cursor: 'pointer'}}
-          onClick={() => this.props.router.push('/')}
+          onClick={() => router.push('/')}
+          className={router.pathname === '/' ? null : 'mobile-hide'}
+          mt={[4, 0]}
         >
           35k Certified<br />Gluten Free Products
         </PageHeading>
 
         <SearchInput area="search" alignSelf="flex-end" />
 
-        <Aside area="info" justifySelf="flex-end">
-          <SecondaryText align="right">
+        <Aside area="info" justifySelf="flex-end" align={['center', 'right']} px={[4, 0]}>
+          <SecondaryText align={['center', 'right']}>
             All products are certified by the{' '}
             <Anchor href="http://www.gfco.org/" target="_blank">
               Gluten-Free Certification Organization
@@ -102,27 +169,39 @@ class Page extends React.Component<Props> {
           </SecondaryText>
         </Aside>
 
-        <Nav area="menu" flexDirection="column">
-          <Link menu href="/">
-            home
-          </Link>
-          <Link menu href="/manifesto" mt={2}>
-            manifesto
-          </Link>
-          <Link menu href="/who" mt={2}>
-            who&rsquo;s behind this
-          </Link>
-          <AnchorButton menu onClick={() => window.Intercom('showNewMessage')} mt={2}>
-            ask a question
-          </AnchorButton>
+        <Nav
+          area="menu"
+          flexDirection="column"
+          align={['center', 'flex-start']}
+          my={[4, 0]}
+        >
+          <Box align="flex-start">
+            <Link menu href="/">
+              <HomeIcon />
+              <span>home</span>
+            </Link>
+            <Link menu href="/manifesto" mt={4}>
+              <ManifestoIcon />
+              <span>manifesto</span>
+            </Link>
+            <Link menu href="/who" mt={4}>
+              <WhoIcon />
+              <span>who&rsquo;s behind this</span>
+            </Link>
+            <AnchorButton menu onClick={() => window.Intercom('showNewMessage')} mt={4}>
+              <HelpIcon />
+              <span>get help</span>
+            </AnchorButton>
+          </Box>
         </Nav>
 
-        <Aside area="aside" flexDirection="column" flex={1}>
+        <Aside area="aside" flexDirection="column" align={['center', 'left']} px={[4, 0]}>
           <SectionHeading>Have an opinion?</SectionHeading>
-          <SecondaryText>
-            Your feedback determines what we do next to improve this site.<br />
+          <SecondaryText align={['center', 'left']}>
+            You have great ideas on how to make this site better, and we want to hear
+            them!<br />
           </SecondaryText>
-          <SecondaryText>
+          <SecondaryText align={['center', 'left']}>
             <AnchorButton
               inheritContext
               onClick={() => window.Intercom('showNewMessage')}
@@ -132,15 +211,11 @@ class Page extends React.Component<Props> {
           </SecondaryText>
 
           <SectionHeading mt={5}>Thankful?</SectionHeading>
-          <SecondaryText mb={4}>
-            You can best show your support by telling others about The Gluten Project.
+          <SecondaryText mb={4} align={['center', 'left']}>
+            Show your appreciation by telling others about The Gluten Project!
           </SecondaryText>
-          {/* <SecondaryText> */}
-          {/*   You may know two or three people who would love this site. Could you do us a */}
-          {/*   favor and tell them about it? */}
-          {/* </SecondaryText> */}
 
-          <Logo mt="auto" mb={0} />
+          <Logo mt={[6]} mx={['auto', 0]} mb={[4, 0]} />
         </Aside>
       </MasterGrid>
     )

@@ -14,33 +14,37 @@ import LargeText from '../components/LargeText'
 import Text from '../components/Text'
 import Button, {TinyButton} from '../components/Button'
 
-const RowGrid = Grid.withComponent('section')
+const RowGrid = Grid.withComponent('section').extend`
+  grid-template-columns: 1fr;
+  grid-template-areas: 'brand'
+                       'products';
+  grid-gap: ${theme('space.2')};
+
+  @media (min-width: ${theme('breakpoints.1')}) {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-areas: 'brand brand products products products';
+    grid-gap: ${theme('space.4')};
+  }
+`
 
 const BrandBox = Box.extend`
-  border-right: solid 3px ${theme('colors.green')};
-`
+  border-top: solid 3px ${theme('colors.green')};
+  padding-top: ${theme('space.2')};
 
-// const Hr = styled.hr`
-//   flex-grow: 1;
-//   height: 0;
-//   border: 1px solid ${theme('colors.grays.3')};
-//   align-self: center;
-//   margin: 0 ${theme('space.3')};
-//   min-width: ${theme('space.3')};
-// `
+  @media (min-width: ${theme('breakpoints.1')}) {
+    border-top: none;
+    border-right: solid 3px ${theme('colors.green')};
+    padding-top: 0;
+  }
+`
 
 const ProductBox = Box.extend`
-  &:not(:hover) > .productHover {
-    display: none;
-  }
-
-  &:hover {
+  @media (min-width: ${theme('breakpoints.1')}) {
+    &:not(:hover) > .productHover {
+      display: none;
+    }
   }
 `
-// padding-left: ${theme('space.2')};
-// cursor: pointer;
-// text-decoration: underline;
-// color: ${theme('colors.green')};
 
 type Props = {
   hits: [],
@@ -84,12 +88,15 @@ const SearchResults = ({
           </LargeText>
         </Box>
       )}
-      <Box area="main" style={{overflow: 'auto', maxHeight: '100%'}}>
+      {/* <Box area="main" style={{overflow: 'auto', maxHeight: '100%'}}> */}
+      <Box area="main">
         {consolidatedBrands.map(item => <Row item={item} key={item.makerName} />)}
-        {hasMore && (
+        {hasMore ? (
           <Button onClick={refine} alignSelf="center">
             load more
           </Button>
+        ) : (
+          <Text alignSelf="center">THE END</Text>
         )}
       </Box>
     </React.Fragment>
@@ -100,22 +107,15 @@ type RowProps = {
   item: Object,
 }
 const Row = ({item}: RowProps) => (
-  <RowGrid
-    tag="section"
-    columns={5}
-    gap="1.5rem"
-    areas={['brand brand products products products']}
-  >
+  <RowGrid columns={null}>
     <BrandBox
       area="brand"
-      mb={5}
-      style={{
-        marginTop: 2,
-        paddingRight: '.75rem',
-        marginRight: '-.75rem',
-      }}
+      mb={[0, 0, 5]}
+      mt="2px"
+      pr={[0, 0, '0.75rem']}
+      mr={[0, 0, '-0.75rem']}
     >
-      <SectionHeading tag="h4" align="right" style={{marginTop: -5}} mb={0}>
+      <SectionHeading tag="h4" align={['left', 'left', 'right']} mt={'-5px'} mb={0}>
         {item.makerName || '...'}
       </SectionHeading>
     </BrandBox>
@@ -124,6 +124,7 @@ const Row = ({item}: RowProps) => (
         <ProductBox
           key={hit.objectID}
           flexDirection="row"
+          align="flex-start"
           onClick={() => {
             window.Intercom(
               'showNewMessage',
@@ -142,7 +143,7 @@ const Row = ({item}: RowProps) => (
             }
           }}
         >
-          <TinyButton className="productHover" mr={2}>
+          <TinyButton className="productHover" mt={'2px'} mr={2}>
             find
           </TinyButton>
           <Text>

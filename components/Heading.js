@@ -7,7 +7,6 @@ import {
   color,
   textAlign,
   justifyContent,
-  alignItems,
   alignSelf,
 } from 'styled-system'
 import {gridArea, justifySelf} from '../utils/styled'
@@ -23,7 +22,6 @@ const Heading = styled.h1.attrs({
   ${color}
   ${textAlign}
   ${justifyContent}
-  ${alignItems}
   ${alignSelf}
   ${gridArea}
   ${justifySelf}

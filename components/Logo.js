@@ -5,7 +5,7 @@ import {theme} from 'styled-system'
 import Heading from './Heading'
 
 const LogoHeading = Heading.withComponent('h3').extend`
-  color: ${theme('colors.grays.2')};
+  color: ${theme('colors.grays.1')};
   font-size: ${theme('fontSizes.4')};
   font-weight: 900;
   font-style: italic;

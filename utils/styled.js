@@ -1,5 +1,5 @@
 // @flow
-import {style} from 'styled-system'
+import {style, responsiveStyle} from 'styled-system'
 import PropTypes from 'prop-types'
 
 export const gridArea = style({
@@ -20,6 +20,11 @@ export const height = style({
 export const justifySelf = style({
   prop: 'justifySelf',
   cssProperty: 'justify-self',
+})
+
+export const position = responsiveStyle({
+  prop: 'position',
+  cssProperty: 'position',
 })
 
 export const numberOrString = PropTypes.oneOfType([PropTypes.number, PropTypes.string])

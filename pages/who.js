@@ -18,11 +18,14 @@ export default class extends React.Component<Props> {
         <Box area="main" style={{overflowY: 'auto'}}>
           <LargeText>
             <strong>Hi there!</strong> We are Brandon and Evelyn Bayer, a young couple
-            living in Dayton, Ohio. Evelyn has been eating gluten free since 2014 when she
-            realized gluten was the cause of some of her pain. She&rsquo;s since had
-            severe reactions to tiny amounts of gluten and avoids it like the plague!
-            Doctors haven&rsquo;t given an offical diagnosis of Celiac disease because she
-            can&rsquo;t eat gluten for the test, but they believe she does have it.
+            living in Dayton, Ohio.
+          </LargeText>
+          <LargeText>
+            Evelyn has been eating gluten free since 2014 when she realized gluten was the
+            cause of some of her pain. She&rsquo;s since had severe reactions to tiny
+            amounts of gluten and avoids it like the plague! Doctors haven&rsquo;t given
+            an offical diagnosis of Celiac disease because she can&rsquo;t eat gluten for
+            the test, but they believe she does have it.
           </LargeText>
 
           <LargeText>

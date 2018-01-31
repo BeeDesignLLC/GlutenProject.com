@@ -10,12 +10,11 @@ import {
   lineHeight,
   alignSelf,
 } from 'styled-system'
-import {gridArea, justifySelf} from '../utils/styled'
+import {gridArea, justifySelf, position} from '../utils/styled'
 
 const Text = styled.p`
   font-size: ${theme('fontSizes.1')};
   font-weight: normal;
-  margin: 0;
 
   & + & {
     margin-top: ${theme('space.3')};
@@ -35,5 +34,6 @@ const Text = styled.p`
   ${gridArea}
   ${justifySelf}
   ${alignSelf}
+  ${position}
 `
 export default Text
