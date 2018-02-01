@@ -112,6 +112,8 @@ export default class MyDocument extends Document {
             property="og:image"
             content="https://glutenproject.com/static/og-image.png"
           />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
 
           {/* Twitter Meta Tags */}
           <meta name="twitter:card" content="summary_large_image" />
