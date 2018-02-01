@@ -3,67 +3,27 @@ import * as React from 'react'
 import {connectSearchBox, connectStateResults} from 'react-instantsearch/connectors'
 import {withRouter} from 'next/router'
 import styled from 'styled-components'
-import {
-  space,
-  width,
-  boxShadow,
-  justifyContent,
-  alignItems,
-  alignSelf,
-  theme,
-} from 'styled-system'
-import {gridArea} from '../utils/styled'
+import {theme} from 'styled-system'
 import Box from './Box'
 import CaptionText from './CaptionText'
+import {default as BaseInput} from './Input'
 
-/* border: 2px ${theme('colors.greenDark2')} solid;*/
-
-const Input = styled.input`
-  background-color: ${theme('colors.greenDark')};
-  border: 2px solid transparent;
-  border-radius: 1.25rem;
-  color: white;
-  caret-color: currentColor;
-  height: 2.5rem;
-  /* Non-standard font size to prevent iOS zoom-on-focus */
-  font-size: 16px;
-  font-family: prenton, sans-serif;
-  font-weight: 500;
+const Input = BaseInput.extend`
   padding: 0 1rem 0 2.2rem;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-
+  height: 2.5rem;
 
   &::placeholder {
-    color: white;
-    font-style: italic;
     opacity: 1;
   }
 
-  &:focus {
-    outline: none;
+  @media (max-width: ${theme('breakpoints.0')}) {
+    background-color: ${theme('colors.greenDark')};
+    color: white;
 
     &::placeholder {
-      opacity: 0.5;
+      color: white;
     }
   }
-
-  @media (min-width: ${theme('breakpoints.0')}) {
-    background-color: ${theme('colors.greenLight')};
-    color: black;
-    font-size: ${theme('fontSizes.1')};
-
-    &::placeholder {
-      color: black;
-    }
-  }
-
-  ${space}
-  ${width}
-  ${boxShadow}
-  ${justifyContent}
-  ${alignItems}
-  ${alignSelf}
-  ${gridArea}
 `
 
 const Wrapper = Box.extend`

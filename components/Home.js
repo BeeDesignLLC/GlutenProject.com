@@ -8,6 +8,7 @@ import LargeTextList from '../components/LargeTextList'
 import Link from '../components/Link'
 import Anchor from '../components/Anchor'
 import {urlForQuery} from '../utils/misc'
+import Mailchimp from '../components/Mailchimp'
 
 type Props = {}
 
@@ -38,6 +39,8 @@ export default class extends React.Component<Props> {
               Evelyn who has (undiagnosed) Celiac disease
             </li>
           </LargeTextList>
+
+          <Mailchimp mt={[6, 5]} />
 
           <ArticleHeading mt={[6, 5]}>Popular Product Searches</ArticleHeading>
           <Box flexDirection="column" fontSize={2} align={['center', 'left']}>
