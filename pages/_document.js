@@ -137,6 +137,7 @@ export default class MyDocument extends Document {
             name="twitter:image"
             content="https://glutenproject.com/static/og-image.png"
           />
+          <meta name="twitter:site" content="@glutenprojecthq" />
 
           <link rel="stylesheet" href="https://use.typekit.net/eom3pqo.css" />
           {this.props.styleTags}
