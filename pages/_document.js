@@ -76,13 +76,21 @@ injectGlobal`
 `
 
 export default class MyDocument extends Document {
-  static getInitialProps({req, renderPage}: {req: Object, renderPage: any => any}) {
+  static getInitialProps({
+    req,
+    renderPage,
+    asPath,
+  }: {
+    req: Object,
+    renderPage: any => any,
+    asPath: string,
+  }) {
     const sheet = new ServerStyleSheet()
     const page = renderPage(App => props => sheet.collectStyles(<App {...props} />))
     const styleTags = sheet.getStyleElement()
 
     const production = req ? req.headers.host === 'glutenproject.com' : false
-    return {...page, styleTags, production}
+    return {...page, styleTags, production, asPath}
   }
 
   render() {
@@ -101,7 +109,10 @@ export default class MyDocument extends Document {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
 
           {/* Facebook Meta Tags */}
-          <meta property="og:url" content="https://glutenproject.com" />
+          <meta
+            property="og:url"
+            content={'https://glutenproject.com' + this.props.asPath}
+          />
           <meta property="og:type" content="website" />
           {/* og:title is set in Layout */}
           <meta
