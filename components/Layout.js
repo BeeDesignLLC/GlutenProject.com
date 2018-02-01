@@ -124,6 +124,15 @@ class Page extends React.Component<Props> {
   render() {
     const {children, title = 'The Gluten Project', router, searchState} = this.props
 
+    const htmlTitle = searchState.query
+      ? `List of All Certified Gluten Free ${titleize(
+          searchState.query
+        )} | The Gluten Project`
+      : title
+    const socialTitle = searchState.query
+      ? `List of All Certified Gluten Free ${titleize(searchState.query)}`
+      : 'Find All Certified Gluten Free Products'
+
     return (
       <MasterGrid
         columns={null}
@@ -135,13 +144,9 @@ class Page extends React.Component<Props> {
         className="fullscreen"
       >
         <Head>
-          <title>
-            {searchState.query
-              ? `List of All Certified Gluten Free ${titleize(
-                  searchState.query
-                )} | The Gluten Project`
-              : title}
-          </title>
+          <title>{htmlTitle}</title>
+          <meta property="og:title" content={socialTitle} />
+          <meta name="twitter:title" content={socialTitle} />
         </Head>
 
         {children}

@@ -94,7 +94,36 @@ export default class MyDocument extends Document {
             name="description"
             content="The Gluten Project is the first and only place to search through the entire list of certified gluten free products."
           />
+          <meta
+            itemProp="image"
+            content="https://glutenproject.com/static/og-image.png"
+          />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+          {/* Facebook Meta Tags */}
+          <meta property="og:url" content="https://glutenproject.com" />
+          <meta property="og:type" content="website" />
+          {/* og:title is set in Layout */}
+          <meta
+            property="og:description"
+            content="The Gluten Project is the first and only place to search through the entire list of certified gluten free products."
+          />
+          <meta
+            property="og:image"
+            content="https://glutenproject.com/static/og-image.png"
+          />
+
+          {/* Twitter Meta Tags */}
+          <meta name="twitter:card" content="summary_large_image" />
+          {/* twitter:title is set in Layout */}
+          <meta
+            name="twitter:description"
+            content="The Gluten Project is the first and only place to search through the entire list of certified gluten free products."
+          />
+          <meta
+            name="twitter:image"
+            content="https://glutenproject.com/static/og-image.png"
+          />
 
           <link rel="stylesheet" href="https://use.typekit.net/eom3pqo.css" />
           {this.props.styleTags}
