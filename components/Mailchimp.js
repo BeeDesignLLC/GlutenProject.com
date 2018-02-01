@@ -30,9 +30,14 @@ const Mailchimp = (props: any) => (
       name="mc-embedded-subscribe-form"
       target="_blank"
       noValidate
+      onSubmit={() => {
+        if (window.location.host === 'glutenproject.com') {
+          window.gtag && window.gtag('event', 'sign_up')
+        }
+      }}
     >
       <div>
-        <Box flexDirection="row" wrap="wrap" justify={['center', 'flex-start']}>
+        <Box flexDirection="row" wrap justify={['center', 'flex-start']}>
           <label htmlFor="mce-EMAIL">
             <span className="screen-reader-text">Email Address</span>
           </label>
