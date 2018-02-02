@@ -11,7 +11,7 @@ import {
 } from 'styled-system'
 import {gridArea, justifySelf} from '../utils/styled'
 
-const Heading = styled.h1.attrs({
+const Heading = styled.h4.attrs({
   mb: props => (props.mb !== undefined ? props.mb : 3),
 })`
   font-weight: 700;
