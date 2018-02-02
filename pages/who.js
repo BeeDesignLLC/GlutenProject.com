@@ -37,8 +37,8 @@ export default class extends React.Component<Props> {
           </LargeText>
 
           <LargeText>
-            Evelyn is self-taught seamstress and fashion designer. She’s passionate about
-            sewing, healthy eating, and entrepreneurship. Follow her on Instagram{' '}
+            Evelyn is a self-taught seamstress and fashion designer. She’s passionate
+            about sewing, healthy eating, and entrepreneurship. Follow her on Instagram{' '}
             <Anchor href="https://www.instagram.com/sew.petite/" target="_blank">
               @sew.petite
             </Anchor>.
