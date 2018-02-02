@@ -8,7 +8,7 @@
 
 **The first website in the world for browsing all 35,000+ certified gluten free products!**
 
-Launched: January, 2017
+Launched: January, 2018
 
 Over the next few months, we'll be adding affiliate links to all products for purchasing from Amazon, Walmart, and other online merchants.
 
