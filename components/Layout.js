@@ -12,21 +12,10 @@ import SectionHeading from '../components/SectionHeading'
 import SearchInput from '../components/SearchInput'
 import SecondaryText from '../components/SecondaryText'
 import Link from './Link'
-import LargeText from './LargeText'
 import Anchor from './Anchor'
 import {AnchorButton} from './Anchor'
 import {HomeIcon, ManifestoIcon, WhoIcon, HelpIcon} from './Icons'
 import theme from '../theme'
-import Image from './Image'
-
-const ProductHunt = Box.extend`
-  background-color: white;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  border: 1px solid #da552f;
-  border-radius: ${theme.space[1]};
-  padding: ${theme.space[2]};
-  max-width: 12rem;
-`
 
 const getSmallScreenAreas = ({home, ssrQuery}) => {
   if (home) {
@@ -232,29 +221,6 @@ class Page extends React.Component<Props> {
           </SecondaryText>
 
           <Logo mt={[6]} mx={['auto', 0]} mb={[4, 0]} />
-
-          <a
-            href="https://www.producthunt.com/posts/the-gluten-project"
-            rel="nofollow noopener noreferrer"
-            target="_blank"
-            style={{
-              textDecoration: 'none',
-              color: 'unset',
-              marginTop: '5rem',
-              marginBottom: '4rem',
-            }}
-          >
-            <ProductHunt align="center">
-              <LargeText bold align="center" mb={0}>
-                We&apos;re featured on Product Hunt today!
-              </LargeText>
-              <Image
-                src="/static/ph-v.png"
-                alt="product hunt"
-                style={{maxWidth: '70%'}}
-              />
-            </ProductHunt>
-          </a>
         </Aside>
       </MasterGrid>
     )
