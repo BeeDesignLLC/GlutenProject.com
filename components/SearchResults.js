@@ -47,7 +47,7 @@ const ProductBox = Box.extend`
 `
 
 type Props = {
-  hits: [],
+  hits: Object[],
   hasMore: boolean,
   refine: any => any,
   router: Object,
@@ -61,19 +61,42 @@ const SearchResults = ({
   router: {query: {ssr, q}},
   searchResults,
 }: Props) => {
-  const consolidatedBrands = []
+  const rows = []
+  let currentBrand = ''
+  let currentBrandProducts = []
+
+  // Seed first brand
+  if (hits.length) currentBrand = hits[0].makerName
 
   hits.forEach(hit => {
-    const brandIndex = consolidatedBrands.findIndex(x => x.makerName === hit.makerName)
-    if (brandIndex === -1) {
-      consolidatedBrands.push({
-        makerName: hit.makerName,
-        products: [hit],
-      })
+    if (hit.makerName === currentBrand) {
+      currentBrandProducts.push(hit)
     } else {
-      consolidatedBrands[brandIndex].products.push(hit)
+      // New brand found, so create row from current brand
+      rows.push(
+        <Row
+          brandName={currentBrand}
+          products={currentBrandProducts}
+          key={currentBrand + currentBrandProducts[0].name}
+        />
+      )
+
+      // Set up new brand
+      currentBrand = hit.makerName
+      currentBrandProducts = [hit]
     }
   })
+
+  // Save last brand
+  if (hits.length > 0) {
+    rows.push(
+      <Row
+        brandName={currentBrand}
+        products={currentBrandProducts}
+        key={currentBrand + currentBrandProducts[0].name}
+      />
+    )
+  }
 
   return (
     <React.Fragment>
@@ -88,9 +111,10 @@ const SearchResults = ({
           </LargeText>
         </Box>
       )}
-      {/* <Box area="main" style={{overflow: 'auto', maxHeight: '100%'}}> */}
+
       <Box area="main">
-        {consolidatedBrands.map(item => <Row item={item} key={item.makerName} />)}
+        {rows}
+
         {hasMore ? (
           <Button onClick={refine} alignSelf="center">
             load more
@@ -104,9 +128,10 @@ const SearchResults = ({
 }
 
 type RowProps = {
-  item: Object,
+  brandName: string,
+  products: Object[],
 }
-const Row = ({item}: RowProps) => (
+const Row = ({brandName = '...', products}: RowProps) => (
   <RowGrid columns={null}>
     <BrandBox
       area="brand"
@@ -116,11 +141,11 @@ const Row = ({item}: RowProps) => (
       mr={[0, 0, '-0.75rem']}
     >
       <SectionHeading tag="h4" align={['left', 'left', 'right']} mt={'-5px'} mb={0}>
-        {item.makerName || '...'}
+        {brandName}
       </SectionHeading>
     </BrandBox>
     <Box area="products" mb={5}>
-      {item.products.map(hit => (
+      {products.map(hit => (
         <ProductBox
           key={hit.objectID}
           flexDirection="row"
