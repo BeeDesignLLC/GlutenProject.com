@@ -16,6 +16,7 @@ import Anchor from './Anchor'
 import {AnchorButton} from './Anchor'
 import {HomeIcon, ManifestoIcon, WhoIcon, HelpIcon} from './Icons'
 import theme from '../theme'
+import Mailchimp from './Mailchimp'
 
 const getSmallScreenAreas = ({home, ssrQuery}) => {
   if (home) {
@@ -221,6 +222,8 @@ class Page extends React.Component<Props> {
           </SecondaryText>
 
           <Logo mt={[6]} mx={['auto', 0]} mb={[4, 0]} />
+
+          <Mailchimp className="mobile-show" my={[6, 5]} />
         </Aside>
       </MasterGrid>
     )

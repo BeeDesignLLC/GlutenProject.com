@@ -40,6 +40,8 @@ export default class extends React.Component<Props> {
             </li>
           </LargeTextList>
 
+          <Mailchimp mt={[6, 5]} />
+
           <ArticleHeading mt={[6, 5]}>Popular Product Searches</ArticleHeading>
           <Box flexDirection="column" fontSize={2} align={['center', 'left']}>
             {[
@@ -71,8 +73,6 @@ export default class extends React.Component<Props> {
               </Link>
             ))}
           </Box>
-
-          <Mailchimp my={[6, 5]} />
         </Box>
 
         <HugeHeading tag="h2">The Gluten Project</HugeHeading>

@@ -68,7 +68,14 @@ injectGlobal`
   }
 
 
+  .mobile-show {
+    display: none;
+  }
+
   @media (max-width: ${theme.breakpoints[0]}) {
+    .mobile-show {
+			display: unset;
+		}
     .mobile-hide {
 			display: none;
 		}
