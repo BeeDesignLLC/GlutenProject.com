@@ -43,15 +43,24 @@ export default class extends React.Component<Props> {
           <ArticleHeading mt={[6, 5]}>Popular Product Searches</ArticleHeading>
           <Box flexDirection="column" fontSize={2} align={['center', 'left']}>
             {[
-              'Nuts',
+              'Cereal',
+              'Chocolate',
               'Coffee',
+              'Flour',
+              'Nuts',
+              'Oatmeal',
               'Oats',
-              'Beer',
-              'Wine',
+              'Pasta',
+              'Pizza',
+              'Pizza dough',
               'Probiotics',
-              'Vitamins',
               'Protein powder',
+              'Sausage',
               'Spices',
+              'Tea',
+              'Vitamins',
+              'Wine',
+              'Beer',
             ].map(item => (
               <Link
                 href={`/search?q=${item.toLowerCase()}`}
