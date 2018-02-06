@@ -131,6 +131,7 @@ class SearchBoss extends React.Component<Props, State> {
         resultsState={this.props.initialResultsState}
         onSearchStateChange={this.onSearchStateChange}
         searchState={this.state.searchState}
+        searchParameters={{filters: 'brandIsHidden:false AND isHidden:false'}}
       >
         <Configure hitsPerPage={60} analytics={this.state.production} />
         {this.props.children}
