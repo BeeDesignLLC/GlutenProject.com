@@ -127,7 +127,7 @@ class SearchBoss extends React.Component<Props, State> {
       <InstantSearch
         appId="C6AKE3UEC4"
         apiKey="d1a5323f6c1f9c309d0203d37bf61e5d"
-        indexName="old_products"
+        indexName="products"
         resultsState={this.props.initialResultsState}
         onSearchStateChange={this.onSearchStateChange}
         searchState={this.state.searchState}
