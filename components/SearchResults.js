@@ -66,10 +66,10 @@ const SearchResults = ({
   let currentBrandProducts = []
 
   // Seed first brand
-  if (hits.length) currentBrand = hits[0].makerName
+  if (hits.length) currentBrand = hits[0].brandName
 
   hits.forEach(hit => {
-    if (hit.makerName === currentBrand) {
+    if (hit.brandName === currentBrand) {
       currentBrandProducts.push(hit)
     } else {
       // New brand found, so create row from current brand
@@ -82,7 +82,7 @@ const SearchResults = ({
       )
 
       // Set up new brand
-      currentBrand = hit.makerName
+      currentBrand = hit.brandName
       currentBrandProducts = [hit]
     }
   })
@@ -154,7 +154,7 @@ const Row = ({brandName = '...', products}: RowProps) => (
             window.Intercom(
               'showNewMessage',
               `Where can I buy:
-— ${hit.name} (${hit.makerName})
+— ${hit.name} (${hit.brandName})
 
 (📣 Note: until we get links on the website, we're messaging them to you on-demand!)`
             )
@@ -163,7 +163,7 @@ const Row = ({brandName = '...', products}: RowProps) => (
               window.gtag &&
                 window.gtag('event', 'clicked-product', {
                   event_category: 'engagement',
-                  event_label: `${hit.name} (${hit.makerName})`,
+                  event_label: `${hit.brandName}. ${hit.name}`,
                 })
             }
           }}
