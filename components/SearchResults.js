@@ -154,7 +154,7 @@ const Row = ({brandName = '...', products}: RowProps) => (
             window.Intercom(
               'showNewMessage',
               `Where can I buy:
-— ${hit.name} (${hit.brandName})
+— ${hit.brandName}. ${hit.name}
 
 (📣 Note: until we get links on the website, we're messaging them to you on-demand!)`
             )
@@ -163,7 +163,7 @@ const Row = ({brandName = '...', products}: RowProps) => (
               window.gtag &&
                 window.gtag('event', 'clicked-product', {
                   event_category: 'engagement',
-                  event_label: `${hit.brandName}. ${hit.name}`,
+                  event_label: `${hit.name} (${hit.brandName})`,
                 })
             }
           }}
