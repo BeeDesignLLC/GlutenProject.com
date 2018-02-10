@@ -1,0 +1,6 @@
+{
+  "rules": [
+    { "pathname": "/link/**", "dest": "tgp-link.now.sh" },
+    { "dest": "tgp-front.now.sh" }
+  ]
+}
