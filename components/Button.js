@@ -36,6 +36,7 @@ const Button = styled.button`
   flex-shrink: 0;
   outline: none;
   align-self: flex-start;
+  animate: transform box-shadow 0.1s;
 
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 
