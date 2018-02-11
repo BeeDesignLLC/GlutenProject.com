@@ -12,7 +12,7 @@ import ArticleHeading from '../components/ArticleHeading'
 import SectionHeading from '../components/SectionHeading'
 import LargeText from '../components/LargeText'
 import Text from '../components/Text'
-import Button, {TinyButton} from '../components/Button'
+import Button, {TinyButton, TinyButtonA} from '../components/Button'
 
 const RowGrid = Grid.withComponent('section').extend`
   grid-template-columns: 1fr;
@@ -151,6 +151,20 @@ const Row = ({brandName = '...', products}: RowProps) => (
           flexDirection="row"
           align="flex-start"
           onClick={() => {
+            if (window.location.host === 'glutenproject.com') {
+              const eventName = hit.isAffiliate
+                ? 'clicked-affiliate-product'
+                : 'clicked-product'
+              window.Intercom && window.Intercom('trackEvent', eventName)
+              window.gtag &&
+                window.gtag('event', eventName, {
+                  event_category: 'engagement',
+                  event_label: `${hit.name} (${hit.brandName})`,
+                })
+            }
+
+            if (hit.isAffiliate) return
+
             window.Intercom(
               'showNewMessage',
               `Where can I buy:
@@ -158,19 +172,23 @@ const Row = ({brandName = '...', products}: RowProps) => (
 
 (📣 Note: until we get links on the website, we're messaging them to you on-demand!)`
             )
-            if (window.location.host === 'glutenproject.com') {
-              window.Intercom && window.Intercom('trackEvent', 'clicked-product')
-              window.gtag &&
-                window.gtag('event', 'clicked-product', {
-                  event_category: 'engagement',
-                  event_label: `${hit.name} (${hit.brandName})`,
-                })
-            }
           }}
         >
-          <TinyButton className="productHover" mt={'2px'} mr={2}>
-            find
-          </TinyButton>
+          {hit.isAffiliate ? (
+            <TinyButtonA
+              mt={'2px'}
+              mr={2}
+              href={'/link/thrive/' + hit.thrive[0].id}
+              target="_blank"
+              rel="nofollow"
+            >
+              details
+            </TinyButtonA>
+          ) : (
+            <TinyButton className="productHover" mt={'2px'} mr={2}>
+              find
+            </TinyButton>
+          )}
           <Text>
             <Highlight attributeName="name" hit={hit} tagName="mark" />
           </Text>
