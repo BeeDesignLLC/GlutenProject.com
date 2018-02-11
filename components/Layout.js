@@ -220,6 +220,11 @@ class Page extends React.Component<Props> {
           <SecondaryText mb={4} align={['center', 'left']}>
             Show your appreciation by telling others about The Gluten Project!
           </SecondaryText>
+          <SecondaryText mb={4} align={['center', 'left']}>
+            We are a participant in the Amazon Services LLC Associates Program, an
+            affiliate advertising program designed to provide a means for us to earn fees
+            by linking to Amazon.com and affiliated sites.
+          </SecondaryText>
 
           <Logo mt={[6]} mx={['auto', 0]} mb={[4, 0]} />
 
