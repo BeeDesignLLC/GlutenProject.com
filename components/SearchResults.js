@@ -12,6 +12,7 @@ import ArticleHeading from '../components/ArticleHeading'
 import SectionHeading from '../components/SectionHeading'
 import LargeText from '../components/LargeText'
 import Text from '../components/Text'
+import Anchor from '../components/Anchor'
 import Button, {TinyButton, TinyButtonA} from '../components/Button'
 
 const RowGrid = Grid.withComponent('section').extend`
@@ -141,7 +142,29 @@ const Row = ({brandName = '...', products}: RowProps) => (
       mr={[0, 0, '-0.75rem']}
     >
       <SectionHeading tag="h4" align={['left', 'left', 'right']} mt={'-5px'} mb={0}>
-        {brandName}
+        {brandName === 'Nuts.com' ? (
+          <Anchor
+            href="http://shareasale.com/r.cfm?b=787966&u=1709996&m=62192&urllink=&afftrack="
+            title="Visit Nuts.com"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+            onClick={() => {
+              if (window.location.host === 'glutenproject.com') {
+                const eventName = 'clicked-affiliate-product'
+                window.Intercom && window.Intercom('trackEvent', eventName)
+                window.gtag &&
+                  window.gtag('event', eventName, {
+                    event_category: 'engagement',
+                    event_label: `nuts.com`,
+                  })
+              }
+            }}
+          >
+            Nuts.com
+          </Anchor>
+        ) : (
+          brandName
+        )}
       </SectionHeading>
     </BrandBox>
     <Box area="products" mb={5}>

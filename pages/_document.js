@@ -67,7 +67,6 @@ injectGlobal`
     overflow: hidden;
   }
 
-
   .mobile-show {
     display: none;
   }
