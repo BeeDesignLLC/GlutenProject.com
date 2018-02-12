@@ -37,8 +37,11 @@ export default class extends React.Component<Props> {
           </LargeText>
 
           <LargeText>
-            Evelyn is a self-taught seamstress and fashion designer. She’s passionate
-            about sewing, healthy eating, and entrepreneurship. Follow her on Instagram{' '}
+            Evelyn is Brandon’s partner in adventure! She is a self-taught seamstress
+            crazy about sewing and fashion design and is passionate about living
+            holistically. Through her own health journey, she has done extensive research
+            on products and brands and loves to share that information to make the
+            allergen world easier for others to navigate. Follow her on Instagram{' '}
             <Anchor href="https://www.instagram.com/sew.petite/" target="_blank">
               @sew.petite
             </Anchor>.
