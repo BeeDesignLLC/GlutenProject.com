@@ -4,6 +4,7 @@ import App from '../components/App'
 import Box from '../components/Box'
 import HugeHeading from '../components/HugeHeading'
 import ArticleHeading from '../components/ArticleHeading'
+import LargeText from '../components/LargeText'
 import LargeTextList from '../components/LargeTextList'
 
 type Props = {}
@@ -33,6 +34,17 @@ export default class extends React.Component<Props> {
             </li>
             <li>Build a strong, supportive community of people who care.</li>
           </LargeTextList>
+
+          <ArticleHeading mt={6}>How You Can Help</ArticleHeading>
+          <LargeText>
+            First, tell everyone you know with a gluten disorder about this site. The more
+            popular the site becomes, the more time and money we can put into it!
+          </LargeText>
+          <LargeText>
+            Second, use the affiliate links on the site and that we send you. These links
+            are the only way we get compensated for the time and money invested in the
+            site.
+          </LargeText>
         </Box>
       </App>
     )
