@@ -35,7 +35,7 @@ export default class extends React.Component<Props> {
             <li>Build a strong, supportive community of people who care.</li>
           </LargeTextList>
 
-          <ArticleHeading mt={6}>How You Can Help</ArticleHeading>
+          <ArticleHeading mt={5}>How You Can Help</ArticleHeading>
           <LargeText>
             First, tell everyone you know with a gluten disorder about this site. The more
             popular the site becomes, the more time and money we can put into it!
