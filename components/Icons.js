@@ -61,3 +61,21 @@ export const HelpIcon = () => (
     </g>
   </svg>
 )
+
+export const CloseIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+    <g
+      fill="none"
+      stroke="#F9F9F9"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeMiterlimit="10"
+    >
+      <path d="M.5.5l23 23M23.5.5l-23 23" />
+    </g>
+    <g>
+      <path fill="none" d="M0 0h24v24H0z" />
+    </g>
+  </svg>
+)
