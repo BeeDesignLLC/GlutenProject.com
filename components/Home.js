@@ -22,8 +22,8 @@ export default class extends React.Component<Props> {
             Find All Certified Gluten Free Products
           </ArticleHeading>
           <LargeText>
-            The Gluten Project is the first and only place to find the entire list of
-            certified gluten free products.{' '}
+            The Gluten Project is the first place in the world to easily search the entire
+            list of certified gluten free products and the places to buy them.
           </LargeText>
           <LargeTextList mt={4}>
             <li>

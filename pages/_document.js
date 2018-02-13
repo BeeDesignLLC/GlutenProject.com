@@ -103,7 +103,7 @@ export default class MyDocument extends Document {
           <meta charSet="utf-8" />
           <meta
             name="description"
-            content="The Gluten Project is the first and only place to search through the entire list of certified gluten free products."
+            content="The Gluten Project is the first place in the world to easily search the entire list of certified gluten free products and the places to buy them."
           />
           <meta
             itemProp="image"
@@ -120,7 +120,7 @@ export default class MyDocument extends Document {
           {/* og:title is set in Layout */}
           <meta
             property="og:description"
-            content="The Gluten Project is the first and only place to search through the entire list of certified gluten free products."
+            content="The Gluten Project is the first place in the world to easily search the entire list of certified gluten free products and the places to buy them."
           />
           <meta
             property="og:image"
@@ -134,7 +134,7 @@ export default class MyDocument extends Document {
           {/* twitter:title is set in Layout */}
           <meta
             name="twitter:description"
-            content="The Gluten Project is the first and only place to search through the entire list of certified gluten free products."
+            content="The Gluten Project is the first place in the world to easily search the entire list of certified gluten free products and the places to buy them."
           />
           <meta
             name="twitter:image"
