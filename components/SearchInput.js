@@ -63,6 +63,24 @@ const SearchIconButton = styled.button`
   }
 `
 
+const ClearIconButton = styled.button`
+  background-image: url("data:image/svg+xml;charset=UTF-8, %3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3e%3cg fill='none' stroke='%23F9F9F9' stroke-width='2' strokeLinecap='round' strokeLinejoin='round' strokeMiterlimit='10' %3e%3cpath d='M.5.5l23 23M23.5.5l-23 23' /%3e%3c/g%3e%3cg%3e%3cpath fill='none' d='M0 0h24v24H0z' /%3e%3c/g%3e%3c/svg%3e ");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-origin: content-box;
+  background-color: transparent;
+  width: 1.4rem;
+  height: 1.4rem;
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  padding: 0.2rem;
+
+  @media (min-width: ${theme('breakpoints.0')}) {
+    background-image: url("data:image/svg+xml;charset=UTF-8, %3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3e%3cg fill='none' stroke='%23000000' stroke-width='2' strokeLinecap='round' strokeLinejoin='round' strokeMiterlimit='10' %3e%3cpath d='M.5.5l23 23M23.5.5l-23 23' /%3e%3c/g%3e%3cg%3e%3cpath fill='none' d='M0 0h24v24H0z' /%3e%3c/g%3e%3c/svg%3e ");
+  }
+`
+
 type Props = {
   currentRefinement: string,
   refine: any => any,
@@ -85,6 +103,13 @@ const SearchInput = ({
         window.document.activeElement.blur()
         window.scrollTo(0, 0)
       }}
+      onReset={e => {
+        e.preventDefault()
+        refine('')
+
+        const searchInput = window.document.querySelector('#global-product-search')
+        if (searchInput) searchInput.focus()
+      }}
       action="."
       role="search"
     >
@@ -106,6 +131,11 @@ const SearchInput = ({
       <SearchIconButton type="submit">
         <span className="screen-reader-text">Search</span>
       </SearchIconButton>
+      {currentRefinement && (
+        <ClearIconButton type="reset">
+          <span className="screen-reader-text">reset search</span>
+        </ClearIconButton>
+      )}
     </SearchForm>
     {currentRefinement &&
       searchResults && (

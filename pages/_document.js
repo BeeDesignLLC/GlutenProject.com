@@ -67,7 +67,6 @@ injectGlobal`
     overflow: hidden;
   }
 
-
   .mobile-show {
     display: none;
   }
@@ -75,9 +74,6 @@ injectGlobal`
   @media (max-width: ${theme.breakpoints[0]}) {
     .mobile-show {
 			display: unset;
-		}
-    .mobile-hide {
-			display: none;
 		}
 	}
 `
@@ -149,7 +145,7 @@ export default class MyDocument extends Document {
           <link rel="stylesheet" href="https://use.typekit.net/eom3pqo.css" />
           {this.props.styleTags}
 
-          <TrackingScripts production={this.props.production} />
+          <TrackingScripts production={true} />
         </Head>
         <body>
           <Main />
