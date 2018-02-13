@@ -228,6 +228,11 @@ class Page extends React.Component<Props> {
 
           <Logo mt={[6]} mx={['auto', 0]} mb={[4, 0]} />
 
+          <SecondaryText my={[2, 4]} align={['center', 'left']}>
+            Man cannot live by (gluten free) bread alone, but by every word that comes
+            from the mouth of God.
+          </SecondaryText>
+
           <Mailchimp className="mobile-show" my={[6, 5]} />
         </Aside>
       </MasterGrid>
