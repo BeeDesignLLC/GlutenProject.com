@@ -28,15 +28,19 @@ export default class extends React.Component<Props> {
           <LargeTextList mt={4}>
             <li>
               Everything certified by the{' '}
-              <Anchor href="http://www.gfco.org/" target="_blank">
+              <Anchor href="http://www.gfco.org" target="_blank">
                 Gluten-Free Certification Organization
               </Anchor>{' '}
-              (GFCO)
+              (GFCO) as of <strong>January 2017</strong>
             </li>
-            <li>Comprehensive list of all certified gluten free products</li>
             <li>
               Built to make it easy for us to find and buy certified GF products for
               Evelyn who has (undiagnosed) Celiac disease
+            </li>
+            <li>
+              <strong>Warning:</strong> products can drop certification at any time.
+              Before consuming, ensure the product label contains the GFCO certification
+              logo
             </li>
           </LargeTextList>
 

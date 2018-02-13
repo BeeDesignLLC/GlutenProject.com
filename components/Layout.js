@@ -166,12 +166,16 @@ class Page extends React.Component<Props> {
         <SearchInput area="search" alignSelf="flex-end" />
 
         <Aside area="info" justifySelf="flex-end" align={['center', 'right']} px={[4, 0]}>
-          <SecondaryText align={['center', 'right']}>
-            All products are certified by the{' '}
+          <SecondaryText align={['center', 'right']} style={{fontStyle: 'normal'}}>
+            We are not endorsed by, authorized, or in any way officially connected with
+            the{' '}
+            <Anchor href="http://www.gluten.org" target="_blank">
+              Gluten Intolerance Group
+            </Anchor>{' '}
+            or the{' '}
             <Anchor href="http://www.gfco.org/" target="_blank">
               Gluten-Free Certification Organization
-            </Anchor>{' '}
-            as of January 2017.
+            </Anchor>.
           </SecondaryText>
         </Aside>
 
@@ -217,23 +221,39 @@ class Page extends React.Component<Props> {
           </SecondaryText>
 
           <SectionHeading mt={5}>Thankful?</SectionHeading>
-          <SecondaryText mb={4} align={['center', 'left']}>
+          <SecondaryText align={['center', 'left']}>
             Show your appreciation by telling others about The Gluten Project!
           </SecondaryText>
-          <SecondaryText mb={4} align={['center', 'left']}>
-            We are a participant in the Amazon Services LLC Associates Program, an
-            affiliate advertising program designed to provide a means for us to earn fees
-            by linking to Amazon.com and affiliated sites.
-          </SecondaryText>
 
-          <Logo mt={[6]} mx={['auto', 0]} mb={[4, 0]} />
+          <Logo mt={[5]} mx={['auto', 0]} mb={[4, 0]} />
 
           <SecondaryText my={[2, 4]} align={['center', 'left']}>
             Man cannot live by (gluten free) bread alone, but by every word that comes
             from the mouth of God.
           </SecondaryText>
 
-          <Mailchimp className="mobile-show" my={[6, 5]} />
+          <Mailchimp className="mobile-show" my={5} />
+
+          <SectionHeading mt={4}>Disclaimers</SectionHeading>
+          <SecondaryText align={['center', 'left']}>
+            We are affilates of Thrive Market, Nuts.com, and Walmart and earn commissions
+            from links to their products. This ensures The Gluten Project will be
+            sustainable over the long term. Thank you for using them! :)
+          </SecondaryText>
+          <SecondaryText align={['center', 'left']}>
+            We are a participant in the Amazon Services LLC Associates Program, an
+            affiliate advertising program designed to provide a means for us to earn fees
+            by linking to Amazon.com and affiliated sites.
+          </SecondaryText>
+          <SecondaryText align={['center', 'left']} mt={3} mb={4}>
+            The Gluten Project and Bee Design LLC do not accept any responsibility or
+            liability for the accuracy, content, completeness, legality, or reliability of
+            the information contained on this website. No warranties, promises and/or
+            representations of any kind, expressed or implied, are given as to the nature,
+            standard, accuracy or otherwise of the information provided in this website
+            nor to the suitability or otherwise of the information to your particular
+            circumstances.
+          </SecondaryText>
         </Aside>
       </MasterGrid>
     )
