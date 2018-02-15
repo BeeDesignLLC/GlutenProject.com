@@ -1,18 +1,39 @@
 // @flow
+import styled from 'styled-components'
+import {
+  space,
+  width,
+  fontSize,
+  color,
+  textAlign,
+  justifyContent,
+  alignSelf,
+} from 'styled-system'
+import {gridArea, justifySelf} from '../utils/styled'
 import {theme} from 'styled-system'
-import Heading from './Heading'
 import {withDynamicTag} from './DynamicTag'
 
-const PageHeading = Heading.withComponent('h3').extend.attrs({
-  fontSize: props => props.fontSize || 4,
+const PageHeading = styled.h3.attrs({
+  f: props => (props.f !== undefined ? props.f : 4),
 })`
   font-style: italic;
+  font-weight: 700;
   margin-bottom: -5px;
   text-align: center;
 
   @media (min-width: ${theme('breakpoints.0')}) {
 		text-align: right;
   }
+
+  ${space}
+  ${width}
+  ${fontSize}
+  ${color}
+  ${textAlign}
+  ${justifyContent}
+  ${alignSelf}
+  ${gridArea}
+  ${justifySelf}
 `
 PageHeading.displayName = 'PageHeading'
 export default withDynamicTag(PageHeading)

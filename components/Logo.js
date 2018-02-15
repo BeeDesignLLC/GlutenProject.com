@@ -2,21 +2,42 @@
 import * as React from 'react'
 import Router from 'next/router'
 import {theme} from 'styled-system'
-import Heading from './Heading'
+import styled from 'styled-components'
+import {
+  space,
+  width,
+  fontSize,
+  color,
+  textAlign,
+  justifyContent,
+  alignSelf,
+} from 'styled-system'
+import {gridArea, justifySelf} from '../utils/styled'
 
-const LogoHeading = Heading.withComponent('h3').extend`
-  color: ${theme('colors.grays.1')};
-  font-size: ${theme('fontSizes.4')};
+const LogoHeading = styled.h3.attrs({
+  color: props => (props.color !== undefined ? props.color : 'grays.1'),
+  f: props => (props.f !== undefined ? props.f : 4),
+  pl: props => (props.pl !== undefined ? props.pl : 1),
+})`
   font-weight: 900;
   font-style: italic;
   line-height: 2ex;
   border-left: ${theme('colors.green')} ${theme('space.1')} solid;
-  padding-left: ${theme('space.1')};
   cursor: pointer;
 
   & > span {
     font-weight: 400;
   }
+
+  ${space}
+  ${width}
+  ${fontSize}
+  ${color}
+  ${textAlign}
+  ${justifyContent}
+  ${alignSelf}
+  ${gridArea}
+  ${justifySelf}
 `
 
 const Logo = (props: Object) => (

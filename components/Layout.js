@@ -169,11 +169,15 @@ class Page extends React.Component<Props> {
           <SecondaryText align={['center', 'right']} style={{fontStyle: 'normal'}}>
             We are not endorsed by, authorized, or in any way officially connected with
             the{' '}
-            <Anchor href="http://www.gluten.org" target="_blank">
+            <Anchor
+              href="http://www.gluten.org"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Gluten Intolerance Group
             </Anchor>{' '}
             or the{' '}
-            <Anchor href="http://www.gfco.org/" target="_blank">
+            <Anchor href="http://www.gfco.org/" target="_blank" rel="noopener noreferrer">
               Gluten-Free Certification Organization
             </Anchor>.
           </SecondaryText>
@@ -254,6 +258,12 @@ class Page extends React.Component<Props> {
             nor to the suitability or otherwise of the information to your particular
             circumstances.
           </SecondaryText>
+
+          <Link href="/disclaimer">Legal Disclaimer</Link>
+          <Link href="/privacy">Privacy Policy</Link>
+          <Anchor href="https://github.com/BeeDesignLLC/GlutenProject.com">
+            Source Code
+          </Anchor>
         </Aside>
       </MasterGrid>
     )

@@ -1,11 +1,22 @@
 // @flow
-import Heading from './Heading'
+import styled from 'styled-components'
+import {
+  space,
+  width,
+  fontSize,
+  color,
+  textAlign,
+  justifyContent,
+  alignSelf,
+} from 'styled-system'
+import {gridArea, justifySelf} from '../utils/styled'
 import {theme} from 'styled-system'
 import {withDynamicTag} from './DynamicTag'
 
-const HugeHeading = Heading.extend`
+const HugeHeading = styled.h4.attrs({
+  color: props => (props.color !== undefined ? props.color : 'greenLight'),
+})`
   display: none;
-  color: ${theme('colors.greenLight')};
   font-size: 8vw;
   font-style: italic;
   font-weight: 700;
@@ -20,6 +31,16 @@ const HugeHeading = Heading.extend`
   @media (min-width: ${theme('breakpoints.0')}) {
     display: unset;
   }
+
+  ${space}
+  ${width}
+  ${fontSize}
+  ${color}
+  ${textAlign}
+  ${justifyContent}
+  ${alignSelf}
+  ${gridArea}
+  ${justifySelf}
 `
 HugeHeading.displayName = 'HugeHeading'
 export default withDynamicTag(HugeHeading)
