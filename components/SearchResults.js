@@ -12,7 +12,6 @@ import ArticleHeading from '../components/ArticleHeading'
 import SectionHeading from '../components/SectionHeading'
 import LargeText from '../components/LargeText'
 import Text from '../components/Text'
-import Anchor from '../components/Anchor'
 import Button, {TinyButton, TinyButtonA} from '../components/Button'
 
 const RowGrid = Grid.withComponent('section').extend`
@@ -142,29 +141,7 @@ const Row = ({brandName = '...', products}: RowProps) => (
       mr={[0, 0, '-0.75rem']}
     >
       <SectionHeading tag="h4" align={['left', 'left', 'right']} mt={'-5px'} mb={0}>
-        {brandName === 'Nuts.com' ? (
-          <Anchor
-            href="http://shareasale.com/r.cfm?b=787966&u=1709996&m=62192&urllink=&afftrack="
-            title="Visit Nuts.com"
-            target="_blank"
-            rel="nofollow noopener noreferrer"
-            onClick={() => {
-              if (window.location.host === 'glutenproject.com') {
-                const eventName = 'clicked-affiliate-product'
-                window.Intercom && window.Intercom('trackEvent', eventName)
-                window.gtag &&
-                  window.gtag('event', eventName, {
-                    event_category: 'engagement',
-                    event_label: `nuts.com`,
-                  })
-              }
-            }}
-          >
-            Nuts.com
-          </Anchor>
-        ) : (
-          brandName
-        )}
+        {brandName}
       </SectionHeading>
     </BrandBox>
     <Box area="products" mb={5}>
@@ -185,30 +162,38 @@ const Row = ({brandName = '...', products}: RowProps) => (
                   event_label: `${hit.name} (${hit.brandName})`,
                 })
             }
-
-            if (hit.isAffiliate) return
-
-            window.Intercom(
-              'showNewMessage',
-              `Where can I buy:
-— ${hit.brandName}. ${hit.name}
-
-(📣 Note: until we get links on the website, we're messaging them to you on-demand!)`
-            )
           }}
         >
           {hit.isAffiliate ? (
             <TinyButtonA
               mt={'2px'}
               mr={2}
-              href={'/link/thrive/' + hit.thrive[0].id}
+              href={
+                hit.thrive.length
+                  ? '/link/thrive/' + hit.thrive[0].id
+                  : '/link/nuts/' + hit.nuts[0].id
+              }
               target="_blank"
               rel="nofollow"
             >
               details
             </TinyButtonA>
           ) : (
-            <TinyButton className="productHover" mt={'2px'} mr={2}>
+            <TinyButton
+              className="productHover"
+              mt={'2px'}
+              mr={2}
+              onClick={() =>
+                window.Intercom(
+                  'showNewMessage',
+                  `Where can I buy:
+${hit.brandName}. ${hit.name}
+
+📣
+We'll find this product for you on-demand until we add its link on the site. Make sure to leave your email!`
+                )
+              }
+            >
               find
             </TinyButton>
           )}
