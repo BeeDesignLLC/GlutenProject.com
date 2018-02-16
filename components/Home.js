@@ -19,11 +19,11 @@ export default class extends React.Component<Props> {
       <React.Fragment>
         <Box area="main" flexDirection="column" {...props}>
           <ArticleHeading tag="h1" className="mobile-hide">
-            Find All Certified Gluten Free Products
+            Find All Certified Gluten-Free Products
           </ArticleHeading>
           <LargeText>
             The Gluten Project is the first place in the world to easily search the entire
-            list of certified gluten free products and the places to buy them.
+            list of certified gluten-free products and the places to buy them.
           </LargeText>
           <LargeTextList mt={4}>
             <li>
@@ -73,7 +73,7 @@ export default class extends React.Component<Props> {
                 as={urlForQuery(item)}
                 key={item}
               >
-                {item}
+                Gluten-free {item}
               </Link>
             ))}
           </Box>

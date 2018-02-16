@@ -123,16 +123,24 @@ type Props = {
 
 class Page extends React.Component<Props> {
   render() {
-    const {children, title = 'The Gluten Project', router, searchState} = this.props
+    const {
+      children,
+      title = 'The Gluten Project',
+      router,
+      searchState,
+      searchResults,
+    } = this.props
 
     const htmlTitle = searchState.query
-      ? `List of All Certified Gluten Free ${titleize(
+      ? `${searchResults && searchResults.nbHits} Certified Gluten-Free ${titleize(
           searchState.query
-        )} | The Gluten Project`
+        )} (safe for Celiac) | The Gluten Project`
       : title
     const socialTitle = searchState.query
-      ? `List of All Certified Gluten Free ${titleize(searchState.query)}`
-      : 'Find All Certified Gluten Free Products'
+      ? `${searchResults && searchResults.nbHits} Certified Gluten-Free ${titleize(
+          searchState.query
+        )} (safe for Celiac)`
+      : 'Find All Certified Gluten-Free Products'
 
     return (
       <MasterGrid
@@ -160,7 +168,7 @@ class Page extends React.Component<Props> {
           className={router.pathname === '/' ? null : 'mobile-hide'}
           mt={[4, 0]}
         >
-          35k Certified<br />Gluten Free Products
+          35k Certified<br />Gluten-Free Products
         </PageHeading>
 
         <SearchInput area="search" alignSelf="flex-end" />
@@ -232,7 +240,7 @@ class Page extends React.Component<Props> {
           <Logo mt={[5]} mx={['auto', 0]} mb={[4, 0]} />
 
           <SecondaryText my={[2, 4]} align={['center', 'left']}>
-            Man cannot live by (gluten free) bread alone, but by every word that comes
+            Man cannot live by (gluten-free) bread alone, but by every word that comes
             from the mouth of God.
           </SecondaryText>
 
