@@ -12,7 +12,7 @@ const {matchSearchRoute, queryFromUrlParam} = require('./utils/misc')
 const server = micro(async (req, res) => {
   // WARNING WARNING WARNING WARNING WARNING WARNING WARNING
   // This prevents search engines from indexing anything except for the production instance
-  if (req.headers.host !== 'glutenproject.com') {
+  if (req.headers.host !== 'tgp-front.now.sh') {
     res.setHeader('x-robots-tag', 'noindex, nofollow')
   }
   // WARNING WARNING WARNING WARNING WARNING WARNING WARNING
