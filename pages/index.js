@@ -4,7 +4,6 @@ import App from '../components/App'
 import Home from '../components/Home'
 
 type Props = {}
-
 class Index extends React.Component<Props> {
   render() {
     return (

@@ -39,8 +39,11 @@ const Wrapper = Box.extend`
     align-self: flex-end;
     background: none;
     box-shadow: none;
-    position: relative;
+    position: unset;
     padding: 0;
+    top: unset;
+    left: unset;
+    right: unset;
   }
 `
 
