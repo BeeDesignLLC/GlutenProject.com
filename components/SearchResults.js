@@ -131,6 +131,7 @@ type RowProps = {
   brandName: string,
   products: Object[],
 }
+
 const Row = ({brandName = '...', products}: RowProps) => (
   <RowGrid columns={null}>
     <BrandBox
@@ -164,7 +165,7 @@ const Row = ({brandName = '...', products}: RowProps) => (
             }
           }}
         >
-          {hit.isAffiliate ? (
+          {hit.hasOffers ? (
             <TinyButtonA
               mt={'2px'}
               mr={2}
