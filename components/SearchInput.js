@@ -39,7 +39,7 @@ const Wrapper = Box.extend`
     align-self: flex-end;
     background: none;
     box-shadow: none;
-    position: unset;
+    position: relative;
     padding: 0;
     top: unset;
     left: unset;

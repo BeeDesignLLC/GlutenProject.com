@@ -67,13 +67,14 @@ injectGlobal`
     overflow: hidden;
   }
 
-  .mobile-show {
-    display: none;
-  }
-
   @media (max-width: ${theme.breakpoints[0]}) {
+    .mobile-hide {
+			display: none;
+		}
+	}
+  @media (min-width: ${theme.breakpoints[0]}) {
     .mobile-show {
-			display: unset;
+			display: none;
 		}
 	}
 `
