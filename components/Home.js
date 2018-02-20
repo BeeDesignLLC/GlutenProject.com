@@ -52,6 +52,7 @@ export default class extends React.Component<Props> {
               'Cereal',
               'Chocolate',
               'Coffee',
+              'Cookies',
               'Flour',
               'Nuts',
               'Oatmeal',
