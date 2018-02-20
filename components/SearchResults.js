@@ -168,11 +168,7 @@ const Row = ({brandName = '...', products}: RowProps) => (
             <TinyButtonA
               mt={'2px'}
               mr={2}
-              href={
-                hit.thrive.length
-                  ? '/link/thrive/' + hit.thrive[0].id
-                  : '/link/nuts/' + hit.nuts[0].id
-              }
+              href={'/link/offer/' + hit.offers[0].id}
               target="_blank"
               rel="nofollow"
             >
