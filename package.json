@@ -34,7 +34,7 @@
     "babel-plugin-styled-components": "1.5.0",
     "eslint": "4.18.0",
     "eslint-config-prettier": "2.9.0",
-    "eslint-plugin-flowtype": "2.45.0",
+    "eslint-plugin-flowtype": "2.46.0",
     "eslint-plugin-flowtype-errors": "3.3.7",
     "eslint-plugin-jsx-a11y": "6.0.3",
     "eslint-plugin-prettier": "2.6.0",
