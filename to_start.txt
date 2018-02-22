@@ -1,0 +1,6 @@
+npm start
+
+for cypress
+
+npx cypress open
+
