@@ -50,10 +50,12 @@ export default class extends React.Component<Props> {
           <Box flexDirection="column" fontSize={2} align={['center', 'left']}>
             {[
               'Cereal',
+              'Granola',
               'Chocolate',
               'Coffee',
               'Cookies',
               'Flour',
+              'Jerky',
               'Nuts',
               'Oatmeal',
               'Oats',
@@ -63,6 +65,7 @@ export default class extends React.Component<Props> {
               'Probiotics',
               'Protein powder',
               'Sausage',
+              'Snacks',
               'Spices',
               'Tea',
               'Vitamins',
