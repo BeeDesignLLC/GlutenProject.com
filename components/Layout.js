@@ -267,7 +267,7 @@ class Page extends React.Component<Props> {
             circumstances.
           </SecondaryText>
 
-          <Link href="/disclaimer">Legal Disclaimer</Link>
+          <Link href="/disclaimer">Legal</Link>
           <Link href="/privacy">Privacy Policy</Link>
           <Anchor href="https://github.com/BeeDesignLLC/GlutenProject.com">
             Source Code
