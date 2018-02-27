@@ -11,7 +11,6 @@ import {urlForQuery} from '../utils/misc'
 import Mailchimp from '../components/Mailchimp'
 
 type Props = {}
-
 export default class extends React.Component<Props> {
   render() {
     const {...props} = this.props

@@ -17,6 +17,7 @@ import {AnchorButton} from './Anchor'
 import {HomeIcon, ManifestoIcon, WhoIcon, HelpIcon} from './Icons'
 import theme from '../theme'
 import Mailchimp from './Mailchimp'
+import ShareButtons from './ShareButtons'
 
 const getSmallScreenAreas = ({home, ssrQuery}) => {
   if (home) {
@@ -218,7 +219,13 @@ class Page extends React.Component<Props> {
         </Nav>
 
         <Aside area="aside" flexDirection="column" align={['center', 'left']} px={[4, 0]}>
-          <SectionHeading>Have an opinion?</SectionHeading>
+          <SectionHeading>Thankful?</SectionHeading>
+          <SecondaryText align={['center', 'left']}>
+            Show your appreciation by telling others about The Gluten Project!
+          </SecondaryText>
+          <ShareButtons mt={3} />
+
+          <SectionHeading mt={5}>Have an opinion?</SectionHeading>
           <SecondaryText align={['center', 'left']}>
             You have great ideas on how to make this site better, and we want to hear
             them!<br />
@@ -232,12 +239,7 @@ class Page extends React.Component<Props> {
             </AnchorButton>
           </SecondaryText>
 
-          <SectionHeading mt={5}>Thankful?</SectionHeading>
-          <SecondaryText align={['center', 'left']}>
-            Show your appreciation by telling others about The Gluten Project!
-          </SecondaryText>
-
-          <Logo mt={[5]} mx={['auto', 0]} mb={[4, 0]} />
+          <Logo mt={[6]} mx={['auto', 0]} mb={[4, 0]} />
 
           <SecondaryText my={[2, 4]} align={['center', 'left']}>
             Man cannot live by (gluten-free) bread alone, but by every word that comes
