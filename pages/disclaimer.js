@@ -50,7 +50,8 @@ export default class extends React.Component<Props> {
           </LargeText>
           <LargeText>
             Bee Design LLC is a limited liability company registered in the US state of
-            Wyoming, and its registered agent is at 1623 Central Ave Ste 18, Cheyenne, WY 82001.
+            Wyoming, and its registered agent is at 1623 Central Ave Ste 18, Cheyenne, WY
+            82001.
           </LargeText>
         </Box>
       </App>
