@@ -4047,7 +4047,7 @@ ncp@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ncp/-/ncp-2.0.0.tgz#195a21d6c46e361d2fb1281ba38b91e9df7bdbb3"
 
-next@^5.0.1-canary.9:
+next@5.0.1-canary.9:
   version "5.0.1-canary.9"
   resolved "https://registry.yarnpkg.com/next/-/next-5.0.1-canary.9.tgz#8271f04321f3bf6b808d5e44e7a77ea6a992890a"
   dependencies:
