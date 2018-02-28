@@ -2,10 +2,9 @@
 import * as React from 'react'
 import App from '../components/App'
 import Box from '../components/Box'
-import ArticleHeading from '../components/ArticleHeading'
-import SectionHeading from '../components/SectionHeading'
+import Heading from '../components/Heading'
 import LargeText from '../components/LargeText'
-import Anchor from '../components/Anchor'
+import A from '../components/A'
 
 type Props = {}
 
@@ -14,15 +13,17 @@ export default class extends React.Component<Props> {
     return (
       <App title="The Gluten Project Privacy Policy">
         <Box area="main">
-          <ArticleHeading f={6}>Privacy</ArticleHeading>
+          <Heading is="h1" fontSize={6} fontStyle="italic" color="black">
+            Privacy
+          </Heading>
 
-          <LargeText mb={3} style={{fontStyle: 'italic'}}>
+          <LargeText mb={3} fontStyle="italic">
             Last updated: February 15, 2018.
           </LargeText>
 
-          <SectionHeading tag="h3" f={4}>
+          <Heading is="h3" fontSize={4}>
             The Gist
-          </SectionHeading>
+          </Heading>
           <LargeText>
             The Gluten Project, operated by Bee Design LLC, will collect certain
             non-personally identifiable information about you as you use our sites. We may
@@ -44,26 +45,20 @@ export default class extends React.Component<Props> {
             That&#8217;s the basic idea, but you must read through the entire Privacy
             Policy below and agree with all the details before you use any of our sites.
           </LargeText>
-          <SectionHeading tag="h3" f={4} mt={5}>
+          <Heading is="h3" fontSize={4} mt={5}>
             Reuse
-          </SectionHeading>
+          </Heading>
           <LargeText>
             This document is based upon the{' '}
-            <Anchor href="https://baremetrics.com/privacy">
-              Baremetrics Privacy Policy
-            </Anchor>{' '}
-            and the{' '}
-            <Anchor href="https://automattic.com/privacy/">
-              Automattic Privacy Policy
-            </Anchor>{' '}
+            <A href="https://baremetrics.com/privacy">Baremetrics Privacy Policy</A> and
+            the <A href="https://automattic.com/privacy/">Automattic Privacy Policy</A>{' '}
             and is licensed under{' '}
-            <Anchor href="https://creativecommons.org/licenses/by-sa/2.5/">
+            <A href="https://creativecommons.org/licenses/by-sa/2.5/">
               Creative Commons Attribution Share-Alike License 2.5
-            </Anchor>. Basically, this means you can use it verbatim or edited, but you
-            must release new versions under the same license and you have to credit
-            Automattic somewhere (like this!). Automattic and Baremetrics are not
-            connected with and do nosponsor or endorse The Gluten Project or its use of
-            the work.
+            </A>. Basically, this means you can use it verbatim or edited, but you must
+            release new versions under the same license and you have to credit Automattic
+            somewhere (like this!). Automattic and Baremetrics are not connected with and
+            do nosponsor or endorse The Gluten Project or its use of the work.
           </LargeText>
           <LargeText>
             The Gluten Project makes available services including our web sites
@@ -73,16 +68,16 @@ export default class extends React.Component<Props> {
             The Gluten Project&#8217;s policy to respect your privacy regarding any
             information we may collect while operating our Site.
           </LargeText>
-          <SectionHeading tag="h3" f={4} mt={5}>
+          <Heading is="h3" fontSize={4} mt={5}>
             Questions
-          </SectionHeading>
+          </Heading>
           <LargeText>
             If you have question about this Privacy Policy, please contact us at
             hi@glutenproject.com
           </LargeText>
-          <SectionHeading tag="h3" f={4} mt={5}>
+          <Heading is="h3" fontSize={4} mt={5}>
             Visitors
-          </SectionHeading>
+          </Heading>
           <LargeText>
             Like most website operators, The Gluten Project collects
             non-personally-identifying information of the sort that web browsers and
@@ -102,9 +97,9 @@ export default class extends React.Component<Props> {
             discloses personally-identifying information, as described below. We may also
             collect and use IP addresses to block users who violated our Terms of Service.
           </LargeText>
-          <SectionHeading tag="h3" f={4} mt={5}>
+          <Heading is="h3" fontSize={4} mt={5}>
             Gathering of Personally-Identifying Information
-          </SectionHeading>
+          </Heading>
           <LargeText>
             Certain visitors to The Gluten Project&#8217;s websites choose to interact
             with The Gluten Project in ways that require The Gluten Project to gather
@@ -125,9 +120,9 @@ export default class extends React.Component<Props> {
             optional and is only displayed for the benefit and the convenience of the
             user.
           </LargeText>
-          <SectionHeading tag="h3" f={4} mt={5}>
+          <Heading is="h3" fontSize={4} mt={5}>
             Aggregated Statistics and Third Party Analytics Providers
-          </SectionHeading>
+          </Heading>
           <LargeText>
             The Gluten Project may collect statistics about the behavior of visitors to
             and users of the Service. For instance, The Gluten Project may monitor the
@@ -168,9 +163,9 @@ export default class extends React.Component<Props> {
             The Gluten Project does not disclose personally-identifying information other
             than as described below.
           </LargeText>
-          <SectionHeading tag="h3" f={4} mt={5}>
+          <Heading is="h3" fontSize={4} mt={5}>
             Protection of Certain Personally-Identifying Information
-          </SectionHeading>
+          </Heading>
           <LargeText>
             The Gluten Project discloses potentially personally-identifying and
             personally-identifying information only to those of its employees, contractors
@@ -200,9 +195,9 @@ export default class extends React.Component<Props> {
             access, use, alteration or destruction of potentially personally-identifying
             and personally-identifying information.
           </LargeText>
-          <SectionHeading tag="h3" f={4} mt={5}>
+          <Heading is="h3" fontSize={4} mt={5}>
             Cookies
-          </SectionHeading>
+          </Heading>
           <LargeText>
             A cookie is a string of information that a website stores on a visitor&#8217;s
             computer, and that the visitor&#8217;s browser provides to the Service each
@@ -214,9 +209,9 @@ export default class extends React.Component<Props> {
             with the drawback that certain features of The Gluten Project&#8217;s websites
             may not function properly without the aid of cookies.
           </LargeText>
-          <SectionHeading tag="h3" f={4} mt={5}>
+          <Heading is="h3" fontSize={4} mt={5}>
             Business Transfers
-          </SectionHeading>
+          </Heading>
           <LargeText>
             If The Gluten Project, or substantially all of its assets, were acquired, or
             in the unlikely event that Baremetrids goes out of business or enters
@@ -225,9 +220,9 @@ export default class extends React.Component<Props> {
             that any acquirer of The Gluten Project may continue to use your personal
             information as set forth in this policy.
           </LargeText>
-          <SectionHeading tag="h3" f={4} mt={5}>
+          <Heading is="h3" fontSize={4} mt={5}>
             Data Storage
-          </SectionHeading>
+          </Heading>
           <LargeText>
             The Gluten Project uses third party vendors and hosting partners to provide
             the necessary hardware, software, networking, storage, and related technology
@@ -235,9 +230,9 @@ export default class extends React.Component<Props> {
             rights to your data, it may be stored on third party storage and transmitted
             through third party networks.
           </LargeText>
-          <SectionHeading tag="h3" f={4} mt={5}>
+          <Heading is="h3" fontSize={4} mt={5}>
             Privacy Policy Changes
-          </SectionHeading>
+          </Heading>
           <LargeText>
             Although most changes are likely to be minor, The Gluten Project may change
             its Privacy Policy from time to time, and in The Gluten Project&#8217;s sole

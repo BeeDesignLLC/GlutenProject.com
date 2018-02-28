@@ -2,11 +2,10 @@
 import * as React from 'react'
 import Box from '../components/Box'
 import HugeHeading from '../components/HugeHeading'
-import ArticleHeading from '../components/ArticleHeading'
+import Heading from '../components/Heading'
 import LargeText from '../components/LargeText'
-import LargeTextList from '../components/LargeTextList'
-import Link from '../components/Link'
-import Anchor from '../components/Anchor'
+import Link from 'next/link'
+import A from '../components/A'
 import {urlForQuery} from '../utils/misc'
 import Mailchimp from '../components/Mailchimp'
 
@@ -17,19 +16,25 @@ export default class extends React.Component<Props> {
     return (
       <React.Fragment>
         <Box area="main" flexDirection="column" {...props}>
-          <ArticleHeading tag="h1" className="mobile-hide">
+          <Heading
+            is="h1"
+            fontSize={[4, 3]}
+            fontStyle="italic"
+            color="black"
+            className="mobile-hide"
+          >
             Find All Certified Gluten-Free Products
-          </ArticleHeading>
+          </Heading>
           <LargeText>
             The Gluten Project is the first place in the world to easily search the entire
             list of certified gluten-free products and the places to buy them.
           </LargeText>
-          <LargeTextList mt={4}>
+          <LargeText is="ul" mt={4}>
             <li>
               Everything certified by the{' '}
-              <Anchor href="http://www.gfco.org" target="_blank">
+              <A href="http://www.gfco.org" target="_blank" rel="noopener">
                 Gluten-Free Certification Organization
-              </Anchor>{' '}
+              </A>{' '}
               (GFCO) as of <strong>January 2017</strong>
             </li>
             <li>
@@ -41,12 +46,14 @@ export default class extends React.Component<Props> {
               Before consuming, ensure the product label contains the GFCO certification
               logo
             </li>
-          </LargeTextList>
+          </LargeText>
 
           <Mailchimp mt={[6, 5]} />
 
-          <ArticleHeading mt={[6, 5]}>Popular Product Searches</ArticleHeading>
-          <Box flexDirection="column" fontSize={2} textAlign={['center', 'left']}>
+          <Heading is="h2" mt={[6, 5]} fontSize={[4, 3]} fontStyle="italic" color="black">
+            Popular Product Searches
+          </Heading>
+          <LargeText textAlign={['center', 'left']}>
             {[
               'Cereal',
               'Granola',
@@ -71,18 +78,21 @@ export default class extends React.Component<Props> {
               'Wine',
               'Beer',
             ].map(item => (
-              <Link
-                href={`/search?q=${item.toLowerCase()}`}
-                as={urlForQuery(item)}
-                key={item}
-              >
-                Gluten-free {item}
-              </Link>
+              <React.Fragment key={item}>
+                <Link
+                  passHref
+                  href={`/search?q=${item.toLowerCase()}`}
+                  as={urlForQuery(item)}
+                >
+                  <A>Gluten-free {item}</A>
+                </Link>
+                <br />
+              </React.Fragment>
             ))}
-          </Box>
+          </LargeText>
         </Box>
 
-        <HugeHeading tag="h2">The Gluten Project</HugeHeading>
+        <HugeHeading is="h2">The Gluten Project</HugeHeading>
       </React.Fragment>
     )
   }

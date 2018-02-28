@@ -4,7 +4,7 @@ import App from '../components/App'
 import Box from '../components/Box'
 import HugeHeading from '../components/HugeHeading'
 import LargeText from '../components/LargeText'
-import Anchor from '../components/Anchor'
+import A from '../components/A'
 import Image from '../components/Image'
 
 type Props = {}
@@ -31,9 +31,9 @@ export default class extends React.Component<Props> {
           <LargeText>
             Brandon is an entrepreneur, designer, developer, and independent consultant.
             He’s passionate about business and aviation. Follow him on Twitter{' '}
-            <Anchor href="https://twitter.com/beedesignllc" target="_blank">
+            <A href="https://twitter.com/beedesignllc" target="_blank" rel="noopener">
               @beedesignllc
-            </Anchor>.
+            </A>.
           </LargeText>
 
           <LargeText>
@@ -42,9 +42,13 @@ export default class extends React.Component<Props> {
             holistically. Through her own health journey, she has done extensive research
             on products and brands and loves to share that information to make the
             allergen world easier for others to navigate. Follow her on Instagram{' '}
-            <Anchor href="https://www.instagram.com/sew.petite/" target="_blank">
+            <A
+              href="https://www.instagram.com/sew.petite/"
+              target="_blank"
+              rel="noopener"
+            >
               @sew.petite
-            </Anchor>.
+            </A>.
           </LargeText>
 
           <Box p={6} alignItems="center">

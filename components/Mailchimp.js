@@ -2,9 +2,9 @@
 import * as React from 'react'
 import {themeGet} from 'styled-system'
 import Box from './Box'
-import SectionHeading from './SectionHeading'
+import Heading from './Heading'
 import Text from './Text'
-import CaptionText from './CaptionText'
+import SmallText from './SmallText'
 import Input from './Input'
 import Button from './Button'
 
@@ -19,7 +19,7 @@ const Wrapper = Box.extend`
 
 const Mailchimp = (props: any) => (
   <Wrapper {...props}>
-    <SectionHeading mb={1}>Be The First To Know </SectionHeading>
+    <Heading mb={1}>Be The First To Know </Heading>
     <Text textAlign={['center', 'left']} mb={3}>
       About new features and product listings
     </Text>
@@ -68,9 +68,9 @@ const Mailchimp = (props: any) => (
         </div>
       </div>
     </form>
-    <CaptionText textAlign={['center', 'left']}>
+    <SmallText textAlign={['center', 'left']}>
       Your email is top secret and NO ONE else will ever get it.
-    </CaptionText>
+    </SmallText>
   </Wrapper>
 )
 

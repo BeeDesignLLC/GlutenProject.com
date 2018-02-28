@@ -2,7 +2,7 @@
 import * as React from 'react'
 import App from '../components/App'
 import Box from '../components/Box'
-import ArticleHeading from '../components/ArticleHeading'
+import Heading from '../components/Heading'
 import LargeText from '../components/LargeText'
 
 type Props = {}
@@ -12,7 +12,9 @@ export default class extends React.Component<Props> {
     return (
       <App title="The Gluten Project Legal Disclaimer">
         <Box area="main">
-          <ArticleHeading f={6}>Legal Disclaimer</ArticleHeading>
+          <Heading is="h1" fontSize={6} fontStyle="italic" color="black">
+            Legal Disclaimer
+          </Heading>
 
           <LargeText>
             The Gluten Project, operated by Bee Design LLC, has made every attempt to

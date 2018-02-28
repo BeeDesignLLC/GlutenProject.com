@@ -1,22 +1,19 @@
 // @flow
-import styled from 'styled-components'
-import {
-  space,
-  width,
-  boxShadow,
-  justifyContent,
-  alignItems,
-  alignSelf,
-  flex,
-  themeGet,
-} from 'styled-system'
-import {gridArea} from '../utils/styled'
+import system from 'system-components'
+import theme from '../theme'
+import {layout, text} from '../utils/styled'
 
-const Input = styled.input`
-  background-color: ${themeGet('colors.greenLight')};
+const Input = system(
+  {
+    is: 'input',
+    color: 'black',
+    bg: 'greenLight',
+  },
+  ...layout,
+  ...text
+).extend`
   border: 2px solid transparent;
   border-radius: 1.25rem;
-  color: black;
   caret-color: currentColor;
   height: 2rem;
   /* Non-standard font size to prevent iOS zoom-on-focus */
@@ -25,7 +22,6 @@ const Input = styled.input`
   font-weight: 500;
   padding: 0 0.7rem;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
-
 
   &::placeholder {
     color: black;
@@ -41,19 +37,9 @@ const Input = styled.input`
     }
   }
 
-  @media (min-width: ${themeGet('breakpoints.0')}) {
-    font-size: ${themeGet('fontSizes.1')};
-
+  @media (min-width: ${theme.breakpoints[0]}) {
+    font-size: ${theme.fontSizes[1]};
   }
-
-  ${space}
-  ${width}
-  ${boxShadow}
-  ${justifyContent}
-  ${alignItems}
-  ${alignSelf}
-  ${gridArea}
-  ${flex}
 `
 
 export default Input

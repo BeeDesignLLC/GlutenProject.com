@@ -1,30 +1,40 @@
 // @flow
 import {style, responsiveStyle} from 'styled-system'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 export const gridArea = style({
   prop: 'area',
   cssProperty: 'grid-area',
 })
 
-export const gridRowGap = style({
+export const gridRowGap = responsiveStyle({
   prop: 'rowGap',
   cssProperty: 'grid-row-gap',
 })
 
-export const height = style({
-  prop: 'height',
-  cssProperty: 'height',
-})
-
-export const justifySelf = style({
+export const justifySelf = responsiveStyle({
   prop: 'justifySelf',
-  cssProperty: 'justify-self',
 })
 
-export const position = responsiveStyle({
-  prop: 'position',
-  cssProperty: 'position',
+export const fontStyle = responsiveStyle({
+  prop: 'fontStyle',
 })
 
-export const numberOrString = PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+// export const numberOrString = PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+
+export const text = ['color', 'textAlign', 'fontWeight', fontStyle]
+
+export const flex = [
+  'flex',
+  'justifyContent',
+  'alignItems',
+  'flexDirection',
+  'flexWrap',
+  'alignContent',
+  'alignSelf',
+  'order',
+]
+
+export const gridPlacement = [gridArea, justifySelf]
+
+export const layout = ['space', 'width', 'position', ...flex, ...gridPlacement]

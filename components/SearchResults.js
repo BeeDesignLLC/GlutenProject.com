@@ -8,11 +8,10 @@ import titleize from 'titleize'
 
 import Grid from '../components/Grid'
 import Box from '../components/Box'
-import ArticleHeading from '../components/ArticleHeading'
-import SectionHeading from '../components/SectionHeading'
+import Heading from '../components/Heading'
 import LargeText from '../components/LargeText'
 import Text from '../components/Text'
-import Button, {TinyButton, TinyButtonA} from '../components/Button'
+import Button from '../components/Button'
 
 const RowGrid = Grid.withComponent('section').extend`
   grid-template-columns: 1fr;
@@ -102,9 +101,9 @@ const SearchResults = ({
     <React.Fragment>
       {ssr && (
         <Box area="heading">
-          <ArticleHeading tag="h1">
+          <Heading is="h1" fontSize={[4, 3]} fontStyle="italic" color="black">
             List of All Certified Gluten-Free {titleize(q)}
-          </ArticleHeading>
+          </Heading>
           <LargeText color="grays.3">
             All {searchResults && `${searchResults.nbHits} `}products have been certified
             gluten-free by GFCO as of January 2017.
@@ -141,9 +140,9 @@ const Row = ({brandName = '...', products}: RowProps) => (
       pr={[0, 0, '0.75rem']}
       mr={[0, 0, '-0.75rem']}
     >
-      <SectionHeading tag="h4" textAlign={['left', 'left', 'right']} mt={'-5px'} mb={0}>
+      <Heading is="h4" textAlign={['left', 'left', 'right']} mt={'-5px'} mb={0}>
         {brandName}
-      </SectionHeading>
+      </Heading>
     </BrandBox>
     <Box area="products" mb={5}>
       {products.map(hit => (
@@ -166,7 +165,9 @@ const Row = ({brandName = '...', products}: RowProps) => (
           }}
         >
           {hit.hasOffers ? (
-            <TinyButtonA
+            <Button
+              tiny
+              is="a"
               mt={'2px'}
               mr={2}
               href={
@@ -175,28 +176,35 @@ const Row = ({brandName = '...', products}: RowProps) => (
                   : '/link/offer/' + hit.offers[0].id
               }
               target="_blank"
-              rel={hit.brandWhereToBuyUrl ? null : 'nofollow'}
+              rel={hit.brandWhereToBuyUrl ? 'noopener' : 'nofollow noopener'}
             >
               {hit.brandWhereToBuyUrl ? 'find' : 'details'}
-            </TinyButtonA>
+            </Button>
           ) : (
-            <TinyButton
+            <Button
+              tiny
               className="productHover"
               mt={'2px'}
               mr={2}
-              onClick={() =>
-                window.Intercom(
-                  'showNewMessage',
-                  `Where can I buy:
+              onClick={() => {
+                if (window.Intercom) {
+                  window.Intercom(
+                    'showNewMessage',
+                    `Where can I buy:
 ${hit.brandName}. ${hit.name}
 
 📣
 We'll find this product for you on-demand until we add its link on the site. Make sure to leave your email!`
-                )
-              }
+                  )
+                } else {
+                  alert(
+                    'It seems Intercom is being blocked by one of your browser extensions. Whitelist Intercom to chat with us :)'
+                  )
+                }
+              }}
             >
               find
-            </TinyButton>
+            </Button>
           )}
           <Text>
             <Highlight attributeName="name" hit={hit} tagName="mark" />

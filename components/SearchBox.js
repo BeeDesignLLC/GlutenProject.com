@@ -5,7 +5,7 @@ import {withRouter} from 'next/router'
 import styled from 'styled-components'
 import {themeGet} from 'styled-system'
 import Box from './Box'
-import CaptionText from './CaptionText'
+import SmallText from './SmallText'
 import {default as BaseInput} from './Input'
 
 const Input = BaseInput.extend`
@@ -92,7 +92,7 @@ type Props = {
   router: Object,
 }
 
-const SearchInput = ({
+const SearchBox = ({
   currentRefinement,
   refine,
   searchResults,
@@ -116,9 +116,6 @@ const SearchInput = ({
       action="."
       role="search"
     >
-      <label htmlFor="global-product-search">
-        <span className="screen-reader-text">Search The Gluten Project For:</span>
-      </label>
       <Input
         id="global-product-search"
         value={ssr ? '' : currentRefinement}
@@ -131,6 +128,9 @@ const SearchInput = ({
         }}
         type="search"
       />
+      <label htmlFor="global-product-search">
+        <span className="screen-reader-text">Search The Gluten Project For:</span>
+      </label>
       <SearchIconButton type="submit">
         <span className="screen-reader-text">Search</span>
       </SearchIconButton>
@@ -142,14 +142,14 @@ const SearchInput = ({
     </SearchForm>
     {currentRefinement &&
       searchResults && (
-        <CaptionText
+        <SmallText
           width="50%"
           style={{position: 'absolute', left: 'calc(100% + 0.6rem)', bottom: 13}}
         >
           {searchResults.nbHits} results
-        </CaptionText>
+        </SmallText>
       )}
   </Wrapper>
 )
 
-export default withRouter(connectSearchBox(connectStateResults(SearchInput)))
+export default withRouter(connectSearchBox(connectStateResults(SearchBox)))

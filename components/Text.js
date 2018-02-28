@@ -1,39 +1,31 @@
 // @flow
-import styled from 'styled-components'
-import {
-  themeGet,
-  space,
-  width,
-  fontSize,
-  color,
-  textAlign,
-  lineHeight,
-  alignSelf,
-} from 'styled-system'
-import {gridArea, justifySelf, position} from '../utils/styled'
+import {css} from 'styled-components'
+import system from 'system-components'
+import theme from '../theme'
+import {layout, text} from '../utils/styled'
 
-const Text = styled.p`
-  font-size: ${themeGet('fontSizes.1')};
-  font-weight: normal;
+const listStyles = () => css`
+  padding-left: ${theme.space[4]};
+`
+
+const Text = system(
+  {
+    is: 'p',
+    fontSize: 1,
+  },
+  ...text,
+  ...layout
+).extend`
+  ${props => props.is === 'ul' && listStyles()}
 
   & + & {
-    margin-top: ${themeGet('space.3')};
+    margin-top: ${theme.space[3]};
   }
 
-  & > ul {
-    margin: 0;
-    padding-left: ${themeGet('space.4')};
+  & > li + li {
+    margin-top: ${theme.space[2]};
   }
-
-  ${space}
-  ${width}
-  ${fontSize}
-  ${color}
-  ${textAlign}
-  ${lineHeight}
-  ${gridArea}
-  ${justifySelf}
-  ${alignSelf}
-  ${position}
 `
+
+Text.displayName = 'Text'
 export default Text

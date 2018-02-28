@@ -10,19 +10,14 @@ import {
   justifyContent,
   alignItems,
   alignSelf,
-  borderRadius,
-  borderColor,
-  borderWidth,
-  boxShadow,
 } from 'styled-system'
-import {gridArea, gridRowGap, height} from '../utils/styled'
+import {gridArea, gridRowGap} from '../utils/styled'
 
 const Grid = StyledGrid.extend`
   grid-auto-rows: auto;
 
   ${space}
   ${width}
-  ${height}
   ${color}
   ${flex}
   ${flexDirection}
@@ -30,10 +25,6 @@ const Grid = StyledGrid.extend`
   ${justifyContent}
   ${alignItems}
   ${alignSelf}
-  ${borderRadius}
-  ${borderColor}
-  ${borderWidth}
-  ${boxShadow}
   ${gridRowGap}
   ${gridArea}
 `

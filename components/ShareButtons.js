@@ -247,8 +247,8 @@ export default (props: Props) => (
     <a
       className="resp-sharing-button__link"
       href="https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fglutenproject.com"
-      target="_blank"
-      rel="noopener noreferrer"
+      target="_blank" //eslint-disable-line react/jsx-no-target-blank
+      rel="noopener"
       title="Share to Facebook"
       aria-label=""
     >
@@ -268,8 +268,8 @@ export default (props: Props) => (
     <a
       className="resp-sharing-button__link"
       href="https://twitter.com/intent/tweet/?text=The%20Gluten%20Project%3A%20Find%20any%20certified%20gluten-free%20product&amp;url=https%3A%2F%2Fglutenproject.com"
-      target="_blank"
-      rel="noopener noreferrer"
+      target="_blank" //eslint-disable-line react/jsx-no-target-blank
+      rel="noopener"
       title="Share to Twitter"
       aria-label=""
     >
@@ -289,8 +289,8 @@ export default (props: Props) => (
     <a
       className="resp-sharing-button__link"
       href="https://plus.google.com/share?url=https%3A%2F%2Fglutenproject.com"
-      target="_blank"
-      rel="noopener noreferrer"
+      target="_blank" //eslint-disable-line react/jsx-no-target-blank
+      rel="noopener"
       title="Share to Google+"
       aria-label=""
     >
@@ -310,8 +310,8 @@ export default (props: Props) => (
     <a
       className="resp-sharing-button__link"
       href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=The%20Gluten%20Project%3A%20Find%20any%20certified%20gluten-free%20product&amp;caption=The%20Gluten%20Project%3A%20Find%20any%20certified%20gluten-free%20product&amp;content=https%3A%2F%2Fglutenproject.com&amp;canonicalUrl=https%3A%2F%2Fglutenproject.com&amp;shareSource=tumblr_share_button"
-      target="_blank"
-      rel="noopener noreferrer"
+      target="_blank" //eslint-disable-line react/jsx-no-target-blank
+      rel="noopener"
       title="Share to Tumblr"
       aria-label=""
     >
@@ -332,7 +332,6 @@ export default (props: Props) => (
       className="resp-sharing-button__link"
       href="mailto:?subject=The%20Gluten%20Project%3A%20Find%20any%20certified%20gluten-free%20product&amp;body=https%3A%2F%2Fglutenproject.com"
       target="_self"
-      rel="noopener noreferrer"
       title="Share via email"
       aria-label=""
     >
@@ -352,8 +351,8 @@ export default (props: Props) => (
     <a
       className="resp-sharing-button__link"
       href="https://pinterest.com/pin/create/button/?url=https%3A%2F%2Fglutenproject.com&amp;media=https%3A%2F%2Fglutenproject.com&amp;description=The%20Gluten%20Project%3A%20Find%20any%20certified%20gluten-free%20product"
-      target="_blank"
-      rel="noopener noreferrer"
+      target="_blank" //eslint-disable-line react/jsx-no-target-blank
+      rel="noopener"
       title="Share to Pinterest"
       aria-label=""
     >
@@ -373,8 +372,8 @@ export default (props: Props) => (
     <a
       className="resp-sharing-button__link"
       href="whatsapp://send?text=The%20Gluten%20Project%3A%20Find%20any%20certified%20gluten-free%20product%20https%3A%2F%2Fglutenproject.com"
-      target="_blank"
-      rel="noopener noreferrer"
+      target="_blank" //eslint-disable-line react/jsx-no-target-blank
+      rel="noopener"
       title="Share to WhatsApp"
       aria-label=""
     >
@@ -394,8 +393,8 @@ export default (props: Props) => (
     <a
       className="resp-sharing-button__link"
       href="https://telegram.me/share/url?text=The%20Gluten%20Project%3A%20Find%20any%20certified%20gluten-free%20product&amp;url=https%3A%2F%2Fglutenproject.com"
-      target="_blank"
-      rel="noopener noreferrer"
+      target="_blank" //eslint-disable-line react/jsx-no-target-blank
+      rel="noopener"
       title="Share to Telegram"
       aria-label=""
     >

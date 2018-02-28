@@ -8,12 +8,11 @@ import Grid from './Grid'
 import Box, {Nav, Aside} from '../components/Box'
 import Logo from '../components/Logo'
 import PageHeading from '../components/PageHeading'
-import SectionHeading from '../components/SectionHeading'
-import SearchInput from '../components/SearchInput'
+import Heading from '../components/Heading'
+import SearchBox from '../components/SearchBox'
 import SecondaryText from '../components/SecondaryText'
-import Link from './Link'
-import Anchor from './Anchor'
-import {AnchorButton} from './Anchor'
+import Link from 'next/link'
+import A from './A'
 import {HomeIcon, ManifestoIcon, WhoIcon, HelpIcon} from './Icons'
 import theme from '../theme'
 import Mailchimp from './Mailchimp'
@@ -159,41 +158,38 @@ class Page extends React.Component<Props> {
           <meta name="twitter:title" content={socialTitle} />
         </Head>
 
+        <SearchBox area="search" alignSelf="flex-end" />
+
         {children}
 
-        <PageHeading
-          area="head"
-          alignSelf="flex-end"
-          style={{cursor: 'pointer'}}
-          onClick={() => router.push('/')}
-          className={router.pathname === '/' ? null : 'mobile-hide'}
-          mt={[4, 0]}
-        >
-          35k Certified<br />Gluten-Free Products
-        </PageHeading>
-
-        <SearchInput area="search" alignSelf="flex-end" />
+        <Link href="/">
+          <PageHeading
+            area="head"
+            alignSelf="flex-end"
+            style={{cursor: 'pointer'}}
+            className={router.pathname === '/' ? null : 'mobile-hide'}
+            mt={[4, 0]}
+          >
+            35k Certified<br />Gluten-Free Products
+          </PageHeading>
+        </Link>
 
         <Aside
           area="info"
           justifySelf="flex-end"
-          textAlign={['center', 'right']}
+          alignItems={['center', 'flex-end']}
           px={[4, 0]}
         >
-          <SecondaryText textAlign={['center', 'right']} style={{fontStyle: 'normal'}}>
+          <SecondaryText fontStyle="normal" textAlign={['center', 'right']}>
             We are not endorsed by, authorized, or in any way officially connected with
             the{' '}
-            <Anchor
-              href="http://www.gluten.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <A href="http://www.gluten.org" target="_blank" rel="noopener">
               Gluten Intolerance Group
-            </Anchor>{' '}
+            </A>{' '}
             or the{' '}
-            <Anchor href="http://www.gfco.org/" target="_blank" rel="noopener noreferrer">
+            <A href="http://www.gfco.org/" target="_blank" rel="noopener">
               Gluten-Free Certification Organization
-            </Anchor>.
+            </A>.
           </SecondaryText>
         </Aside>
 
@@ -204,22 +200,41 @@ class Page extends React.Component<Props> {
           my={[4, 0]}
         >
           <Box alignItems="flex-start">
-            <Link menu href="/">
-              <HomeIcon />
-              <span>home</span>
+            <Link href="/" passHref prefetch>
+              <A menu>
+                <HomeIcon />
+                <span>home</span>
+              </A>
             </Link>
-            <Link menu href="/manifesto" mt={4}>
-              <ManifestoIcon />
-              <span>manifesto</span>
+            <Link href="/manifesto" passHref prefetch>
+              <A menu mt={4}>
+                <ManifestoIcon />
+                <span>manifesto</span>
+              </A>
             </Link>
-            <Link menu href="/who" mt={4}>
-              <WhoIcon />
-              <span>who&rsquo;s behind this</span>
+            <Link href="/who" passHref prefetch>
+              <A menu mt={4}>
+                <WhoIcon />
+                <span>who&rsquo;s behind this</span>
+              </A>
             </Link>
-            <AnchorButton menu onClick={() => window.Intercom('showNewMessage')} mt={4}>
+            <A
+              menu
+              is="button"
+              onClick={() => {
+                if (window.Intercom) {
+                  window.Intercom('showNewMessage')
+                } else {
+                  alert(
+                    'It seems Intercom is being blocked by one of your browser extensions. Whitelist Intercom to chat with us :)'
+                  )
+                }
+              }}
+              mt={4}
+            >
               <HelpIcon />
               <span>get help</span>
-            </AnchorButton>
+            </A>
           </Box>
         </Nav>
 
@@ -228,48 +243,57 @@ class Page extends React.Component<Props> {
           flexDirection="column"
           textAlign={['center', 'left']}
           px={[4, 0]}
+          mb={4}
         >
-          <SectionHeading>Thankful?</SectionHeading>
-          <SecondaryText alignItems={['center', 'left']}>
+          <Heading>Thankful?</Heading>
+          <SecondaryText>
             Show your appreciation by telling others about The Gluten Project!
           </SecondaryText>
-          <ShareButtons mt={3} />
+          <ShareButtons mt={3} justifyContent={['center', 'flex-start']} />
 
-          <SectionHeading mt={5}>Have an opinion?</SectionHeading>
-          <SecondaryText textAlign={['center', 'left']}>
+          <Heading mt={5}>Have an opinion?</Heading>
+          <SecondaryText>
             You have great ideas on how to make this site better, and we want to hear
             them!<br />
           </SecondaryText>
-          <SecondaryText textAlign={['center', 'left']}>
-            <AnchorButton
-              inheritContext
-              onClick={() => window.Intercom('showNewMessage')}
+          <SecondaryText>
+            <A
+              is="button"
+              onClick={() => {
+                if (window.Intercom) {
+                  window.Intercom('showNewMessage')
+                } else {
+                  alert(
+                    'It seems Intercom is being blocked by one of your browser extensions. Whitelist Intercom to chat with us :)'
+                  )
+                }
+              }}
             >
               Send feedback to Brandon
-            </AnchorButton>
+            </A>
           </SecondaryText>
 
           <Logo mt={[6]} mx={['auto', 0]} mb={[4, 0]} />
 
-          <SecondaryText my={[2, 4]} textAlign={['center', 'left']}>
+          <SecondaryText my={[2, 4]}>
             Man cannot live by (gluten-free) bread alone, but by every word that comes
             from the mouth of God.
           </SecondaryText>
 
           <Mailchimp className="mobile-show" my={5} />
 
-          <SectionHeading mt={4}>Disclaimers</SectionHeading>
-          <SecondaryText textAlign={['center', 'left']}>
+          <Heading mt={4}>Disclaimers</Heading>
+          <SecondaryText>
             We are affilates of Thrive Market, Nuts.com, and Walmart and earn commissions
             from links to their products. This ensures The Gluten Project will be
             sustainable over the long term. Thank you for using them! :)
           </SecondaryText>
-          <SecondaryText textAlign={['center', 'left']}>
+          <SecondaryText>
             We are a participant in the Amazon Services LLC Associates Program, an
             affiliate advertising program designed to provide a means for us to earn fees
             by linking to Amazon.com and affiliated sites.
           </SecondaryText>
-          <SecondaryText textAlign={['center', 'left']} mt={3} mb={4}>
+          <SecondaryText mt={3} mb={4}>
             The Gluten Project and Bee Design LLC do not accept any responsibility or
             liability for the accuracy, content, completeness, legality, or reliability of
             the information contained on this website. No warranties, promises and/or
@@ -279,11 +303,13 @@ class Page extends React.Component<Props> {
             circumstances.
           </SecondaryText>
 
-          <Link href="/disclaimer">Legal</Link>
-          <Link href="/privacy">Privacy Policy</Link>
-          <Anchor href="https://github.com/BeeDesignLLC/GlutenProject.com">
-            Source Code
-          </Anchor>
+          <Link href="/disclaimer" passHref>
+            <A>Legal</A>
+          </Link>
+          <Link href="/privacy" passHref>
+            <A>Privacy Policy</A>
+          </Link>
+          <A href="https://github.com/BeeDesignLLC/GlutenProject.com">Source Code</A>
         </Aside>
       </MasterGrid>
     )
