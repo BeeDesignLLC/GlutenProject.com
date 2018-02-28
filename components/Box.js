@@ -15,38 +15,38 @@ import {
   borderWidth,
   boxShadow,
   fontSize,
-  cleanElement,
-  propTypes,
+  // cleanElement,
+  // propTypes,
 } from 'styled-system'
-import {gridArea, height, justifySelf, numberOrString} from '../utils/styled'
+import {gridArea, height, justifySelf /*numberOrString*/} from '../utils/styled'
 
-const BoxPropTypes = {
-  ...propTypes.space,
-  ...propTypes.width,
-  ...propTypes.color,
-  ...propTypes.flex,
-  ...propTypes.flexDirection,
-  ...propTypes.flexWrap,
-  ...propTypes.justifyContent,
-  ...propTypes.alignItems,
-  ...propTypes.alignSelf,
-  ...propTypes.borderRadius,
-  ...propTypes.borderColor,
-  ...propTypes.borderWidth,
-  ...propTypes.boxShadow,
-  ...propTypes.fontSize,
-  justifySelf: numberOrString,
-}
-const CleanDiv = cleanElement('div')
-CleanDiv.propTypes = BoxPropTypes
-const CleanHeader = cleanElement('header')
-CleanHeader.propTypes = BoxPropTypes
-const CleanNav = cleanElement('nav')
-CleanNav.propTypes = BoxPropTypes
-const CleanAside = cleanElement('aside')
-CleanAside.propTypes = BoxPropTypes
+// const BoxPropTypes = {
+//   ...propTypes.space,
+//   ...propTypes.width,
+//   ...propTypes.color,
+//   ...propTypes.flex,
+//   ...propTypes.flexDirection,
+//   ...propTypes.flexWrap,
+//   ...propTypes.justifyContent,
+//   ...propTypes.alignItems,
+//   ...propTypes.alignSelf,
+//   ...propTypes.borderRadius,
+//   ...propTypes.borderColor,
+//   ...propTypes.borderWidth,
+//   ...propTypes.boxShadow,
+//   ...propTypes.fontSize,
+//   justifySelf: numberOrString,
+// }
+// const CleanDiv = cleanElement('div')
+// CleanDiv.propTypes = BoxPropTypes
+// const CleanHeader = cleanElement('header')
+// CleanHeader.propTypes = BoxPropTypes
+// const CleanNav = cleanElement('nav')
+// CleanNav.propTypes = BoxPropTypes
+// const CleanAside = cleanElement('aside')
+// CleanAside.propTypes = BoxPropTypes
 
-const Box = styled(CleanDiv)`
+const Box = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -69,9 +69,9 @@ const Box = styled(CleanDiv)`
   ${justifySelf}
 `
 
-export const Header = Box.withComponent(CleanHeader)
-export const Nav = Box.withComponent(CleanNav)
-export const Aside = Box.withComponent(CleanAside).extend`
+export const Header = Box.withComponent('header')
+export const Nav = Box.withComponent('nav')
+export const Aside = Box.withComponent('aside').extend`
   width: 100%;
 `
 

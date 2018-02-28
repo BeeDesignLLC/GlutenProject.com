@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import {theme} from 'styled-system'
+import {themeGet} from 'styled-system'
 import {Highlight} from 'react-instantsearch/dom'
 import {connectInfiniteHits, connectStateResults} from 'react-instantsearch/connectors'
 import {
@@ -22,7 +22,7 @@ const cache = new CellMeasurerCache({
 })
 
 const BrandBox = Header.extend`
-  border-right: solid 3px ${theme('colors.green')};
+  border-right: solid 3px ${themeGet('colors.green')};
 `
 
 type RowProps = {
@@ -176,7 +176,7 @@ class SearchResults extends React.Component<Props, State> {
             mb={4}
             style={{marginTop: 2, paddingRight: '.75rem', marginRight: '-.75rem'}}
           >
-            <SectionHeading align="right" style={{marginTop: -5}} mb={0}>
+            <SectionHeading textAlign="right" style={{marginTop: -5}} mb={0}>
               {item.makerName || '...'}
             </SectionHeading>
           </BrandBox>

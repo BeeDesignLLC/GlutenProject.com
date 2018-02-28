@@ -174,8 +174,13 @@ class Page extends React.Component<Props> {
 
         <SearchInput area="search" alignSelf="flex-end" />
 
-        <Aside area="info" justifySelf="flex-end" align={['center', 'right']} px={[4, 0]}>
-          <SecondaryText align={['center', 'right']} style={{fontStyle: 'normal'}}>
+        <Aside
+          area="info"
+          justifySelf="flex-end"
+          textAlign={['center', 'right']}
+          px={[4, 0]}
+        >
+          <SecondaryText textAlign={['center', 'right']} style={{fontStyle: 'normal'}}>
             We are not endorsed by, authorized, or in any way officially connected with
             the{' '}
             <Anchor
@@ -195,10 +200,10 @@ class Page extends React.Component<Props> {
         <Nav
           area="menu"
           flexDirection="column"
-          align={['center', 'flex-start']}
+          alignItems={['center', 'flex-start']}
           my={[4, 0]}
         >
-          <Box align="flex-start">
+          <Box alignItems="flex-start">
             <Link menu href="/">
               <HomeIcon />
               <span>home</span>
@@ -218,19 +223,24 @@ class Page extends React.Component<Props> {
           </Box>
         </Nav>
 
-        <Aside area="aside" flexDirection="column" align={['center', 'left']} px={[4, 0]}>
+        <Aside
+          area="aside"
+          flexDirection="column"
+          textAlign={['center', 'left']}
+          px={[4, 0]}
+        >
           <SectionHeading>Thankful?</SectionHeading>
-          <SecondaryText align={['center', 'left']}>
+          <SecondaryText alignItems={['center', 'left']}>
             Show your appreciation by telling others about The Gluten Project!
           </SecondaryText>
           <ShareButtons mt={3} />
 
           <SectionHeading mt={5}>Have an opinion?</SectionHeading>
-          <SecondaryText align={['center', 'left']}>
+          <SecondaryText textAlign={['center', 'left']}>
             You have great ideas on how to make this site better, and we want to hear
             them!<br />
           </SecondaryText>
-          <SecondaryText align={['center', 'left']}>
+          <SecondaryText textAlign={['center', 'left']}>
             <AnchorButton
               inheritContext
               onClick={() => window.Intercom('showNewMessage')}
@@ -241,7 +251,7 @@ class Page extends React.Component<Props> {
 
           <Logo mt={[6]} mx={['auto', 0]} mb={[4, 0]} />
 
-          <SecondaryText my={[2, 4]} align={['center', 'left']}>
+          <SecondaryText my={[2, 4]} textAlign={['center', 'left']}>
             Man cannot live by (gluten-free) bread alone, but by every word that comes
             from the mouth of God.
           </SecondaryText>
@@ -249,17 +259,17 @@ class Page extends React.Component<Props> {
           <Mailchimp className="mobile-show" my={5} />
 
           <SectionHeading mt={4}>Disclaimers</SectionHeading>
-          <SecondaryText align={['center', 'left']}>
+          <SecondaryText textAlign={['center', 'left']}>
             We are affilates of Thrive Market, Nuts.com, and Walmart and earn commissions
             from links to their products. This ensures The Gluten Project will be
             sustainable over the long term. Thank you for using them! :)
           </SecondaryText>
-          <SecondaryText align={['center', 'left']}>
+          <SecondaryText textAlign={['center', 'left']}>
             We are a participant in the Amazon Services LLC Associates Program, an
             affiliate advertising program designed to provide a means for us to earn fees
             by linking to Amazon.com and affiliated sites.
           </SecondaryText>
-          <SecondaryText align={['center', 'left']} mt={3} mb={4}>
+          <SecondaryText textAlign={['center', 'left']} mt={3} mb={4}>
             The Gluten Project and Bee Design LLC do not accept any responsibility or
             liability for the accuracy, content, completeness, legality, or reliability of
             the information contained on this website. No warranties, promises and/or

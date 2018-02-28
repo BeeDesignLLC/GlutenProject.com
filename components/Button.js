@@ -1,7 +1,7 @@
 // @flow
 import styled from 'styled-components'
 import {
-  theme,
+  themeGet,
   space,
   width,
   fontSize,
@@ -22,12 +22,12 @@ import {
 import {gridArea} from '../utils/styled'
 
 const Button = styled.button`
-  background: ${theme('colors.green')};
+  background: ${themeGet('colors.green')};
   border: none;
   border-radius: 10rem;
   color: white;
   cursor: pointer;
-  font-size: ${theme('fontSizes.1')};
+  font-size: ${themeGet('fontSizes.1')};
   font-weight: normal;
   margin: 0;
   padding: 0.3rem 1rem 0.5rem;
@@ -65,7 +65,7 @@ const Button = styled.button`
 `
 
 export const TinyButton = Button.extend`
-  font-size: ${theme('fontSizes.0')};
+  font-size: ${themeGet('fontSizes.0')};
   padding: 0rem 0.5rem 0.1rem;
 `
 export const TinyButtonA = TinyButton.withComponent('a').extend`

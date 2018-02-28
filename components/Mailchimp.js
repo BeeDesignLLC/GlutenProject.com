@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import {theme} from 'styled-system'
+import {themeGet} from 'styled-system'
 import Box from './Box'
 import SectionHeading from './SectionHeading'
 import Text from './Text'
@@ -11,16 +11,16 @@ import Button from './Button'
 const Wrapper = Box.extend`
   background-color: white;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  border: 1px solid ${theme('colors.green')};
-  border-radius: ${theme('space.2')};
-  padding: ${theme('space.3')};
+  border: 1px solid ${themeGet('colors.green')};
+  border-radius: ${themeGet('space.2')};
+  padding: ${themeGet('space.3')};
   max-width: 35rem;
 `
 
 const Mailchimp = (props: any) => (
   <Wrapper {...props}>
     <SectionHeading mb={1}>Be The First To Know </SectionHeading>
-    <Text align={['center', 'left']} mb={3}>
+    <Text textAlign={['center', 'left']} mb={3}>
       About new features and product listings
     </Text>
 
@@ -37,7 +37,11 @@ const Mailchimp = (props: any) => (
       }}
     >
       <div>
-        <Box flexDirection="row" wrap justify={['center', 'flex-start']}>
+        <Box
+          flexDirection="row"
+          flexWrap="wrap"
+          justifyContent={['center', 'flex-start']}
+        >
           <label htmlFor="mce-EMAIL">
             <span className="screen-reader-text">Email Address</span>
           </label>
@@ -64,7 +68,7 @@ const Mailchimp = (props: any) => (
         </div>
       </div>
     </form>
-    <CaptionText align={['center', 'left']}>
+    <CaptionText textAlign={['center', 'left']}>
       Your email is top secret and NO ONE else will ever get it.
     </CaptionText>
   </Wrapper>

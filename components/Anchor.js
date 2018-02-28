@@ -1,11 +1,11 @@
 // @flow
 import styled, {css} from 'styled-components'
-import {space, width, fontSize, color, textAlign, theme} from 'styled-system'
+import {space, width, fontSize, color, textAlign, themeGet} from 'styled-system'
 
 const menuStyles = () => css`
   letter-spacing: 0.3ex;
   display: flex;
-  font-size: ${theme('fontSizes.1')};
+  font-size: ${themeGet('fontSizes.1')};
   font-weight: 500;
   text-transform: uppercase;
 
@@ -15,11 +15,11 @@ const menuStyles = () => css`
 
   & > svg {
     align-self: center;
-    margin-right: ${theme('space.3')};
+    margin-right: ${themeGet('space.3')};
   }
 
   &:hover {
-    color: ${theme('colors.greenDark')};
+    color: ${themeGet('colors.greenDark')};
     text-decoration: none;
   }
 
@@ -27,21 +27,21 @@ const menuStyles = () => css`
     props.active
       ? null
       : css`
-          color: ${theme('colors.grays.2')};
+          color: ${themeGet('colors.grays.2')};
         `};
 
-  @media (min-width: ${theme('breakpoints.0')}) {
+  @media (min-width: ${themeGet('breakpoints.0')}) {
     font-size: 1.6ex;
 
     & > svg {
       max-height: 2.6ex;
-      margin-right: ${theme('space.2')};
+      margin-right: ${themeGet('space.2')};
     }
   }
 `
 
 const Anchor = styled.a`
-  color: ${theme('colors.green')};
+  color: ${themeGet('colors.green')};
   cursor: pointer;
   text-decoration: none;
   font-style: inherit;

@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import {withRouter} from 'next/router'
-import {theme} from 'styled-system'
+import {themeGet} from 'styled-system'
 import {Highlight} from 'react-instantsearch/dom'
 import {connectInfiniteHits, connectStateResults} from 'react-instantsearch/connectors'
 import titleize from 'titleize'
@@ -18,28 +18,28 @@ const RowGrid = Grid.withComponent('section').extend`
   grid-template-columns: 1fr;
   grid-template-areas: 'brand'
                        'products';
-  grid-gap: ${theme('space.2')};
+  grid-gap: ${themeGet('space.2')};
 
-  @media (min-width: ${theme('breakpoints.1')}) {
+  @media (min-width: ${themeGet('breakpoints.1')}) {
     grid-template-columns: repeat(5, 1fr);
     grid-template-areas: 'brand brand products products products';
-    grid-gap: ${theme('space.4')};
+    grid-gap: ${themeGet('space.4')};
   }
 `
 
 const BrandBox = Box.extend`
-  border-top: solid 3px ${theme('colors.green')};
-  padding-top: ${theme('space.2')};
+  border-top: solid 3px ${themeGet('colors.green')};
+  padding-top: ${themeGet('space.2')};
 
-  @media (min-width: ${theme('breakpoints.1')}) {
+  @media (min-width: ${themeGet('breakpoints.1')}) {
     border-top: none;
-    border-right: solid 3px ${theme('colors.green')};
+    border-right: solid 3px ${themeGet('colors.green')};
     padding-top: 0;
   }
 `
 
 const ProductBox = Box.extend`
-  @media (min-width: ${theme('breakpoints.1')}) {
+  @media (min-width: ${themeGet('breakpoints.1')}) {
     &:not(:hover) > .productHover {
       display: none;
     }
@@ -141,7 +141,7 @@ const Row = ({brandName = '...', products}: RowProps) => (
       pr={[0, 0, '0.75rem']}
       mr={[0, 0, '-0.75rem']}
     >
-      <SectionHeading tag="h4" align={['left', 'left', 'right']} mt={'-5px'} mb={0}>
+      <SectionHeading tag="h4" textAlign={['left', 'left', 'right']} mt={'-5px'} mb={0}>
         {brandName}
       </SectionHeading>
     </BrandBox>
@@ -150,7 +150,7 @@ const Row = ({brandName = '...', products}: RowProps) => (
         <ProductBox
           key={hit.objectID}
           flexDirection="row"
-          align="flex-start"
+          alignItems="flex-start"
           onClick={() => {
             if (window.location.host === 'glutenproject.com') {
               const eventName = hit.isAffiliate

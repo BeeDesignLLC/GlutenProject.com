@@ -10,7 +10,7 @@ import {
   alignSelf,
 } from 'styled-system'
 import {gridArea, justifySelf} from '../utils/styled'
-import {theme} from 'styled-system'
+import {themeGet} from 'styled-system'
 import {withDynamicTag} from './DynamicTag'
 
 const HugeHeading = styled.h4.attrs({
@@ -28,7 +28,7 @@ const HugeHeading = styled.h4.attrs({
   user-select: none;
   z-index: -1;
 
-  @media (min-width: ${theme('breakpoints.0')}) {
+  @media (min-width: ${themeGet('breakpoints.0')}) {
     display: unset;
   }
 

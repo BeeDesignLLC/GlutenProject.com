@@ -1,12 +1,12 @@
 // @flow
-import {theme} from 'styled-system'
+import {themeGet} from 'styled-system'
 import Text from './Text'
 
 const TextList = Text.withComponent('ul').extend`
-  padding-left: ${theme('space.4')};
+  padding-left: ${themeGet('space.4')};
 
   & > li + li {
-    margin-top: ${theme('space.2')};
+    margin-top: ${themeGet('space.2')};
   }
 `
 

@@ -8,12 +8,12 @@ import {
   alignItems,
   alignSelf,
   flex,
-  theme,
+  themeGet,
 } from 'styled-system'
 import {gridArea} from '../utils/styled'
 
 const Input = styled.input`
-  background-color: ${theme('colors.greenLight')};
+  background-color: ${themeGet('colors.greenLight')};
   border: 2px solid transparent;
   border-radius: 1.25rem;
   color: black;
@@ -41,8 +41,8 @@ const Input = styled.input`
     }
   }
 
-  @media (min-width: ${theme('breakpoints.0')}) {
-    font-size: ${theme('fontSizes.1')};
+  @media (min-width: ${themeGet('breakpoints.0')}) {
+    font-size: ${themeGet('fontSizes.1')};
 
   }
 

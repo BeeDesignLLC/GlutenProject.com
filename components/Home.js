@@ -46,7 +46,7 @@ export default class extends React.Component<Props> {
           <Mailchimp mt={[6, 5]} />
 
           <ArticleHeading mt={[6, 5]}>Popular Product Searches</ArticleHeading>
-          <Box flexDirection="column" fontSize={2} align={['center', 'left']}>
+          <Box flexDirection="column" fontSize={2} textAlign={['center', 'left']}>
             {[
               'Cereal',
               'Granola',

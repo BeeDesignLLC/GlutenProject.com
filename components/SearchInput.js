@@ -3,7 +3,7 @@ import * as React from 'react'
 import {connectSearchBox, connectStateResults} from 'react-instantsearch/connectors'
 import {withRouter} from 'next/router'
 import styled from 'styled-components'
-import {theme} from 'styled-system'
+import {themeGet} from 'styled-system'
 import Box from './Box'
 import CaptionText from './CaptionText'
 import {default as BaseInput} from './Input'
@@ -16,8 +16,8 @@ const Input = BaseInput.extend`
     opacity: 1;
   }
 
-  @media (max-width: ${theme('breakpoints.0')}) {
-    background-color: ${theme('colors.greenDark')};
+  @media (max-width: ${themeGet('breakpoints.0')}) {
+    background-color: ${themeGet('colors.greenDark')};
     color: white;
 
     &::placeholder {
@@ -31,11 +31,11 @@ const Wrapper = Box.extend`
   top: 0;
   left: 0;
   right: 0;
-  background: ${theme('colors.green')};
+  background: ${themeGet('colors.green')};
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: ${theme('space.2')} ${theme('space.2')};
+  padding: ${themeGet('space.2')} ${themeGet('space.2')};
 
-  @media (min-width: ${theme('breakpoints.0')}) {
+  @media (min-width: ${themeGet('breakpoints.0')}) {
     align-self: flex-end;
     background: none;
     box-shadow: none;
@@ -61,7 +61,7 @@ const SearchIconButton = styled.button`
   top: 0.66rem;
   left: 0.66rem;
 
-  @media (min-width: ${theme('breakpoints.0')}) {
+  @media (min-width: ${themeGet('breakpoints.0')}) {
     background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww%2Ew3%2Eorg%2F2000%2Fsvg%22%3E%3Cpath%20fill%3D%22%23000000%22%20stroke%3D%22transparent%22%20stroke%2Dwidth%3D%220%22%20d%3D%22M13%2E5%2013%2E5c%2D2%2E6%202%2E6%2D6%2E7%202%2E6%2D9%2E3%200%2D2%2E6%2D2%2E6%2D2%2E6%2D6%2E7%200%2D9%2E3%202%2E6%2D2%2E6%206%2E7%2D2%2E6%209%2E3%200%202%2E5%202%2E6%202%2E5%206%2E7%200%209%2E3M2%2E6%2015%2E1c3%203%207%2E7%203%2E4%2011%2E2%201%2E1l7%2E7%207%2E7%202%2E4%2D2%2E4%2D7%2E7%2D7%2E7c2%2E3%2D3%2E4%201%2E9%2D8%2E1%2D1%2E1%2D11%2E2C11%2E7%2D%2E8%206%2D%2E8%202%2E6%202%2E6c%2D3%2E5%203%2E4%2D3%2E5%209%200%2012%2E5%22%2F%3E%3C%2Fsvg%3E');
   }
 `
@@ -79,7 +79,7 @@ const ClearIconButton = styled.button`
   right: 0.6rem;
   padding: 0.2rem;
 
-  @media (min-width: ${theme('breakpoints.0')}) {
+  @media (min-width: ${themeGet('breakpoints.0')}) {
     background-image: url("data:image/svg+xml;charset=UTF-8, %3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3e%3cg fill='none' stroke='%23000000' stroke-width='2' strokeLinecap='round' strokeLinejoin='round' strokeMiterlimit='10' %3e%3cpath d='M.5.5l23 23M23.5.5l-23 23' /%3e%3c/g%3e%3cg%3e%3cpath fill='none' d='M0 0h24v24H0z' /%3e%3c/g%3e%3c/svg%3e ");
   }
 `

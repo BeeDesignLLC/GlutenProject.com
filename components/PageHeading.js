@@ -10,7 +10,7 @@ import {
   alignSelf,
 } from 'styled-system'
 import {gridArea, justifySelf} from '../utils/styled'
-import {theme} from 'styled-system'
+import {themeGet} from 'styled-system'
 import {withDynamicTag} from './DynamicTag'
 
 const PageHeading = styled.h3.attrs({
@@ -21,7 +21,7 @@ const PageHeading = styled.h3.attrs({
   margin-bottom: -5px;
   text-align: center;
 
-  @media (min-width: ${theme('breakpoints.0')}) {
+  @media (min-width: ${themeGet('breakpoints.0')}) {
 		text-align: right;
   }
 

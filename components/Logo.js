@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import Router from 'next/router'
-import {theme} from 'styled-system'
+import {themeGet} from 'styled-system'
 import styled from 'styled-components'
 import {
   space,
@@ -22,7 +22,7 @@ const LogoHeading = styled.h3.attrs({
   font-weight: 900;
   font-style: italic;
   line-height: 2ex;
-  border-left: ${theme('colors.green')} ${theme('space.1')} solid;
+  border-left: ${themeGet('colors.green')} ${themeGet('space.1')} solid;
   cursor: pointer;
 
   & > span {

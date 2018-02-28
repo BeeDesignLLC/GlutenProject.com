@@ -10,7 +10,7 @@ import {
   alignSelf,
 } from 'styled-system'
 import {gridArea, justifySelf} from '../utils/styled'
-import {theme} from 'styled-system'
+import {themeGet} from 'styled-system'
 import {withDynamicTag} from './DynamicTag'
 
 const SectionHeading = styled.h4.attrs({
@@ -22,7 +22,7 @@ const SectionHeading = styled.h4.attrs({
 
   ${props => !props.align && 'text-align: center'};
 
-  @media (min-width: ${theme('breakpoints.0')}) {
+  @media (min-width: ${themeGet('breakpoints.0')}) {
     text-align: ${props => props.align || 'left'};
   }
 

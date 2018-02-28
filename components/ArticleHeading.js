@@ -10,7 +10,7 @@ import {
   alignSelf,
 } from 'styled-system'
 import {gridArea, justifySelf} from '../utils/styled'
-import {theme} from 'styled-system'
+import {themeGet} from 'styled-system'
 import {withDynamicTag} from './DynamicTag'
 
 const ArticleHeading = styled.h2.attrs({
@@ -22,8 +22,8 @@ const ArticleHeading = styled.h2.attrs({
   font-style: italic;
   text-align: center;
 
-  @media (min-width: ${theme('breakpoints.0')}) {
-    color: ${theme('grays.1')};
+  @media (min-width: ${themeGet('breakpoints.0')}) {
+    color: ${themeGet('grays.1')};
     text-align: left;
   }
 

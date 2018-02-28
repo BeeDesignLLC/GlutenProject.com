@@ -1,7 +1,7 @@
 // @flow
 import styled from 'styled-components'
 import {
-  theme,
+  themeGet,
   space,
   width,
   fontSize,
@@ -13,16 +13,16 @@ import {
 import {gridArea, justifySelf, position} from '../utils/styled'
 
 const Text = styled.p`
-  font-size: ${theme('fontSizes.1')};
+  font-size: ${themeGet('fontSizes.1')};
   font-weight: normal;
 
   & + & {
-    margin-top: ${theme('space.3')};
+    margin-top: ${themeGet('space.3')};
   }
 
   & > ul {
     margin: 0;
-    padding-left: ${theme('space.4')};
+    padding-left: ${themeGet('space.4')};
   }
 
   ${space}
