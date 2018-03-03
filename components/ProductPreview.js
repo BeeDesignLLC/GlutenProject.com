@@ -59,9 +59,9 @@ const Card = Box.extend`
   background-color: white;
   box-shadow: 0 2px 4px 0 rgba(50, 50, 93, 0.1);
   border-radius: ${t.space[2]};
-  padding: ${t.space[3]};
   height: 100%;
   border: 1px solid white;
+  padding: ${t.space[3]};
 
   ${props =>
     props.showBorder &&
@@ -147,12 +147,14 @@ const ProductImage = Image.extend`
 `
 
 const IngredientsCard = Box.extend`
+  transition: all 0.15s ease;
   background: white;
   position: absolute;
   top: 98%;
   left: -1px;
   right: -1px;
   padding: ${t.space[3]};
+  overflow: hidden;
 
   box-shadow: 0 8px 10px 0 rgba(50, 50, 93, 0.1);
   border-bottom-left-radius: ${t.space[2]};
@@ -192,15 +194,21 @@ class OfferPreview extends React.Component<Props, State> {
         style={{zIndex: this.state.showIngredients ? 1 : 0}}
         showBorder={this.state.showIngredients}
       >
-        {this.state.showIngredients && (
-          <IngredientsCard
-            onMouseEnter={this.showIngredients}
-            onMouseLeave={this.hideIngredients}
-            onClick={this.hideIngredients}
-          >
-            <IngredientList ingredients={product.ingredients} />
-          </IngredientsCard>
-        )}
+        {isPresent(product.ingredients) &&
+          this.state.showIngredients && (
+            <IngredientsCard
+              onMouseEnter={this.showIngredients}
+              onMouseLeave={this.hideIngredients}
+              onClick={this.hideIngredients}
+              style={{
+                //display: this.state.showIngredients ? 'block' : 'none',
+                // transform: this.state.showIngredients ? 'translateY(98%)' : null,
+                border: this.state.showIngredients ? null : 'none',
+              }}
+            >
+              <IngredientList ingredients={product.ingredients} />
+            </IngredientsCard>
+          )}
 
         <Box
           is="a"
@@ -213,7 +221,6 @@ class OfferPreview extends React.Component<Props, State> {
           rel={product.brandWhereToBuyUrl ? 'noopener' : 'nofollow noopener'}
           height="100%"
           bg="white"
-          style={{zIndex: 0}}
         >
           <OfferGrid>
             <Box area="name">
