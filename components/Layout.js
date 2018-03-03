@@ -3,7 +3,7 @@ import * as React from 'react'
 import Head from 'next/head'
 import {withRouter} from 'next/router'
 import {connectStateResults} from 'react-instantsearch/connectors'
-import titleize from 'titleize'
+import titleize from 'title'
 import Grid from './Grid'
 import Box, {Nav, Aside} from '../components/Box'
 import Logo from '../components/Logo'
@@ -158,9 +158,9 @@ class Page extends React.Component<Props> {
           <meta name="twitter:title" content={socialTitle} />
         </Head>
 
-        <SearchBox area="search" alignSelf="flex-end" />
-
         {children}
+
+        <SearchBox area="search" alignSelf="flex-end" />
 
         <Link href="/">
           <PageHeading

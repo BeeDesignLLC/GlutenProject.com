@@ -5,7 +5,7 @@ import theme from '../theme'
 import {themeGet} from 'styled-system'
 import {Highlight} from 'react-instantsearch/dom'
 import {connectInfiniteHits, connectStateResults} from 'react-instantsearch/connectors'
-import titleize from 'titleize'
+import title from 'title'
 
 import Grid from '../components/Grid'
 import Box from '../components/Box'
@@ -23,6 +23,7 @@ const ProductGrid = Grid.extend`
     minmax(${theme.space[8]}, ${theme.space[10]})
   );
   grid-gap: ${theme.space[4]};
+  z-index: 1;
 
   @media (min-width: 28rem) {
     --productColumns: 2;
@@ -97,7 +98,7 @@ const SearchResults = ({
       {ssr && (
         <Box area="heading">
           <Heading is="h1" fontSize={[4, 3]} fontStyle="italic" color="black">
-            List of All Certified Gluten-Free {titleize(q)}
+            List of All Certified Gluten-Free {title(q)}
           </Heading>
           <LargeText color="grays.3">
             All {searchResults && `${searchResults.nbHits} `}products have been certified

@@ -19,7 +19,12 @@ const Text = system(
   ${props => props.is === 'ul' && listStyles()}
 
   & + & {
-    margin-top: ${theme.space[3]};
+    ${props =>
+      typeof props.mt === 'undefined' && typeof props.m === 'undefined'
+        ? css`
+            margin-top: ${theme.space[3]};
+          `
+        : null}
   }
 
   & > li + li {
