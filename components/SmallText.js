@@ -10,7 +10,9 @@ const SmallText = system(
   },
   ...text,
   ...layout
-)
+).extend`
+  letter-spacing: 0.08ex;
+`
 
 SmallText.displayName = 'SmallText'
 export default SmallText

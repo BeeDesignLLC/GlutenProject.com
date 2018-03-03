@@ -34,6 +34,7 @@ const Wrapper = Box.extend`
   background: ${themeGet('colors.green')};
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   padding: ${themeGet('space.2')} ${themeGet('space.2')};
+  z-index: 1;
 
   @media (min-width: ${themeGet('breakpoints.0')}) {
     align-self: flex-end;

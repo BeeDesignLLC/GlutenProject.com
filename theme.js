@@ -6,13 +6,25 @@ const scale = (base, scalar, length = 7) =>
     .fill(base)
     .map((x, i) => x * Math.pow(scalar, i))
 
-const desktopFontSizes = scale(1.4, 1.3).map(x => `${x}ex`)
+const desktopFontSizes = scale(1.6, 1.3).map(x => `${x}ex`)
 // const mobileFontSizes = scale(1.3, 1.3).map(x => `${x}ex`)
 
 export default {
   breakpoints: ['48rem', '60rem', '100rem'],
   // This makes a fibonacci sequences with 1ex, but replaces 1ex with 0.5rem so local font-size doesn't affect it.
-  space: [0, '0.25rem', '0.5rem', '1rem', '1.5rem', '2.5rem', '4rem', '7.5rem'],
+  space: [
+    0,
+    '0.25rem',
+    '0.5rem',
+    '1rem',
+    '1.5rem',
+    '2.5rem',
+    '4rem',
+    '6.5rem',
+    '10.5rem',
+    '17rem',
+    '27.5rem',
+  ],
   fontSizes: desktopFontSizes,
   colors: {
     green: '#009B72',

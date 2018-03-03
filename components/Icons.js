@@ -79,3 +79,23 @@ export const CloseIcon = () => (
     </g>
   </svg>
 )
+
+export const IngredientsIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+    <g
+      fill="none"
+      stroke="#000"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeMiterlimit="10"
+    >
+      <circle cx="2.5" cy="4.5" r="2" />
+      <path d="M8.5 4.5h15" />
+      <circle cx="2.5" cy="12.5" r="2" />
+      <path d="M8.5 12.5h15" />
+      <circle cx="2.5" cy="20.5" r="2" />
+      <path d="M8.5 20.5h15" />
+    </g>
+    <path fill="none" d="M0 0h24v24H0z" />
+  </svg>
+)

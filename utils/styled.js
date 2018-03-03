@@ -22,7 +22,14 @@ export const fontStyle = responsiveStyle({
 
 // export const numberOrString = PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 
-export const text = ['color', 'textAlign', 'fontWeight', fontStyle]
+export const text = [
+  'color',
+  'textAlign',
+  'fontWeight',
+  fontStyle,
+  'letterSpacing',
+  'lineHeight',
+]
 
 export const flex = [
   'flex',
@@ -37,4 +44,4 @@ export const flex = [
 
 export const gridPlacement = [gridArea, justifySelf]
 
-export const layout = ['space', 'width', 'position', ...flex, ...gridPlacement]
+export const layout = ['space', 'width', 'height', 'position', ...flex, ...gridPlacement]

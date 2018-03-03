@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
 import {withRouter} from 'next/router'
+import theme from '../theme'
 import {themeGet} from 'styled-system'
 import {Highlight} from 'react-instantsearch/dom'
 import {connectInfiniteHits, connectStateResults} from 'react-instantsearch/connectors'
@@ -12,6 +13,36 @@ import Heading from '../components/Heading'
 import LargeText from '../components/LargeText'
 import Text from '../components/Text'
 import Button from '../components/Button'
+import ProductPreview from './ProductPreview'
+
+const ProductGrid = Grid.extend`
+  --productColumns: 1;
+  grid-template-columns: repeat(
+    var(--productColumns),
+    minmax(${theme.space[8]}, ${theme.space[10]})
+  );
+  grid-gap: ${theme.space[4]};
+
+  @media (min-width: 28rem) {
+    --productColumns: 2;
+  }
+  @media (min-width: 44rem) {
+    --productColumns: 3;
+  }
+  @media (min-width: ${themeGet('breakpoints.0')}) {
+    --productColumns: 2;
+    grid-template-columns: repeat(
+      var(--productColumns),
+      minmax(${theme.space[8]}, ${theme.space[9]})
+    );
+  }
+  @media (min-width: ${themeGet('breakpoints.1')}) {
+    --productColumns: 3;
+  }
+  @media (min-width: 83rem) {
+    --productColumns: 4;
+  }
+`
 
 const RowGrid = Grid.withComponent('section').extend`
   grid-template-columns: 1fr;
@@ -60,43 +91,6 @@ const SearchResults = ({
   router: {query: {ssr, q}},
   searchResults,
 }: Props) => {
-  const rows = []
-  let currentBrand = ''
-  let currentBrandProducts = []
-
-  // Seed first brand
-  if (hits.length) currentBrand = hits[0].brandName
-
-  hits.forEach(hit => {
-    if (hit.brandName === currentBrand) {
-      currentBrandProducts.push(hit)
-    } else {
-      // New brand found, so create row from current brand
-      rows.push(
-        <Row
-          brandName={currentBrand}
-          products={currentBrandProducts}
-          key={currentBrand + currentBrandProducts[0].name}
-        />
-      )
-
-      // Set up new brand
-      currentBrand = hit.brandName
-      currentBrandProducts = [hit]
-    }
-  })
-
-  // Save last brand
-  if (hits.length > 0) {
-    rows.push(
-      <Row
-        brandName={currentBrand}
-        products={currentBrandProducts}
-        key={currentBrand + currentBrandProducts[0].name}
-      />
-    )
-  }
-
   return (
     <React.Fragment>
       {ssr && (
@@ -111,12 +105,14 @@ const SearchResults = ({
         </Box>
       )}
 
-      <Box area="main">
-        {rows}
+      <Box area="main" alignItems="center">
+        <ProductGrid>
+          {hits.map(hit => <ProductPreview product={hit} key={hit.objectID} />)}
+        </ProductGrid>
 
         {hasMore ? (
           <Button onClick={refine} alignSelf="center">
-            load more
+            Load More
           </Button>
         ) : (
           <Text alignSelf="center">THE END</Text>
