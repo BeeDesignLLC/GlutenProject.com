@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react'
 import isPresent from 'is-present'
-import upperCaseFirst from 'upper-case-first'
 import theme from '../theme'
 import Grid from '../components/Grid'
 import Box from '../components/Box'
@@ -11,8 +10,7 @@ import Text from '../components/Text'
 import SmallText from '../components/SmallText'
 import Image from '../components/Image'
 import {IngredientsIcon} from './Icons'
-
-const sentenceCase = s => upperCaseFirst(s.toLowerCase())
+import IngredientList from './IngredientList'
 
 import currency from 'currency.js'
 const USD = value => currency(value, {symbol: '$', precision: 2}).format(true)
@@ -151,32 +149,6 @@ const IngredientsCard = Box.extend`
   right: 0;
   padding: ${theme.space[3]};
 `
-const IngredientText = Text.extend`
-  padding-left: ${theme.space[4]};
-  text-indent: -${theme.space[4]};
-
-  &:before {
-    content: '· ';
-  }
-`
-
-const IngredientList = ({ingredients}: {ingredients: string}) => {
-  const list = ingredients
-    .split(/,(?=[^)]*(?:\(|$))/g)
-    .map(each => sentenceCase(each.trim()))
-    .map(each => (
-      <IngredientText mt={1} key={each}>
-        {each}
-      </IngredientText>
-    ))
-
-  return (
-    <IngredientsCard>
-      <Name mb={2}>Ingredients</Name>
-      {list}
-    </IngredientsCard>
-  )
-}
 
 type State = {
   showIngredients: boolean,
@@ -208,7 +180,9 @@ class OfferPreview extends React.Component<Props, State> {
         style={{zIndex: this.state.showIngredients ? 1 : 0}}
       >
         {this.state.showIngredients && (
-          <IngredientList ingredients={product.ingredients} />
+          <IngredientsCard>
+            <IngredientList ingredients={product.ingredients} />
+          </IngredientsCard>
         )}
 
         <Box
