@@ -107,7 +107,7 @@ const SearchResults = ({
       )}
 
       <Box area="main" alignItems="center">
-        <ProductGrid>
+        <ProductGrid mb={4}>
           {hits.map(hit => <ProductPreview product={hit} key={hit.objectID} />)}
         </ProductGrid>
 

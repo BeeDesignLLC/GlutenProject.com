@@ -142,28 +142,45 @@ const ProductImage = Image.extend`
 
 const OfferPreview = ({product, ...props}: Props) => (
   <Card {...props}>
-    <OfferGrid>
-      <Box area="name">
-        <SmallText color="grays.0" mb={1}>
-          {product.brandName}
-        </SmallText>
-        <Name>{product.name}</Name>
-      </Box>
+    <Box
+      is="a"
+      href={
+        product.brandWhereToBuyUrl
+          ? product.brandWhereToBuyUrl
+          : '/link/offer/' + product.offers[0].id
+      }
+      target="_blank"
+      rel={product.brandWhereToBuyUrl ? 'noopener' : 'nofollow noopener'}
+    >
+      <OfferGrid>
+        <Box area="name">
+          <SmallText color="grays.0" mb={1}>
+            {product.brandName}
+          </SmallText>
+          <Name>{product.name}</Name>
+        </Box>
 
-      {isPresent(product.image) && (
-        <SquareBox area="image">
-          <ProductImage src={product.image} />
-        </SquareBox>
-      )}
+        {isPresent(product.image) && (
+          <SquareBox area="image">
+            <ProductImage src={product.image} />
+          </SquareBox>
+        )}
 
-      {isPresent(product.ingredients) && <Text area="details">ING</Text>}
+        {isPresent(product.ingredients) && <Text area="details">ING</Text>}
 
-      {isPresent(product.bestPrice) && (
-        <Text area="price" color="greenDark" justifySelf="flex-end" lineHeight="1.7ex">
-          {USD(product.bestPrice)}
-        </Text>
-      )}
-    </OfferGrid>
+        {isPresent(product.bestPrice) && (
+          <Text
+            area="price"
+            color="greenDark"
+            justifySelf="flex-end"
+            alignSelf="flex-end"
+            lineHeight="1.7ex"
+          >
+            {USD(product.bestPrice)}
+          </Text>
+        )}
+      </OfferGrid>
+    </Box>
   </Card>
 )
 
