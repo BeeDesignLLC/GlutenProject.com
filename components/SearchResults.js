@@ -16,6 +16,7 @@ import Button from '../components/Button'
 import ProductPreview from './ProductPreview'
 
 const ProductGrid = Grid.extend`
+  grid-auto-rows: max-content;
   --productColumns: 1;
   grid-template-columns: repeat(
     var(--productColumns),

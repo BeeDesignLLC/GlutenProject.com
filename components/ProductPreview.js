@@ -142,7 +142,7 @@ const ProductImage = Image.extend`
 
 const OfferPreview = ({product, ...props}: Props) => (
   <Card {...props}>
-    <OfferGrid data-test="grid">
+    <OfferGrid>
       <Box area="name">
         <SmallText color="grays.0" mb={1}>
           {product.brandName}
