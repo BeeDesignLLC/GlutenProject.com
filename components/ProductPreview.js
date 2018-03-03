@@ -1,7 +1,8 @@
 // @flow
 import * as React from 'react'
+import {css} from 'styled-components'
 import isPresent from 'is-present'
-import theme from '../theme'
+import t from '../theme'
 import Grid from '../components/Grid'
 import Box from '../components/Box'
 import Heading from '../components/Heading'
@@ -57,12 +58,16 @@ const Card = Box.extend`
   transition: all 0.15s ease;
   background-color: white;
   box-shadow: 0 2px 4px 0 rgba(50, 50, 93, 0.1);
-  border-radius: ${theme.space[2]};
-  padding: ${theme.space[3]};
+  border-radius: ${t.space[2]};
+  padding: ${t.space[3]};
   height: 100%;
-  /*z-index: 0;*/
+  border: 1px solid white;
 
-  @media (hover: hover) {
+  ${props =>
+    props.showBorder &&
+    css`
+      border: 1px solid ${t.colors.green};
+    `} @media (hover: hover) {
     ${hoverStyles};
   }
   @-moz-document url-prefix() {
@@ -75,7 +80,7 @@ const SimpleGrid = Grid.extend`
   grid-template-areas:
     'brand find'
     'name  find';
-  grid-gap: ${theme.space[1]};
+  grid-gap: ${t.space[1]};
 `
 
 type Props = {
@@ -87,7 +92,7 @@ const SimplePreview = ({product, ...props}: Props) => (
     width="100%"
     style={{
       gridColumn: 'span var(--productColumns)',
-      maxWidth: theme.space[10],
+      maxWidth: t.space[10],
       margin: 'auto',
     }}
     {...props}
@@ -144,10 +149,17 @@ const ProductImage = Image.extend`
 const IngredientsCard = Box.extend`
   background: white;
   position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  padding: ${theme.space[3]};
+  top: 98%;
+  left: -1px;
+  right: -1px;
+  padding: ${t.space[3]};
+
+  box-shadow: 0 8px 10px 0 rgba(50, 50, 93, 0.1);
+  border-bottom-left-radius: ${t.space[2]};
+  border-bottom-right-radius: ${t.space[2]};
+  border-left: 1px solid ${t.colors.green};
+  border-right: 1px solid ${t.colors.green};
+  border-bottom: 1px solid ${t.colors.green};
 `
 
 type State = {
@@ -178,9 +190,14 @@ class OfferPreview extends React.Component<Props, State> {
         position="relative"
         {...props}
         style={{zIndex: this.state.showIngredients ? 1 : 0}}
+        showBorder={this.state.showIngredients}
       >
         {this.state.showIngredients && (
-          <IngredientsCard>
+          <IngredientsCard
+            onMouseEnter={this.showIngredients}
+            onMouseLeave={this.hideIngredients}
+            onClick={this.hideIngredients}
+          >
             <IngredientList ingredients={product.ingredients} />
           </IngredientsCard>
         )}
@@ -215,11 +232,14 @@ class OfferPreview extends React.Component<Props, State> {
             {isPresent(product.ingredients) && (
               <Box
                 area="details"
-                alignSelf="flex-end"
-                style={{cursor: 'initial'}}
                 onClickCapture={this.toggleIngredients}
                 onMouseEnter={this.showIngredients}
                 onMouseLeave={this.hideIngredients}
+                alignSelf="flex-end"
+                justifySelf="flex-start"
+                style={{cursor: 'help'}}
+                p="1rem"
+                m="-1rem"
               >
                 <IngredientsIcon />
                 <span className="screen-reader-text">Toggle ingredient list</span>
