@@ -69,12 +69,12 @@ injectGlobal`
 
   @media (max-width: ${theme.breakpoints[0]}) {
     .mobile-hide {
-			display: none;
+			display: none !important;
 		}
 	}
   @media (min-width: ${theme.breakpoints[0]}) {
     .mobile-show {
-			display: none;
+			display: none !important;
 		}
 	}
 `
