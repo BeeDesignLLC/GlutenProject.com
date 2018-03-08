@@ -16,6 +16,11 @@ class App extends React.Component<Props> {
   componentDidMount() {
     this.props.router.prefetch('/search')
 
+    //Set up Sentry
+    window.Raven.config(
+      'https://8168f950f037468daca345037049b424@sentry.io/300737'
+    ).install()
+
     window.Intercom('boot', {
       app_id: 's97lyn5h',
       horizontal_padding: 25,
@@ -27,6 +32,12 @@ class App extends React.Component<Props> {
         window.Intercom('update')
         window.gtag && window.gtag('event', 'page_view')
       }
+    }
+  }
+
+  componentDidCatch(error: any, errorInfo: any) {
+    if (window.Raven) {
+      window.Raven.captureException(error, {extra: errorInfo})
     }
   }
 

@@ -1,19 +1,8 @@
 //@flow
 import * as React from 'react'
 
-const TrackJsScript = () => (
-  <React.Fragment>
-    <script
-      type="text/javascript"
-      dangerouslySetInnerHTML={{
-        __html: `window._trackJs = { token: '0c9abe494614451c9fa2161acfbbb8db' };`,
-      }}
-    />
-    <script
-      type="text/javascript"
-      src="https://cdn.trackjs.com/releases/current/tracker.js"
-    />
-  </React.Fragment>
+const ErrorTrackingScript = () => (
+  <script src="https://cdn.ravenjs.com/3.23.1/raven.min.js" crossOrigin="anonymous" />
 )
 
 const GoogleAnalyticsScript = () => (
@@ -63,7 +52,7 @@ type Props = {
 const TrackingScripts = ({production}: Props) =>
   production ? (
     <React.Fragment>
-      <TrackJsScript />
+      <ErrorTrackingScript />
       <IntercomScript />
       <GoogleAnalyticsScript />
     </React.Fragment>
