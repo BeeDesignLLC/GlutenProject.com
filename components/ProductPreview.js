@@ -261,7 +261,11 @@ class OfferPreview extends React.Component<Props, State> {
 
             {isPresent(imageUrl) && (
               <SquareBox area="image">
-                <ProductImage src={imageUrl} {...imageOptions} />
+                <ProductImage
+                  src={imageUrl}
+                  alt={`${product.brandName} ${product.name}`}
+                  {...imageOptions}
+                />
               </SquareBox>
             )}
 
