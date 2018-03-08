@@ -6,7 +6,7 @@ const scale = (base, scalar, length = 7) =>
     .fill(base)
     .map((x, i) => x * Math.pow(scalar, i))
 
-const desktopFontSizes = scale(1.6, 1.3).map(x => `${x}ex`)
+const desktopFontSizes = scale(1.6, 1.27).map(x => `${x}ex`)
 // const mobileFontSizes = scale(1.3, 1.3).map(x => `${x}ex`)
 
 export default {

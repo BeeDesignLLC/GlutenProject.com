@@ -55,7 +55,7 @@ const hoverStyles = `
 `
 
 const Card = Box.extend`
-  transition: all 0.15s ease;
+  transition: border, transform, box-shadow 0.15s ease;
   background-color: white;
   box-shadow: 0 2px 4px 0 rgba(50, 50, 93, 0.1);
   border-radius: ${t.space[2]};
@@ -92,7 +92,7 @@ const SimplePreview = ({product, ...props}: Props) => (
     width="100%"
     style={{
       gridColumn: 'span var(--productColumns)',
-      maxWidth: t.space[10],
+      maxWidth: '33rem',
       margin: 'auto',
     }}
     {...props}
@@ -116,10 +116,16 @@ const SimplePreview = ({product, ...props}: Props) => (
 const OfferGrid = Grid.extend`
   height: 100%;
   grid-template-columns: 1fr 1fr;
-  grid-template-areas:
+  grid-template-areas: ${props =>
+    props.hasDetails
+      ? `
     'name   name'
     'image  image'
-    'details price';
+    'details price'
+		`
+      : `
+    'name   name'
+		`};
 `
 
 const SquareWrapper = Box.extend`
@@ -187,6 +193,29 @@ class OfferPreview extends React.Component<Props, State> {
 
   render() {
     const {product, ...props} = this.props
+
+    const hasDetails =
+      isPresent(product.image) ||
+      isPresent(product.amazonImage) ||
+      isPresent(product.ingredients) ||
+      isPresent(product.price)
+
+    let imageUrl
+    let imageOptions
+    if (isPresent(product.image)) {
+      imageUrl = product.image
+      imageOptions = {
+        srcSet: `
+					${product.image} 1x,
+					${product.imageDpr2} 2x,
+					${product.imageDpr3} 3x,
+					${product.imageDpr4} 4x
+				`,
+      }
+    } else if (isPresent(product.amazonImage)) {
+      imageUrl = product.amazonImage
+    }
+
     return (
       <Card
         position="relative"
@@ -222,7 +251,7 @@ class OfferPreview extends React.Component<Props, State> {
           height="100%"
           bg="white"
         >
-          <OfferGrid>
+          <OfferGrid hasDetails={hasDetails}>
             <Box area="name">
               <SmallText color="grays.0" mb={1}>
                 {product.brandName}
@@ -230,9 +259,9 @@ class OfferPreview extends React.Component<Props, State> {
               <Name>{product.name}</Name>
             </Box>
 
-            {isPresent(product.image) && (
+            {isPresent(imageUrl) && (
               <SquareBox area="image">
-                <ProductImage src={product.image} />
+                <ProductImage src={imageUrl} {...imageOptions} />
               </SquareBox>
             )}
 
