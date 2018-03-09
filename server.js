@@ -14,7 +14,7 @@ const handleErrors = fn => async (req, res) => {
   try {
     return await fn(req, res)
   } catch (err) {
-    raven.captureException(err, req)
+    raven.captureException(err, {req})
     return micro.send(
       res,
       500,
