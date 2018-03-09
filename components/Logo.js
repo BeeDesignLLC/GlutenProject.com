@@ -31,7 +31,7 @@ LogoHeading.displayName = 'LogoHeading'
 
 const Logo = (props: Object) => (
   <Link href="/">
-    <LogoHeading {...props}>
+    <LogoHeading textAlign="left" {...props}>
       <span>the</span>
       <br />Gluten<br />Project
     </LogoHeading>
