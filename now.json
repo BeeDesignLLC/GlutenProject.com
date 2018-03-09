@@ -3,5 +3,9 @@
     "tgp-stage",
     "tgp-front"
   ],
+  "env": {
+    "GRAPHQL_TOKEN": "@graphcool-token",
+    "SENTRY_DSN": "@sentry-dsn"
+  },
   "public": true
 }

@@ -1,10 +1,6 @@
 //@flow
 import * as React from 'react'
 
-const ErrorTrackingScript = () => (
-  <script src="https://cdn.ravenjs.com/3.23.1/raven.min.js" crossOrigin="anonymous" />
-)
-
 const GoogleAnalyticsScript = () => (
   <React.Fragment>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107144503-2" />
@@ -52,7 +48,6 @@ type Props = {
 const TrackingScripts = ({production}: Props) =>
   production ? (
     <React.Fragment>
-      <ErrorTrackingScript />
       <IntercomScript />
       <GoogleAnalyticsScript />
     </React.Fragment>
