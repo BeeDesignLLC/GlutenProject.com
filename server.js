@@ -8,7 +8,7 @@ const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({dev})
 const handle = app.getRequestHandler()
-const {matchSearchRoute, queryFromUrlParam} = require('./utils/misc')
+const {matchSearchRoute, matchProductRoute, queryFromUrlParam} = require('./utils/misc')
 
 const handleErrors = fn => async (req, res) => {
   try {
@@ -41,6 +41,15 @@ const server = micro(
       query.q = queryFromUrlParam(searchRoute.searchParam)
       return app.render(req, res, '/search', query)
     }
+
+    const productRoute = matchProductRoute(pathname)
+    if (productRoute) {
+      query.ssr = true
+      query.slug = productRoute.slug
+      return app.render(req, res, '/product', query)
+    }
+
+    // TODO TODO TODO TODO TODO - prevent '/product' page from loading
 
     const rootStaticFiles = ['/robots.txt', '/sitemap.xml', '/favicon.ico']
     if (rootStaticFiles.indexOf(pathname) > -1) {

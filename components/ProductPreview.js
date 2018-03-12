@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react'
+import Link from 'next/link'
 import {css} from 'styled-components'
 import isPresent from 'is-present'
 import t from '../theme'
@@ -202,18 +203,20 @@ class OfferPreview extends React.Component<Props, State> {
 
     let imageUrl
     let imageOptions
-    if (isPresent(product.image)) {
-      imageUrl = product.image
-      imageOptions = {
-        srcSet: `
-					${product.image} 1x,
-					${product.imageDpr2} 2x,
-					${product.imageDpr3} 3x,
-					${product.imageDpr4} 4x
+    if (isPresent(product.images)) {
+      if (isPresent(product.images.preview)) {
+        imageUrl = product.images.preview
+        imageOptions = {
+          srcSet: `
+					${product.images.preview} 1x,
+					${product.images.dpr2} 2x,
+					${product.images.dpr3} 3x,
+					${product.images.dpr4} 4x
 				`,
+        }
+      } else if (isPresent(product.images.amazon)) {
+        imageUrl = product.images.amazon
       }
-    } else if (isPresent(product.amazonImage)) {
-      imageUrl = product.amazonImage
     }
 
     return (
@@ -239,66 +242,62 @@ class OfferPreview extends React.Component<Props, State> {
             </IngredientsCard>
           )}
 
-        <Box
-          is="a"
-          href={
-            product.brandWhereToBuyUrl
-              ? product.brandWhereToBuyUrl
-              : '/link/offer/' + product.offers[0].id
-          }
-          target="_blank"
-          rel={product.brandWhereToBuyUrl ? 'noopener' : 'nofollow noopener'}
-          height="100%"
-          bg="white"
+        <Link
+          href={`/product?slug=${product.slug}`}
+          as={`/p/${product.slug}`}
+          passHref
+          prefetch
         >
-          <OfferGrid hasDetails={hasDetails}>
-            <Box area="name">
-              <SmallText color="grays.0" mb={1}>
-                {product.brandName}
-              </SmallText>
-              <Name>{product.name}</Name>
-            </Box>
-
-            {isPresent(imageUrl) && (
-              <SquareBox area="image">
-                <ProductImage
-                  src={imageUrl}
-                  alt={`${product.brandName} ${product.name}`}
-                  {...imageOptions}
-                />
-              </SquareBox>
-            )}
-
-            {isPresent(product.ingredients) && (
-              <Box
-                area="details"
-                onClickCapture={this.toggleIngredients}
-                onMouseEnter={this.showIngredients}
-                onMouseLeave={this.hideIngredients}
-                alignSelf="flex-end"
-                justifySelf="flex-start"
-                style={{cursor: 'help'}}
-                p="1rem"
-                m="-1rem"
-              >
-                <IngredientsIcon />
-                <span className="screen-reader-text">Toggle ingredient list</span>
+          <Box is="a" height="100%" bg="white">
+            <OfferGrid hasDetails={hasDetails}>
+              <Box area="name">
+                <SmallText color="grays.0" mb={1}>
+                  {product.brandName}
+                </SmallText>
+                <Name>{product.name}</Name>
               </Box>
-            )}
 
-            {isPresent(product.bestPrice) && (
-              <Text
-                area="price"
-                color="greenDark"
-                justifySelf="flex-end"
-                alignSelf="flex-end"
-                lineHeight="1.7ex"
-              >
-                {USD(product.bestPrice)}
-              </Text>
-            )}
-          </OfferGrid>
-        </Box>
+              {isPresent(imageUrl) && (
+                <SquareBox area="image">
+                  <ProductImage
+                    src={imageUrl}
+                    alt={`${product.brandName} ${product.name}`}
+                    {...imageOptions}
+                  />
+                </SquareBox>
+              )}
+
+              {isPresent(product.ingredients) && (
+                <Box
+                  area="details"
+                  onClickCapture={this.toggleIngredients}
+                  onMouseEnter={this.showIngredients}
+                  onMouseLeave={this.hideIngredients}
+                  alignSelf="flex-end"
+                  justifySelf="flex-start"
+                  style={{cursor: 'help'}}
+                  p="1rem"
+                  m="-1rem"
+                >
+                  <IngredientsIcon />
+                  <span className="screen-reader-text">Toggle ingredient list</span>
+                </Box>
+              )}
+
+              {isPresent(product.bestPrice) && (
+                <Text
+                  area="price"
+                  color="greenDark"
+                  justifySelf="flex-end"
+                  alignSelf="flex-end"
+                  lineHeight="1.7ex"
+                >
+                  {USD(product.bestPrice)}
+                </Text>
+              )}
+            </OfferGrid>
+          </Box>
+        </Link>
       </Card>
     )
   }

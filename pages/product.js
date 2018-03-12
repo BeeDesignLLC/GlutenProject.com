@@ -12,45 +12,8 @@ export default class extends React.Component<Props> {
   render() {
     return (
       <App title="Who's Behind The Gluten Project">
-        <Box area="main" style={{overflowY: 'auto'}}>
-          <LargeText>
-            <strong>Hi there!</strong> We are Brandon and Evelyn Bayer, a young couple
-            living in Dayton, Ohio.
-          </LargeText>
-          <LargeText>
-            Evelyn has been eating gluten free since 2014 when she realized gluten was the
-            cause of some of her pain. She&rsquo;s since had severe reactions to tiny
-            amounts of gluten and avoids it like the plague! Doctors haven&rsquo;t given
-            an offical diagnosis of Celiac disease because she can&rsquo;t eat gluten for
-            the test, but they believe she does have it.
-          </LargeText>
-
-          <LargeText>
-            Brandon is an entrepreneur, designer, developer, and independent consultant.
-            He’s passionate about business and aviation. Follow him on Twitter{' '}
-            <A href="https://twitter.com/beedesignllc" target="_blank" rel="noopener">
-              @beedesignllc
-            </A>.
-          </LargeText>
-
-          <LargeText>
-            Evelyn is Brandon’s partner in adventure! She is a self-taught seamstress
-            crazy about sewing and fashion design and is passionate about living
-            holistically. Through her own health journey, she has done extensive research
-            on products and brands and loves to share that information to make the
-            allergen world easier for others to navigate. Follow her on Instagram{' '}
-            <A
-              href="https://www.instagram.com/sew.petite/"
-              target="_blank"
-              rel="noopener"
-            >
-              @sew.petite
-            </A>.
-          </LargeText>
-
-          <Box p={6} alignItems="center">
-            <Image src="/static/b-and-e.jpg" alt="Brandon and Evelyn standing together" />
-          </Box>
+        <Box area="main">
+          <h1>Product page</h1>
         </Box>
       </App>
     )
