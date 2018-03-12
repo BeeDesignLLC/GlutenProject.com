@@ -17,33 +17,12 @@ import ProductPreview from './ProductPreview'
 
 const ProductGrid = Grid.extend`
   grid-auto-rows: max-content;
-  --productColumns: 1;
-  grid-template-columns: repeat(
-    var(--productColumns),
-    minmax(${theme.space[8]}, ${theme.space[10]})
-  );
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
   grid-gap: ${theme.space[4]};
   z-index: 1;
-
-  @media (min-width: 28rem) {
-    --productColumns: 2;
-  }
-  @media (min-width: 44rem) {
-    --productColumns: 3;
-  }
-  @media (min-width: ${themeGet('breakpoints.0')}) {
-    --productColumns: 2;
-    grid-template-columns: repeat(
-      var(--productColumns),
-      minmax(${theme.space[8]}, ${theme.space[9]})
-    );
-  }
-  @media (min-width: ${themeGet('breakpoints.1')}) {
-    --productColumns: 3;
-  }
-  @media (min-width: 83rem) {
-    --productColumns: 4;
-  }
+  width: 100%;
+  max-width: 65rem;
+  justify-content: center;
 `
 
 const RowGrid = Grid.withComponent('section').extend`
