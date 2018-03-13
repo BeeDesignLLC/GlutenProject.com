@@ -4,7 +4,6 @@ import Head from 'next/head'
 import {withRouter} from 'next/router'
 import {connectStateResults} from 'react-instantsearch/connectors'
 import titleize from 'title'
-import Grid from './Grid'
 import Box, {Nav, Aside} from '../components/Box'
 import Logo from '../components/Logo'
 import PageHeading from '../components/PageHeading'
@@ -14,104 +13,9 @@ import SecondaryText from '../components/SecondaryText'
 import Link from 'next/link'
 import A from './A'
 import {HomeIcon, ManifestoIcon, WhoIcon, HelpIcon} from './Icons'
-import theme from '../theme'
 import Mailchimp from './Mailchimp'
 import ShareButtons from './ShareButtons'
-
-const getSmallScreenAreas = ({home, ssrQuery}) => {
-  if (home) {
-    return `
-    'search'
-    'head'
-    'main'
-    'info'
-    'menu'
-    'aside'
-	`
-  } else if (ssrQuery) {
-    return `
-    'search'
-    'heading'
-    'main'
-    'info'
-    'menu'
-    'aside'
-	`
-  } else {
-    return `
-    'search'
-    'main'
-    'info'
-    'menu'
-    'aside'
-	`
-  }
-}
-
-const getMediumScreenAreas = ({home, ssrQuery}) => {
-  if (ssrQuery) {
-    return `
-      'head search info'
-      'heading heading   menu'
-      'main    main    aside'
-	`
-  } else if (home) {
-    return `
-      'head search info'
-      'main main    menu'
-      'main main    aside'
-	`
-  } else {
-    return `
-      'head search info'
-      'main main    menu'
-      'main main    aside'
-	`
-  }
-}
-const getLargeScreenAreas = ({ssrQuery, searching}) => {
-  if (ssrQuery) {
-    return `
-      'head head    search  search  info info'
-      '.    heading heading heading .    menu'
-      'main main    main    main    main aside'
-	`
-  } else if (searching) {
-    return `
-      'head head search search info info'
-      'main main main   main   main menu'
-      'main main main   main   main aside'
-	`
-  } else {
-    return `
-      'head head search search info info'
-      '.    main main   main   .    menu'
-      '.    main main   main   .    aside'
-	`
-  }
-}
-
-const MasterGrid = Grid.extend`
-  max-width: 100rem;
-  grid-gap: ${theme.space[6]};
-  grid-template-areas: ${getSmallScreenAreas};
-
-  @media (min-width: ${theme.breakpoints[0]}) {
-    grid-template-areas: ${getMediumScreenAreas};
-    grid-template-columns: 1fr 1fr minmax(auto, 13rem);
-    grid-template-rows: 7.5rem auto 1fr;
-    grid-gap: ${theme.space[4]};
-  }
-
-  @media (min-width: ${theme.breakpoints[1]}) {
-    grid-template-areas: ${getLargeScreenAreas};
-    grid-template-columns: repeat(5, 1fr) minmax(13rem, 1fr);
-  }
-
-  @media (min-height: 800px) {
-    grid-row-gap: ${theme.space[6]};
-  }
-`
+import MasterGrid from './MasterGrid'
 
 type Props = {
   children?: React.Node,
@@ -145,9 +49,8 @@ class Page extends React.Component<Props> {
     return (
       <MasterGrid
         columns={null}
-        ssrQuery={router.query.ssr}
-        home={router.pathname === '/'}
-        searching={router.pathname === '/search'}
+        ssr={router.query.ssr}
+        path={router.pathname}
         p={[3, 3, 4]}
         m="auto"
         className="fullscreen"

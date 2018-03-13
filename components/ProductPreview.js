@@ -10,9 +10,9 @@ import Heading from '../components/Heading'
 import Button from '../components/Button'
 import Text from '../components/Text'
 import SmallText from '../components/SmallText'
-import Image from '../components/Image'
 import {IngredientsIcon} from './Icons'
 import IngredientList from './IngredientList'
+import ProductImage from './ProductImage'
 
 import currency from 'currency.js'
 const USD = value => currency(value, {symbol: '$', precision: 2}).format(true)
@@ -146,13 +146,6 @@ const SquareBox = ({children, ...props}: {children: any}) => (
   </Box>
 )
 
-const ProductImage = Image.extend`
-  object-fit: contain;
-  justify-self: center;
-  width: 100%;
-  height: 100%;
-`
-
 const IngredientsCard = Box.extend`
   transition: all 0.15s ease;
   background: white;
@@ -196,28 +189,9 @@ class OfferPreview extends React.Component<Props, State> {
     const {product, ...props} = this.props
 
     const hasDetails =
-      isPresent(product.image) ||
-      isPresent(product.amazonImage) ||
+      isPresent(product.thumbnails) ||
       isPresent(product.ingredients) ||
       isPresent(product.price)
-
-    let imageUrl
-    let imageOptions
-    if (isPresent(product.images)) {
-      if (isPresent(product.images.preview)) {
-        imageUrl = product.images.preview
-        imageOptions = {
-          srcSet: `
-					${product.images.preview} 1x,
-					${product.images.dpr2} 2x,
-					${product.images.dpr3} 3x,
-					${product.images.dpr4} 4x
-				`,
-        }
-      } else if (isPresent(product.images.amazon)) {
-        imageUrl = product.images.amazon
-      }
-    }
 
     return (
       <Card
@@ -257,15 +231,16 @@ class OfferPreview extends React.Component<Props, State> {
                 <Name>{product.name}</Name>
               </Box>
 
-              {isPresent(imageUrl) && (
-                <SquareBox area="image">
-                  <ProductImage
-                    src={imageUrl}
-                    alt={`${product.brandName} ${product.name}`}
-                    {...imageOptions}
-                  />
-                </SquareBox>
-              )}
+              {isPresent(product.thumbnails) &&
+                isPresent(product.thumbnails.dpr1) && (
+                  <SquareBox area="image">
+                    <ProductImage
+                      images={product.thumbnails}
+                      alt={`${product.brandName} ${product.name}`}
+                      height="100%"
+                    />
+                  </SquareBox>
+                )}
 
               {isPresent(product.ingredients) && (
                 <Box
