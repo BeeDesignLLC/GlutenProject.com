@@ -6,6 +6,7 @@ import isPresent from 'is-present'
 import t from '../theme'
 import Grid from '../components/Grid'
 import Box from '../components/Box'
+import SquareBox from '../components/SquareBox'
 import Heading from '../components/Heading'
 import Button from '../components/Button'
 import Text from '../components/Text'
@@ -129,23 +130,6 @@ const OfferGrid = Grid.extend`
 		`};
 `
 
-const SquareWrapper = Box.extend`
-  display: block;
-  height: 0;
-  width: 100%;
-  position: relative;
-  padding-bottom: 100%;
-`
-const SquareBox = ({children, ...props}: {children: any}) => (
-  <Box style={{display: 'block'}} {...props}>
-    <SquareWrapper>
-      <Box position="absolute" style={{top: 0, bottom: 0, left: 0, right: 0}} p={4}>
-        {children}
-      </Box>
-    </SquareWrapper>
-  </Box>
-)
-
 const IngredientsCard = Box.extend`
   transition: all 0.15s ease;
   background: white;
@@ -212,6 +196,16 @@ class OfferPreview extends React.Component<Props, State> {
                 border: this.state.showIngredients ? null : 'none',
               }}
             >
+              <Heading
+                is="h3"
+                fontSize={1}
+                fontWeight={700}
+                textAlign="left"
+                mb={2}
+                color="black"
+              >
+                Ingredients
+              </Heading>
               <IngredientList ingredients={product.ingredients} />
             </IngredientsCard>
           )}
@@ -233,11 +227,10 @@ class OfferPreview extends React.Component<Props, State> {
 
               {isPresent(product.thumbnails) &&
                 isPresent(product.thumbnails.dpr1) && (
-                  <SquareBox area="image">
+                  <SquareBox area="image" p={4}>
                     <ProductImage
                       images={product.thumbnails}
-                      alt={`${product.brandName} ${product.name}`}
-                      height="100%"
+                      alt={`Photo of ${product.brandName} ${product.name}`}
                     />
                   </SquareBox>
                 )}

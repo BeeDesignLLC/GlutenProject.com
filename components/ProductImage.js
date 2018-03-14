@@ -1,5 +1,6 @@
 //@flow
 import * as React from 'react'
+import t from '../theme'
 import Image from './Image'
 
 type Props = {
@@ -13,9 +14,12 @@ type Props = {
 }
 
 const RefinedImage = Image.extend`
+  background: white;
   object-fit: contain;
   justify-self: center;
   width: 100%;
+  height: 100%;
+  ${props => props.roundedCorners && 'border-radius:' + t.space[2] + ';'};
 `
 
 export default ({images, ...props}: Props) => {

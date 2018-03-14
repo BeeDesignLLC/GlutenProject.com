@@ -44,4 +44,12 @@ export const flex = [
 
 export const gridPlacement = [gridArea, justifySelf]
 
-export const layout = ['space', 'width', 'height', 'position', ...flex, ...gridPlacement]
+export const layout = [
+  'space',
+  'width',
+  'maxWidth',
+  'height',
+  'position',
+  ...flex,
+  ...gridPlacement,
+]

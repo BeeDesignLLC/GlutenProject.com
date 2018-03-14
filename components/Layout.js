@@ -78,7 +78,7 @@ class Page extends React.Component<Props> {
         </Link>
 
         <Aside
-          area="info"
+          area="blurb"
           justifySelf="flex-end"
           alignItems={['center', 'flex-end']}
           px={[4, 0]}
@@ -176,7 +176,7 @@ class Page extends React.Component<Props> {
             </A>
           </SecondaryText>
 
-          <Logo mt={[6]} mx={['auto', 0]} mb={[4, 0]} />
+          <Logo mt={[7]} mx={['auto', 0]} mb={[4, 0]} />
 
           <SecondaryText my={[2, 4]}>
             Man cannot live by (gluten-free) bread alone, but by every word that comes

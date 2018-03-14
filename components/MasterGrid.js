@@ -9,7 +9,7 @@ const getSmallScreenAreas = ({ssr, path}) => {
         'search'
         'head'
         'main'
-        'info'
+        'blurb'
         'menu'
         'aside'
       `
@@ -19,7 +19,7 @@ const getSmallScreenAreas = ({ssr, path}) => {
           'search'
           'heading'
           'main'
-          'info'
+          'blurb'
           'menu'
           'aside'
         `
@@ -28,7 +28,7 @@ const getSmallScreenAreas = ({ssr, path}) => {
       return `
         'search'
         'main'
-        'info'
+        'blurb'
         'menu'
         'aside'
       `
@@ -39,14 +39,14 @@ const getMediumScreenAreas = ({ssr, path}) => {
     case '/search':
       if (ssr) {
         return `
-          'head search info'
+          'head search blurb'
           'heading heading   menu'
           'main    main    aside'
         `
       } // else fallthrough  - eslint-disable-next-line no-fallthrough
     default:
       return `
-        'head search info'
+        'head search blurb'
         'main main    menu'
         'main main    aside'
       `
@@ -57,20 +57,27 @@ const getLargeScreenAreas = ({ssr, path}) => {
     case '/search':
       if (ssr) {
         return `
-          'head head    search  search  info info'
+          'head head    search  search  blurb blurb'
           '.    heading heading heading .    menu'
           'main main    main    main    main aside'
         `
-      } // else fallthrough  - eslint-disable-next-line no-fallthrough
+      } else {
+        return `
+          'head head search search blurb blurb'
+          'main main main   main   main menu'
+          'main main main   main   main aside'
+        `
+      }
     case '/product':
       return `
-        'head head search search info info'
-        'main main main   main   main menu'
-        'main main main   main   main aside'
+        'head head head search search search search . blurb blurb blurb blurb'
+        'info info info image  image  image image  links links links menu menu'
+        'info info info image  image  image image  links links links aside aside'
+        'info info info review review review review review review review aside aside'
       `
     default:
       return `
-        'head head search search info info'
+        'head head search search blurb blurb'
         '.    main main   main   .    menu'
         '.    main main   main   .    aside'
       `
@@ -78,20 +85,22 @@ const getLargeScreenAreas = ({ssr, path}) => {
 }
 
 const MasterGrid = Grid.extend`
-  max-width: 100rem;
+  max-width: 103rem;
   grid-gap: ${theme.space[6]};
   grid-template-areas: ${getSmallScreenAreas};
 
   @media (min-width: ${theme.breakpoints[0]}) {
     grid-template-areas: ${getMediumScreenAreas};
     grid-template-columns: 1fr 1fr minmax(auto, 13rem);
-    grid-template-rows: 7.5rem auto 1fr;
+    grid-template-rows: 7.5rem auto auto;
+    grid-auto-rows: 1fr;
     grid-gap: ${theme.space[4]};
   }
 
   @media (min-width: ${theme.breakpoints[1]}) {
     grid-template-areas: ${getLargeScreenAreas};
-    grid-template-columns: repeat(5, 1fr) minmax(13rem, 1fr);
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: ${theme.space[5]};
   }
 
   @media (min-height: 800px) {
