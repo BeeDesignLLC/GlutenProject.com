@@ -16,6 +16,9 @@ const RefinedButton = Button.extend`
   letter-spacing: 0;
   padding: 0.5rem 1rem;
   width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 export default ({offer, ...props}: Props) => {

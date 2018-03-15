@@ -158,6 +158,7 @@ class OfferPreview extends React.Component<Props, State> {
 
   toggleIngredients = event => {
     event.preventDefault()
+    event.stopPropagation()
     this.setState(state => ({
       showIngredients: !state.showIngredients,
     }))

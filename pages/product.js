@@ -61,6 +61,7 @@ const Name = (props: Object) => (
     fontWeight={700}
     textAlign="left"
     color="black"
+    mb={0}
     {...props}
   />
 )
@@ -101,12 +102,25 @@ class ProductPage extends React.Component<Props> {
 
     return (
       <App title="TODO">
-        <Box area="info">
+        <Box area="name">
           <Text color="grays.0" mb={1}>
             {product.brand.name}
           </Text>
-          <Name mb={5}>{product.name}</Name>
+          <Name>{product.name}</Name>
+        </Box>
 
+        {isPresent(productImages) && (
+          <SquareBox area="image">
+            <ProductImage
+              images={productImages}
+              alt={`Photo of ${product.brand.name} ${product.name}`}
+              maxWidth={500}
+              roundedCorners
+            />
+          </SquareBox>
+        )}
+
+        <Box area="info">
           <Text is="ul" color="grays.2">
             <li>Certified gluten-free — {gfCertString}</li>
             {product.isOrganic && <li>Organic</li>}
@@ -117,7 +131,7 @@ class ProductPage extends React.Component<Props> {
             </Text>
           )}
 
-          <Box mt={6}>
+          <Box mt={[4, 6]}>
             <WhiteBox>
               <React.Fragment>
                 <Heading
@@ -148,28 +162,15 @@ class ProductPage extends React.Component<Props> {
                 </A>
               </Text>
             )}
-            <SmallText mt={6}>
-              Disclaimer: Information, statements, and reviews regarding products have not
-              been evaluated by the Food and Drug Administration. Results vary person to
-              person, and there is no guarantee of specific results. The Gluten Project
-              assumes no liability for inaccuracies or misstatements about products.
-            </SmallText>
           </Box>
         </Box>
 
-        {isPresent(productImages) && (
-          <SquareBox area="image">
-            <ProductImage
-              images={productImages}
-              alt={`Photo of ${product.brand.name} ${product.name}`}
-              maxWidth={500}
-              roundedCorners
-            />
-          </SquareBox>
-        )}
-
         <Box area="links" justifyContent="center">
-          <Box alignSelf="flex-start" alignItems="center">
+          <Box
+            alignSelf={['center', 'center', 'center', 'flex-start']}
+            alignItems="center"
+            maxWidth="100%"
+          >
             {offers.map(offer => <OfferButton offer={offer} key={offer.id} mb={2} />)}
 
             <SecondaryText>
@@ -196,11 +197,20 @@ The problem is: `
           </Box>
         </Box>
 
-        <WhiteBox area="review" alignSelf="flex-start" height="300px">
-          <Heading is="h3" fontSize={2} color="black">
+        <WhiteBox area="review" alignSelf="flex-start" height={[150, 300]}>
+          <Heading is="h3" fontSize={2} color="black" textAlign="left">
             Reviews Coming Soon
           </Heading>
         </WhiteBox>
+
+        <Box area="disclaimer">
+          <SmallText>
+            Disclaimer: Information, statements, and reviews regarding products have not
+            been evaluated by the Food and Drug Administration. Results vary person to
+            person, and there is no guarantee of specific results. The Gluten Project
+            assumes no liability for inaccuracies or misstatements about products.
+          </SmallText>
+        </Box>
       </App>
     )
   }
