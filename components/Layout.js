@@ -118,7 +118,7 @@ class Page extends React.Component<Props> {
             <Link href="/who" passHref prefetch>
               <A menu mt={4}>
                 <WhoIcon />
-                <span>who&rsquo;s behind this</span>
+                <span style={{width: '100%'}}>who&rsquo;s behind this</span>
               </A>
             </Link>
             <A

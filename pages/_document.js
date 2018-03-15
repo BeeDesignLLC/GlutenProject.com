@@ -57,10 +57,7 @@ injectGlobal`
   }
 
   mark {
-    background: none;
-    color: black;
-    font-weight: 500;
-    letter-spacing: -0.05ex;
+    text-decoration:underline;
   }
 
   [role="button"], button {

@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react'
+import {Highlight} from 'react-instantsearch/dom'
 import Link from 'next/link'
 import {css} from 'styled-components'
 import isPresent from 'is-present'
@@ -14,9 +15,7 @@ import SmallText from '../components/SmallText'
 import {IngredientsIcon} from './Icons'
 import IngredientList from './IngredientList'
 import ProductImage from './ProductImage'
-
-import currency from 'currency.js'
-const USD = value => currency(value, {symbol: '$', precision: 2}).format(true)
+import {USD} from '../utils/currency'
 
 const handleIntercomMessage = (hit: Object) => {
   if (window.Intercom) {

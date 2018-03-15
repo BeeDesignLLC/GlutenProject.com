@@ -2,6 +2,7 @@
 import * as React from 'react'
 import isPresent from 'is-present'
 import Button from '../components/Button'
+import {USD} from '../utils/currency'
 
 type Props = {
   offer: {
@@ -28,7 +29,7 @@ export default ({offer, ...props}: Props) => {
   }
 
   if (isPresent(offer.price) && offer.price > 1) {
-    lead += '$' + offer.price.toString()
+    lead += USD(offer.price)
   } else {
     lead += 'Buy'
   }
