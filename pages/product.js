@@ -101,7 +101,7 @@ class ProductPage extends React.Component<Props> {
     const gfCertString = product.gfCerts.includes('GFCO') ? '10ppm GFCO' : ''
 
     return (
-      <App title={product.brand.name + ' ' + product.name + '(certified gluten-free)'}>
+      <App title={product.brand.name + ' ' + product.name + ' (certified gluten-free)'}>
         <Box area="name">
           <Text color="grays.0" mb={1}>
             {product.brand.name}

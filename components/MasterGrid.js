@@ -10,11 +10,10 @@ const getSmallScreenAreas = ({ssr, path, landscape}) => {
         'head'
         'main'
         '.'
-        'blurb'
-        '.'
         'menu'
         '.'
         'aside'
+        'blurb'
       `
     case '/product':
       if (landscape) {
@@ -28,11 +27,10 @@ const getSmallScreenAreas = ({ssr, path, landscape}) => {
           'review review'
           'disclaimer disclaimer'
           '. .'
-          'blurb blurb'
-          '. .'
           'menu menu'
           '. .'
           'aside aside'
+          'blurb blurb'
         `
       } else {
         return `
@@ -45,11 +43,10 @@ const getSmallScreenAreas = ({ssr, path, landscape}) => {
           'review'
           'disclaimer'
           '.'
-          'blurb'
-          '.'
           'menu'
           '.'
           'aside'
+          'blurb'
         `
       }
     case '/search':
@@ -59,11 +56,10 @@ const getSmallScreenAreas = ({ssr, path, landscape}) => {
           'heading'
           'main'
           '.'
-          'blurb'
-          '.'
           'menu'
           '.'
           'aside'
+          'blurb'
         `
       } // else fallthrough  - eslint-disable-next-line no-fallthrough
     default:
@@ -71,11 +67,10 @@ const getSmallScreenAreas = ({ssr, path, landscape}) => {
         'search'
         'main'
         '.'
-        'blurb'
-        '.'
         'menu'
         '.'
         'aside'
+        'blurb'
       `
   }
 }
