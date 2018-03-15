@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react'
-import {Highlight} from 'react-instantsearch/dom'
 import Link from 'next/link'
 import {css} from 'styled-components'
 import isPresent from 'is-present'
@@ -84,34 +83,46 @@ const SimpleGrid = Grid.extend`
   grid-gap: ${t.space[1]};
 `
 
+const SimplePreviewCard = Card.extend`
+  width: 100%;
+  max-width: 33rem;
+  margin: auto;
+  grid-column: 1 / -1;
+`
+
 type Props = {
   product: Object,
 }
 
 const SimplePreview = ({product, ...props}: Props) => (
-  <Card
-    width="100%"
-    style={{
-      gridColumn: 'span var(--productColumns)',
-      maxWidth: '33rem',
-      margin: 'auto',
-    }}
-    {...props}
-  >
+  <SimplePreviewCard {...props}>
     <SimpleGrid>
       <SmallText area="brand" color="grays.0">
         {product.brandName}
       </SmallText>
       <Name area="name">{product.name}</Name>
-      <Button
-        area="find"
-        alignSelf="center"
-        onClick={() => handleIntercomMessage(product)}
-      >
-        Where to Buy
-      </Button>
+      {isPresent(product.brandWhereToBuyUrl) ? (
+        <Button
+          area="find"
+          is="a"
+          href={product.brandWhereToBuyUrl}
+          target="_blank"
+          rel="noopener"
+          alignSelf="center"
+        >
+          Where to Buy
+        </Button>
+      ) : (
+        <Button
+          area="find"
+          alignSelf="center"
+          onClick={() => handleIntercomMessage(product)}
+        >
+          Find
+        </Button>
+      )}
     </SimpleGrid>
-  </Card>
+  </SimplePreviewCard>
 )
 
 const OfferGrid = Grid.extend`
@@ -226,7 +237,8 @@ class OfferPreview extends React.Component<Props, State> {
               </Box>
 
               {isPresent(product.thumbnails) &&
-                isPresent(product.thumbnails.dpr1) && (
+                (isPresent(product.thumbnails.dpr1) ||
+                  isPresent(product.thumbnails.amazon)) && (
                   <SquareBox area="image" p={4}>
                     <ProductImage
                       images={product.thumbnails}

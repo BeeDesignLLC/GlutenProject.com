@@ -42,7 +42,6 @@ const getSmallScreenAreas = ({ssr, path, landscape}) => {
           'links'
           '.'
           'info'
-          '.'
           'review'
           'disclaimer'
           '.'

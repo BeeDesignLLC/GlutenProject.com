@@ -24,7 +24,7 @@ const RefinedButton = Button.extend`
 
 export default ({offer, ...props}: Props) => {
   let lead = ''
-  if (isPresent(offer.quantity)) {
+  if (isPresent(offer.quantity) && offer.quantity > 1) {
     lead += `(${offer.quantity}) `
   }
 

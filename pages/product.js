@@ -109,7 +109,7 @@ class ProductPage extends React.Component<Props> {
           <Name>{product.name}</Name>
         </Box>
 
-        {isPresent(productImages) && (
+        {(isPresent(productImages.dpr1) || isPresent(productImages.amazon)) && (
           <SquareBox area="image">
             <ProductImage
               images={productImages}
@@ -197,7 +197,7 @@ The problem is: `
           </Box>
         </Box>
 
-        <WhiteBox area="review" alignSelf="flex-start" height={[150, 300]}>
+        <WhiteBox area="review" alignSelf="flex-start" height={['auto', 300]}>
           <Heading is="h3" fontSize={2} color="black" textAlign="left">
             Reviews Coming Soon
           </Heading>
