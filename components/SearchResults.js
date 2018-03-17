@@ -47,7 +47,7 @@ const SearchResults = ({
   return (
     <React.Fragment>
       {ssr && (
-        <Box area="heading">
+        <Box area="heading" mt={3}>
           <Heading is="h1" fontSize={[4, 3]} fontStyle="italic" color="black">
             List of All Certified Gluten-Free {title(q)}
           </Heading>

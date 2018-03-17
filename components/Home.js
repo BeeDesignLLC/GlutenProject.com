@@ -21,6 +21,7 @@ export default class extends React.Component<Props> {
             is="h1"
             fontSize={[4, 3]}
             fontStyle="italic"
+            mt={3}
             color="black"
             className="mobile-hide"
           >
