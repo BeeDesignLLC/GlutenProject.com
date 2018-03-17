@@ -149,7 +149,7 @@ const SearchBox = ({
       searchResults && (
         <SmallText
           width="50%"
-          style={{position: 'absolute', left: 'calc(100% + 0.6rem)', bottom: 13}}
+          style={{position: 'absolute', left: 'calc(100% + 0.6rem)', bottom: 10}}
           className="mobile-hide"
         >
           {searchResults.nbHits} results
