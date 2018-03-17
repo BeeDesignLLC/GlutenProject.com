@@ -187,7 +187,7 @@ class Page extends React.Component<Props> {
             <A mt={2}>Full Affiliate Disclosure</A>
           </Link>
 
-          <Logo mt={[7]} mx={['auto', 0]} mb={[4, 0]} />
+          <Logo mt={5} mx={['auto', 0]} mb={[4, 0]} />
           <SecondaryText my={[2, 4]}>
             Man cannot live by (gluten-free) bread alone, but by every word that comes
             from the mouth of God.
