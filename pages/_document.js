@@ -42,6 +42,9 @@ injectGlobal`
   [tabindex], a, area, button, input, label, select, summary, textarea {
     touch-action: manipulation;
   }
+	input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
 
   .screen-reader-text {
     border: 0;

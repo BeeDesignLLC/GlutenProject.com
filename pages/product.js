@@ -211,10 +211,16 @@ The problem is: `
 
         <Box area="disclaimer">
           <SmallText>
-            Disclaimer: Information, statements, and reviews regarding products have not
-            been evaluated by the Food and Drug Administration. Results vary person to
-            person, and there is no guarantee of specific results. The Gluten Project
-            assumes no liability for inaccuracies or misstatements about products.
+            Disclaimers: <br />
+            <br />
+            Certifications and ingredients are subject to change at the
+            manufacturer&rsquo;s discretion. For the most complete and up-to-date
+            information, please refer to the product packaging. <br />
+            <br />
+            Information, statements, and reviews regarding products have not been
+            evaluated by the Food and Drug Administration. Results vary person to person,
+            and there is no guarantee of specific results. The Gluten Project assumes no
+            liability for inaccuracies or misstatements about products.
           </SmallText>
         </Box>
       </App>

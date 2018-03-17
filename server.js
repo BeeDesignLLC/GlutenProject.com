@@ -35,6 +35,11 @@ const server = micro(
     const parsedUrl = parse(req.url, true)
     const {pathname, query} = parsedUrl
 
+    if (pathname === '/product') {
+      res.setHeader('Location', '/')
+      return micro.send(res, 301)
+    }
+
     const searchRoute = matchSearchRoute(pathname)
     if (searchRoute) {
       query.ssr = true
