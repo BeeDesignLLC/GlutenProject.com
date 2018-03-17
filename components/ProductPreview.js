@@ -62,12 +62,21 @@ const Card = Box.extend`
   height: 100%;
   border: 1px solid white;
   padding: ${t.space[3]};
+  transition: transform 0.15s ease;
 
   ${props =>
     props.showBorder &&
     css`
       border: 1px solid ${t.colors.green};
-    `} @media (hover: hover) {
+    `};
+
+  ${props =>
+    props.clicked &&
+    css`
+      transform: scale(1.05);
+    `};
+
+  @media (hover: hover) {
     ${hoverStyles};
   }
   @-moz-document url-prefix() {
@@ -160,10 +169,12 @@ const IngredientsCard = Box.extend`
 
 type State = {
   showIngredients: boolean,
+  clicked: boolean,
 }
 class OfferPreview extends React.Component<Props, State> {
   state = {
     showIngredients: false,
+    clicked: false,
   }
 
   toggleIngredients = event => {
@@ -194,6 +205,7 @@ class OfferPreview extends React.Component<Props, State> {
         {...props}
         style={{zIndex: this.state.showIngredients ? 1 : 0}}
         showBorder={this.state.showIngredients}
+        clicked={this.state.clicked}
       >
         {isPresent(product.ingredients) &&
           this.state.showIngredients && (
@@ -228,7 +240,10 @@ class OfferPreview extends React.Component<Props, State> {
           prefetch
         >
           <Box is="a" height="100%" bg="white">
-            <OfferGrid hasDetails={hasDetails}>
+            <OfferGrid
+              hasDetails={hasDetails}
+              onClick={() => this.setState({clicked: true})}
+            >
               <Box area="name">
                 <SmallText color="grays.0" mb={1}>
                   {product.brandName}

@@ -1,11 +1,14 @@
 // @flow
 import * as React from 'react'
+import Link from 'next/link'
 import {connectSearchBox, connectStateResults} from 'react-instantsearch/connectors'
 import {withRouter} from 'next/router'
 import styled from 'styled-components'
 import {themeGet} from 'styled-system'
 import Box from './Box'
+import A from './A'
 import SmallText from './SmallText'
+import {HomeIcon} from './Icons'
 import {default as BaseInput} from './Input'
 
 const Input = BaseInput.extend`
@@ -50,6 +53,7 @@ const Wrapper = Box.extend`
 
 const SearchForm = Box.withComponent('form').extend`
   position: relative;
+	width: 100%;
 `
 
 const SearchIconButton = styled.button`
@@ -100,7 +104,7 @@ const SearchBox = ({
   area,
   router: {pathname, push, query: {ssr}},
 }: Props) => (
-  <Wrapper area={area}>
+  <Wrapper area={area} flexDirection="row" alignItems="center">
     <SearchForm
       onSubmit={e => {
         e.preventDefault()
@@ -146,10 +150,17 @@ const SearchBox = ({
         <SmallText
           width="50%"
           style={{position: 'absolute', left: 'calc(100% + 0.6rem)', bottom: 13}}
+          className="mobile-hide"
         >
           {searchResults.nbHits} results
         </SmallText>
       )}
+
+    <Link href="/" passHref>
+      <A color="white" ml={2} className="mobile-show">
+        <HomeIcon />
+      </A>
+    </Link>
   </Wrapper>
 )
 
