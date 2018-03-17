@@ -29,6 +29,7 @@ const productQuery = gql`
       sku
       gfCerts
       ingredients
+      facilityStatement
       description
       offers {
         id
@@ -151,8 +152,13 @@ class ProductPage extends React.Component<Props> {
                 )}
               </React.Fragment>
             </WhiteBox>
+            {isPresent(product.facilityStatement) && (
+              <Text color="grays.1" mt={3} mb={1} mx={3}>
+                {product.facilityStatement}
+              </Text>
+            )}
             {isPresent(product.brand.allerganStatementUrl) && (
-              <Text mt={2} textAlign="center">
+              <Text mt={2} mx={3}>
                 <A
                   href={product.brand.allerganStatementUrl}
                   target="_blank"
