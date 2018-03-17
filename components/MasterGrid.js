@@ -164,7 +164,7 @@ const getProductOnlyStyles = props => {
 
     @media (min-width: ${theme.breakpoints[0]}) and (max-width: ${theme.breakpoints[1]}) {
       grid-template-columns: repeat(5, 1fr) minmax(auto, 1fr);
-      grid-template-rows: 7.5rem auto auto auto auto;
+      grid-template-rows: minmax(7.5rem, auto) auto auto auto auto;
     }
   `
 }
@@ -178,7 +178,7 @@ const MasterGrid = Grid.extend`
   @media (min-width: ${theme.breakpoints[0]}) {
     grid-template-areas: ${getMediumScreenAreas};
     grid-template-columns: 1fr 1fr minmax(auto, 13rem);
-    grid-template-rows: 7.5rem auto auto;
+    grid-template-rows: minmax(7.5rem, auto) auto;
     grid-auto-rows: 1fr;
     grid-gap: ${theme.space[5]};
   }
@@ -188,8 +188,8 @@ const MasterGrid = Grid.extend`
     grid-template-columns: repeat(10, 1fr) repeat(2, minmax(5rem, 1fr));
     grid-template-rows: ${props =>
       props.path === '/product'
-        ? '7.5rem auto auto auto auto auto '
-        : '7.5rem auto auto'};
+        ? 'minmax(7.5rem, auto) auto auto auto auto auto '
+        : 'minmax(7.5rem, auto) auto'};
     grid-gap: ${theme.space[5]};
   }
 
@@ -197,12 +197,12 @@ const MasterGrid = Grid.extend`
     grid-template-areas: ${getLargeScreenAreas};
     grid-template-rows: ${props =>
       props.path === '/product'
-        ? '7.5rem minmax(0,auto) minmax(0,auto) minmax(0,auto) minmax(0,auto) minmax(0,auto)'
-        : '7.5rem auto auto'};
+        ? 'minmax(7.5rem, auto) minmax(0,auto) minmax(0,auto) minmax(0,auto) minmax(0,auto) minmax(0,auto)'
+        : 'minmax(7.5rem, auto) auto'};
   }
 
   @media (min-width: ${theme.breakpoints[1]}) and (min-height: 800px) {
-    grid-row-gap: ${theme.space[6]};
+    /*grid-row-gap: ${theme.space[6]};*/
   }
 
   ${getProductOnlyStyles};
