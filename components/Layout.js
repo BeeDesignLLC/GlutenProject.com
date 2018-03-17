@@ -148,6 +148,8 @@ class Page extends React.Component<Props> {
           px={[4, 0]}
           mb={4}
         >
+          <Mailchimp className="mobile-show" my={5} />
+
           <Heading>Thankful?</Heading>
           <SecondaryText>
             Show your appreciation by telling others about The Gluten Project!
@@ -176,34 +178,19 @@ class Page extends React.Component<Props> {
             </A>
           </SecondaryText>
 
-          <Logo mt={[7]} mx={['auto', 0]} mb={[4, 0]} />
+          <Heading mt={5}>Affiliate Disclosure</Heading>
+          <SecondaryText>
+            We earn affiliate commissions from product links. This ensures The Gluten
+            Project will be sustainable over the long term. Thank you for using them! :)
+          </SecondaryText>
+          <Link href="/disclosure" passHref>
+            <A mt={2}>Full Affiliate Disclosure</A>
+          </Link>
 
+          <Logo mt={[7]} mx={['auto', 0]} mb={[4, 0]} />
           <SecondaryText my={[2, 4]}>
             Man cannot live by (gluten-free) bread alone, but by every word that comes
             from the mouth of God.
-          </SecondaryText>
-
-          <Mailchimp className="mobile-show" my={5} />
-
-          <Heading mt={4}>Disclaimers</Heading>
-          <SecondaryText>
-            We are affilates of Thrive Market, Nuts.com, and Walmart and earn commissions
-            from links to their products. This ensures The Gluten Project will be
-            sustainable over the long term. Thank you for using them! :)
-          </SecondaryText>
-          <SecondaryText>
-            We are a participant in the Amazon Services LLC Associates Program, an
-            affiliate advertising program designed to provide a means for us to earn fees
-            by linking to Amazon.com and affiliated sites.
-          </SecondaryText>
-          <SecondaryText mt={3} mb={4}>
-            The Gluten Project and Bee Design LLC do not accept any responsibility or
-            liability for the accuracy, content, completeness, legality, or reliability of
-            the information contained on this website. No warranties, promises and/or
-            representations of any kind, expressed or implied, are given as to the nature,
-            standard, accuracy or otherwise of the information provided in this website
-            nor to the suitability or otherwise of the information to your particular
-            circumstances.
           </SecondaryText>
 
           <Link href="/disclaimer" passHref>
@@ -211,6 +198,9 @@ class Page extends React.Component<Props> {
           </Link>
           <Link href="/privacy" passHref>
             <A>Privacy Policy</A>
+          </Link>
+          <Link href="/disclosure" passHref>
+            <A>Affiliate Disclosure</A>
           </Link>
           <A href="https://github.com/BeeDesignLLC/GlutenProject.com">Source Code</A>
         </Aside>
