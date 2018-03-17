@@ -4,6 +4,7 @@ import Box from '../components/Box'
 import HugeHeading from '../components/HugeHeading'
 import Heading from '../components/Heading'
 import LargeText from '../components/LargeText'
+import Text from '../components/Text'
 import Link from 'next/link'
 import A from '../components/A'
 import {urlForQuery} from '../utils/misc'
@@ -37,16 +38,16 @@ export default class extends React.Component<Props> {
               </A>{' '}
               (GFCO) as of <strong>January 2017</strong>
             </li>
+            <li>Other gluten-free certifications coming soon!</li>
             <li>
-              Built to make it easy for us to find and buy certified GF products for
-              Evelyn who has (undiagnosed) Celiac disease
-            </li>
-            <li>
-              <strong>Warning:</strong> products can drop certification at any time.
-              Before consuming, ensure the product label contains the GFCO certification
-              logo
+              We built this to solve our own frustration of finding certified GF products
+              for Evelyn who has undiagnosed Celiac disease
             </li>
           </LargeText>
+          <Text mt={4}>
+            <strong>Warning:</strong> Before consuming, ensure the product label contains
+            the gluten-free certification logo
+          </Text>
 
           <Mailchimp mt={[6, 5]} />
 
@@ -77,6 +78,7 @@ export default class extends React.Component<Props> {
               'Vitamins',
               'Wine',
               'Beer',
+              'Cosmetics',
             ].map(item => (
               <React.Fragment key={item}>
                 <Link
