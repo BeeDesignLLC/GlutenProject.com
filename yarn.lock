@@ -4050,9 +4050,9 @@ memory-fs@^0.4.0, memory-fs@~0.4.1:
     errno "^0.1.3"
     readable-stream "^2.0.1"
 
-micro@9.1.0:
-  version "9.1.0"
-  resolved "https://registry.yarnpkg.com/micro/-/micro-9.1.0.tgz#f2effba306639076e994c007c327dfc36a5185e9"
+micro@9.1.1:
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/micro/-/micro-9.1.1.tgz#396f91ef1720726da26830eaf6ec9b5e77c48c63"
   dependencies:
     content-type "1.0.4"
     is-stream "1.1.0"
