@@ -265,41 +265,41 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-apollo-boost@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/apollo-boost/-/apollo-boost-0.1.2.tgz#3eab9ab8d68b6f89620165dc0f8049afdd35353c"
+apollo-boost@0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/apollo-boost/-/apollo-boost-0.1.3.tgz#5f83af503e5482811867341d2e28cffd42da6bae"
   dependencies:
-    apollo-cache-inmemory "^1.1.10"
-    apollo-client "^2.2.6"
+    apollo-cache-inmemory "^1.1.11"
+    apollo-client "^2.2.7"
     apollo-link "^1.0.6"
     apollo-link-error "^1.0.3"
     apollo-link-http "^1.3.1"
     apollo-link-state "^0.4.0"
     graphql-tag "^2.4.2"
 
-apollo-cache-inmemory@^1.1.10:
-  version "1.1.10"
-  resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.1.10.tgz#472442c6c59395159ae7d686ea33056248b26125"
+apollo-cache-inmemory@^1.1.11:
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.1.11.tgz#2a96ad076f40575d622c4a45b1eeced18b2dc8ec"
   dependencies:
-    apollo-cache "^1.1.5"
-    apollo-utilities "^1.0.9"
-    graphql-anywhere "^4.1.6"
+    apollo-cache "^1.1.6"
+    apollo-utilities "^1.0.10"
+    graphql-anywhere "^4.1.7"
 
-apollo-cache@^1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/apollo-cache/-/apollo-cache-1.1.5.tgz#159488bb8981ceacfe26172666a593f38318dbf7"
+apollo-cache@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/apollo-cache/-/apollo-cache-1.1.6.tgz#b953488bcc8244e001b9ab9c8b362a1512e9203f"
   dependencies:
-    apollo-utilities "^1.0.9"
+    apollo-utilities "^1.0.10"
 
-apollo-client@^2.2.6:
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/apollo-client/-/apollo-client-2.2.6.tgz#38b5a197976f3c22b63623c455d4c4606e420b66"
+apollo-client@^2.2.7:
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/apollo-client/-/apollo-client-2.2.7.tgz#d5adbda81ef1f1c9c105ac71227ca8dc42b5731b"
   dependencies:
     "@types/zen-observable" "^0.5.3"
-    apollo-cache "^1.1.5"
+    apollo-cache "^1.1.6"
     apollo-link "^1.0.0"
     apollo-link-dedup "^1.0.0"
-    apollo-utilities "^1.0.9"
+    apollo-utilities "^1.0.10"
     symbol-observable "^1.0.2"
     zen-observable "^0.7.0"
   optionalDependencies:
@@ -348,6 +348,10 @@ apollo-link@^1.0.0, apollo-link@^1.0.6, apollo-link@^1.2.1:
 apollo-utilities@^1.0.0, apollo-utilities@^1.0.6, apollo-utilities@^1.0.9:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.0.9.tgz#16f9f2f92fd6c651d497aba6f2747ce17d87d80a"
+
+apollo-utilities@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.0.10.tgz#0c35696891d4fa28d76768e0f7249d63c6da08b9"
 
 app-root-path@^2.0.1:
   version "2.0.1"
@@ -1799,7 +1803,7 @@ cssom@0.3.x, "cssom@>= 0.3.2 < 0.4.0":
   dependencies:
     cssom "0.3.x"
 
-currency.js@^1.1.0:
+currency.js@1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/currency.js/-/currency.js-1.1.0.tgz#8f2746b4e4286a1b1eff87e79e7587e9af710b09"
 
@@ -2846,21 +2850,27 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.4:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
-graphql-anywhere@^4.1.0-alpha.0, graphql-anywhere@^4.1.6:
+graphql-anywhere@^4.1.0-alpha.0:
   version "4.1.6"
   resolved "https://registry.yarnpkg.com/graphql-anywhere/-/graphql-anywhere-4.1.6.tgz#1329ee62c76ff363aa44570d12067178b8611dca"
   dependencies:
     apollo-utilities "^1.0.9"
 
+graphql-anywhere@^4.1.7:
+  version "4.1.7"
+  resolved "https://registry.yarnpkg.com/graphql-anywhere/-/graphql-anywhere-4.1.7.tgz#cbb9106905bcc25bc0e8390548a97f8b154d3f9b"
+  dependencies:
+    apollo-utilities "^1.0.10"
+
 graphql-tag@^2.4.2:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.8.0.tgz#52cdea07a842154ec11a2e840c11b977f9b835ce"
 
-graphql@^0.13.1:
-  version "0.13.1"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.13.1.tgz#9b3db3d8e40d1827e4172404bfdd2e4e17a58b55"
+graphql@0.13.2:
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.13.2.tgz#4c740ae3c222823e7004096f832e7b93b2108270"
   dependencies:
-    iterall "^1.2.0"
+    iterall "^1.2.1"
 
 har-schema@^1.0.5:
   version "1.0.5"
@@ -3418,7 +3428,7 @@ is-posix-bracket@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/is-posix-bracket/-/is-posix-bracket-0.1.1.tgz#3334dc79774368e92f016e6fbc0a88f5cd6e6bc4"
 
-is-present@^1.0.0:
+is-present@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-present/-/is-present-1.0.0.tgz#29c9b8e8e6e786a594c292fc7239aa24be70b80c"
   dependencies:
@@ -3500,7 +3510,7 @@ isobject@^3.0.0, isobject@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
 
-isomorphic-fetch@^2.1.1, isomorphic-fetch@^2.2.1:
+isomorphic-fetch@2.2.1, isomorphic-fetch@^2.1.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz#611ae1acf14f5e81f729507472819fe9733558a9"
   dependencies:
@@ -3511,7 +3521,7 @@ isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
 
-iterall@^1.2.0:
+iterall@^1.2.1:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.2.2.tgz#92d70deb8028e0c39ff3164fdbf4d8b088130cd7"
 
@@ -4913,11 +4923,11 @@ range-parser@^1.0.3, range-parser@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
 
-raven-js@^3.23.1:
-  version "3.23.1"
-  resolved "https://registry.yarnpkg.com/raven-js/-/raven-js-3.23.1.tgz#34a5d7b5b3dd626a3d59e7a264e1d19a4c799cdb"
+raven-js@3.23.3:
+  version "3.23.3"
+  resolved "https://registry.yarnpkg.com/raven-js/-/raven-js-3.23.3.tgz#6174f506c7362eb8bb72b291af5f22edb44ef165"
 
-raven@^2.4.2:
+raven@2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/raven/-/raven-2.4.2.tgz#0129e2adc30788646fd530b67d08a8ce25d4f6dc"
   dependencies:
@@ -4964,9 +4974,9 @@ react-hot-loader@4.0.0:
     prop-types "^15.6.0"
     shallowequal "^1.0.2"
 
-react-instantsearch@4.5.1:
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/react-instantsearch/-/react-instantsearch-4.5.1.tgz#b079bb643e08f262329922eae2eef9ca076ac5cd"
+react-instantsearch@5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/react-instantsearch/-/react-instantsearch-5.0.1.tgz#318673600a019a03c09b94b00868911a3179bae3"
   dependencies:
     algoliasearch "^3.24.0"
     algoliasearch-helper "^2.21.0"
@@ -5707,9 +5717,9 @@ strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
-styled-components@3.2.1, styled-components@>=3.0.0:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-3.2.1.tgz#4f780c588829eb06624b686f9b793a10d04db139"
+styled-components@3.2.3, styled-components@>=3.0.0:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-3.2.3.tgz#50f71207320eeb1ef539dec4637f21f5e3c936b4"
   dependencies:
     buffer "^5.0.3"
     css-to-react-native "^2.0.3"
@@ -5718,8 +5728,8 @@ styled-components@3.2.1, styled-components@>=3.0.0:
     is-plain-object "^2.0.1"
     opencollective "^1.0.3"
     prop-types "^15.5.4"
-    stylis "^3.4.10"
-    stylis-rule-sheet "^0.0.8"
+    stylis "^3.5.0"
+    stylis-rule-sheet "^0.0.10"
     supports-color "^3.2.3"
 
 styled-css-grid@0.8.2:
@@ -5746,15 +5756,19 @@ styled-system@2.2.1, "styled-system@>=1.1 || >=2.0", styled-system@>=2.0.1:
   dependencies:
     prop-types "^15.6.0"
 
-stylis-rule-sheet@0.0.8, stylis-rule-sheet@^0.0.8:
+stylis-rule-sheet@0.0.8:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/stylis-rule-sheet/-/stylis-rule-sheet-0.0.8.tgz#b0d0a126c945b1f3047447a3aae0647013e8d166"
+
+stylis-rule-sheet@^0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/stylis-rule-sheet/-/stylis-rule-sheet-0.0.10.tgz#44e64a2b076643f4b52e5ff71efc04d8c3c4a430"
 
 stylis@3.4.10:
   version "3.4.10"
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.4.10.tgz#a135cab4b9ff208e327fbb5a6fde3fa991c638ee"
 
-stylis@^3.0.0, stylis@^3.4.10:
+stylis@^3.0.0, stylis@^3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.5.0.tgz#016fa239663d77f868fef5b67cf201c4b7c701e1"
 
@@ -5887,7 +5901,7 @@ timers-browserify@^2.0.4:
   dependencies:
     setimmediate "^1.0.4"
 
-title@^3.2.0:
+title@3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/title/-/title-3.2.0.tgz#4af771cd17d5e92164bad550b9b9ccdf1ad06ade"
   dependencies:
@@ -6099,7 +6113,7 @@ update-notifier@2.3.0:
     semver-diff "^2.0.0"
     xdg-basedir "^3.0.0"
 
-upper-case-first@^1.1.2:
+upper-case-first@1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/upper-case-first/-/upper-case-first-1.1.2.tgz#5d79bedcff14419518fd2edb0a0507c9b6859115"
   dependencies:

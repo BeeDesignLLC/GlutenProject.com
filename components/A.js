@@ -28,7 +28,7 @@ const menuStyles = () => css`
   }
 
   ${props =>
-    props.active
+    props.isActive
       ? null
       : css`
           color: ${theme.colors.grays[2]};
@@ -62,6 +62,7 @@ const Anchor = system(
   {
     is: 'a',
     color: 'green',
+    blacklist: ['isActive', 'menu'],
   },
   ...text,
   ...layout
@@ -80,7 +81,7 @@ const Anchor = system(
 
 type Props = {router: Object, href: string}
 const A = ({router, ...props}: Props) => (
-  <Anchor active={router.pathname === props.href} {...props} />
+  <Anchor isActive={router.pathname === props.href} {...props} />
 )
 
 export default withRouter(A)

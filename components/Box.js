@@ -5,6 +5,15 @@ import {layout} from '../utils/styled'
 const Box = system(
   {
     flexDirection: 'column',
+    blacklist: [
+      'justifySelf',
+      'flexDirection',
+      'flexWrap',
+      'justifyContent',
+      'alignItems',
+      'showBorder',
+      'clicked',
+    ],
   },
   ...layout,
   'bgColor',
