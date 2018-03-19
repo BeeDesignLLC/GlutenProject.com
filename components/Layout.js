@@ -3,8 +3,7 @@ import * as React from 'react'
 import Head from 'next/head'
 import {withRouter} from 'next/router'
 import {connectStateResults} from 'react-instantsearch/connectors'
-import titleize from 'titleize'
-import Grid from './Grid'
+import titleize from 'title'
 import Box, {Nav, Aside} from '../components/Box'
 import Logo from '../components/Logo'
 import PageHeading from '../components/PageHeading'
@@ -14,104 +13,9 @@ import SecondaryText from '../components/SecondaryText'
 import Link from 'next/link'
 import A from './A'
 import {HomeIcon, ManifestoIcon, WhoIcon, HelpIcon} from './Icons'
-import theme from '../theme'
 import Mailchimp from './Mailchimp'
 import ShareButtons from './ShareButtons'
-
-const getSmallScreenAreas = ({home, ssrQuery}) => {
-  if (home) {
-    return `
-    'search'
-    'head'
-    'main'
-    'info'
-    'menu'
-    'aside'
-	`
-  } else if (ssrQuery) {
-    return `
-    'search'
-    'heading'
-    'main'
-    'info'
-    'menu'
-    'aside'
-	`
-  } else {
-    return `
-    'search'
-    'main'
-    'info'
-    'menu'
-    'aside'
-	`
-  }
-}
-
-const getMediumScreenAreas = ({home, ssrQuery}) => {
-  if (ssrQuery) {
-    return `
-      'head search info'
-      'heading heading   menu'
-      'main    main    aside'
-	`
-  } else if (home) {
-    return `
-      'head search info'
-      'main main    menu'
-      'main main    aside'
-	`
-  } else {
-    return `
-      'head search info'
-      'main main    menu'
-      'main main    aside'
-	`
-  }
-}
-const getLargeScreenAreas = ({ssrQuery, searching}) => {
-  if (ssrQuery) {
-    return `
-      'head head    search  search  info info'
-      '.    heading heading heading .    menu'
-      'main main    main    main    main aside'
-	`
-  } else if (searching) {
-    return `
-      'head head search search info info'
-      'main main main   main   main menu'
-      'main main main   main   main aside'
-	`
-  } else {
-    return `
-      'head head search search info info'
-      '.    main main   main   .    menu'
-      '.    main main   main   .    aside'
-	`
-  }
-}
-
-const MasterGrid = Grid.extend`
-  max-width: 100rem;
-  grid-gap: ${theme.space[6]};
-  grid-template-areas: ${getSmallScreenAreas};
-
-  @media (min-width: ${theme.breakpoints[0]}) {
-    grid-template-areas: ${getMediumScreenAreas};
-    grid-template-columns: 1fr 1fr minmax(auto, 13rem);
-    grid-template-rows: 7.5rem auto 1fr;
-    grid-gap: ${theme.space[4]};
-  }
-
-  @media (min-width: ${theme.breakpoints[1]}) {
-    grid-template-areas: ${getLargeScreenAreas};
-    grid-template-columns: repeat(5, 1fr) minmax(13rem, 1fr);
-  }
-
-  @media (min-height: 800px) {
-    grid-row-gap: ${theme.space[6]};
-  }
-`
+import MasterGrid from './MasterGrid'
 
 type Props = {
   children?: React.Node,
@@ -145,9 +49,8 @@ class Page extends React.Component<Props> {
     return (
       <MasterGrid
         columns={null}
-        ssrQuery={router.query.ssr}
-        home={router.pathname === '/'}
-        searching={router.pathname === '/search'}
+        ssr={router.query.ssr}
+        path={router.pathname}
         p={[3, 3, 4]}
         m="auto"
         className="fullscreen"
@@ -158,9 +61,9 @@ class Page extends React.Component<Props> {
           <meta name="twitter:title" content={socialTitle} />
         </Head>
 
-        <SearchBox area="search" alignSelf="flex-end" />
-
         {children}
+
+        <SearchBox area="search" alignSelf="flex-end" />
 
         <Link href="/">
           <PageHeading
@@ -175,7 +78,7 @@ class Page extends React.Component<Props> {
         </Link>
 
         <Aside
-          area="info"
+          area="blurb"
           justifySelf="flex-end"
           alignItems={['center', 'flex-end']}
           px={[4, 0]}
@@ -215,7 +118,7 @@ class Page extends React.Component<Props> {
             <Link href="/who" passHref prefetch>
               <A menu mt={4}>
                 <WhoIcon />
-                <span>who&rsquo;s behind this</span>
+                <span style={{width: '100%'}}>who&rsquo;s behind this</span>
               </A>
             </Link>
             <A
@@ -245,6 +148,8 @@ class Page extends React.Component<Props> {
           px={[4, 0]}
           mb={4}
         >
+          <Mailchimp className="mobile-show" my={5} />
+
           <Heading>Thankful?</Heading>
           <SecondaryText>
             Show your appreciation by telling others about The Gluten Project!
@@ -273,34 +178,19 @@ class Page extends React.Component<Props> {
             </A>
           </SecondaryText>
 
-          <Logo mt={[6]} mx={['auto', 0]} mb={[4, 0]} />
+          <Heading mt={5}>Affiliate Disclosure</Heading>
+          <SecondaryText>
+            We earn affiliate commissions from product links. This ensures The Gluten
+            Project will be sustainable over the long term. Thank you for using them! :)
+          </SecondaryText>
+          <Link href="/disclosure" passHref>
+            <A mt={2}>Full Affiliate Disclosure</A>
+          </Link>
 
+          <Logo mt={5} mx={['auto', 0]} mb={[4, 0]} />
           <SecondaryText my={[2, 4]}>
             Man cannot live by (gluten-free) bread alone, but by every word that comes
             from the mouth of God.
-          </SecondaryText>
-
-          <Mailchimp className="mobile-show" my={5} />
-
-          <Heading mt={4}>Disclaimers</Heading>
-          <SecondaryText>
-            We are affilates of Thrive Market, Nuts.com, and Walmart and earn commissions
-            from links to their products. This ensures The Gluten Project will be
-            sustainable over the long term. Thank you for using them! :)
-          </SecondaryText>
-          <SecondaryText>
-            We are a participant in the Amazon Services LLC Associates Program, an
-            affiliate advertising program designed to provide a means for us to earn fees
-            by linking to Amazon.com and affiliated sites.
-          </SecondaryText>
-          <SecondaryText mt={3} mb={4}>
-            The Gluten Project and Bee Design LLC do not accept any responsibility or
-            liability for the accuracy, content, completeness, legality, or reliability of
-            the information contained on this website. No warranties, promises and/or
-            representations of any kind, expressed or implied, are given as to the nature,
-            standard, accuracy or otherwise of the information provided in this website
-            nor to the suitability or otherwise of the information to your particular
-            circumstances.
           </SecondaryText>
 
           <Link href="/disclaimer" passHref>
@@ -308,6 +198,9 @@ class Page extends React.Component<Props> {
           </Link>
           <Link href="/privacy" passHref>
             <A>Privacy Policy</A>
+          </Link>
+          <Link href="/disclosure" passHref>
+            <A>Affiliate Disclosure</A>
           </Link>
           <A href="https://github.com/BeeDesignLLC/GlutenProject.com">Source Code</A>
         </Aside>

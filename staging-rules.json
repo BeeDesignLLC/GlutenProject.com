@@ -1,6 +1,6 @@
 {
   "rules": [
-    { "pathname": "/link/**", "dest": "tgp-stage-link.now.sh" },
+    { "pathname": "/link/**", "dest": "tgp-link-stage.now.sh" },
     { "dest": "tgp-stage.now.sh" }
   ]
 }

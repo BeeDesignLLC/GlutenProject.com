@@ -43,11 +43,11 @@ export default class extends React.Component<Props> {
             on products and brands and loves to share that information to make the
             allergen world easier for others to navigate. Follow her on Instagram{' '}
             <A
-              href="https://www.instagram.com/sew.petite/"
+              href="https://www.instagram.com/slowintention/"
               target="_blank"
               rel="noopener"
             >
-              @sew.petite
+              @slowintention
             </A>.
           </LargeText>
 

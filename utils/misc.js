@@ -1,5 +1,6 @@
 const route = require('path-match')()
 const matchSearchRoute = route('/certified-gluten-free-:searchParam')
+const matchProductRoute = route('/p/:slug')
 
 const urlForQuery = query => {
   const normalizedQuery = query
@@ -24,6 +25,7 @@ const queryFromUrl = url => {
 
 module.exports = {
   matchSearchRoute,
+  matchProductRoute,
   urlForQuery,
   queryFromUrlParam,
   queryFromUrl,
