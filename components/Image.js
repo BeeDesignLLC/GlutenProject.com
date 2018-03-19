@@ -5,10 +5,10 @@ import {layout} from '../utils/styled'
 const Image = system(
   {
     is: 'img',
+    maxWidth: '100%',
   },
   ...layout
 ).extend`
-  max-width: 100%;
 `
 
 Image.displayName = 'Image'
