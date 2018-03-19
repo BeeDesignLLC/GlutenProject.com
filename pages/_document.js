@@ -22,20 +22,28 @@ injectGlobal`
   }
 
   * {
+    appearance: none;
     font-family: prenton, sans-serif;
+    border: 0;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    border: 0;
     outline: none;
     vertical-align: baseline;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+    font-variant-numeric: proportional-nums;
+    font-feature-settings: "pnum";
   }
+
+  a {
+    color: inherit;
+		text-decoration: none;
+	}
 
   [tabindex], a, area, button, input, label, select, summary, textarea {
     touch-action: manipulation;
+  }
+	input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
   }
 
   .screen-reader-text {
@@ -52,10 +60,7 @@ injectGlobal`
   }
 
   mark {
-    background: none;
-    color: black;
-    font-weight: 500;
-    letter-spacing: -0.05ex;
+    text-decoration:underline;
   }
 
   [role="button"], button {

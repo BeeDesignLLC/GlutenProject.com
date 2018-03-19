@@ -54,7 +54,7 @@ const Mailchimp = (props: any) => (
             mb={2}
           />
           <Button type="submit" name="subscribe" ml={2} mb={2}>
-            join the club
+            Join the Club
           </Button>
         </Box>
         {/* real people should not fill this in and expect good things - do not remove this or risk form bot signups */}

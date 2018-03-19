@@ -133,7 +133,7 @@ class SearchBoss extends React.Component<Props, State> {
         searchState={this.state.searchState}
         searchParameters={{filters: 'brandIsHidden:false AND isHidden:false'}}
       >
-        <Configure hitsPerPage={60} analytics={this.state.production} />
+        <Configure hitsPerPage={50} analytics={this.state.production} />
         {this.props.children}
       </InstantSearch>
     )

@@ -5,7 +5,22 @@ import theme from '../theme'
 import {layout, text} from '../utils/styled'
 
 const listStyles = () => css`
-  padding-left: ${theme.space[4]};
+  list-style-position: inside;
+
+  & > li + li {
+    margin-top: ${theme.space[2]};
+  }
+`
+
+const pStyles = () => css`
+  & + & {
+    ${props =>
+      typeof props.mt === 'undefined' && typeof props.m === 'undefined'
+        ? css`
+            margin-top: ${theme.space[3]};
+          `
+        : null};
+  }
 `
 
 const Text = system(
@@ -16,15 +31,9 @@ const Text = system(
   ...text,
   ...layout
 ).extend`
+  ${props => props.is === 'p' && pStyles()}
   ${props => props.is === 'ul' && listStyles()}
 
-  & + & {
-    margin-top: ${theme.space[3]};
-  }
-
-  & > li + li {
-    margin-top: ${theme.space[2]};
-  }
 `
 
 Text.displayName = 'Text'

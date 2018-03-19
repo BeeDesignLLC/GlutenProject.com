@@ -11,6 +11,7 @@ const Box = system(
   'textAlign'
 ).extend`
   display: flex;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
 `
 
 export const Header = Box.withComponent('header')

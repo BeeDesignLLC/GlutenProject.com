@@ -1,6 +1,6 @@
 {
   "rules": [
-    { "pathname": "/link/**", "dest": "tgp-link.now.sh" },
+    { "pathname": "/link/**", "dest": "linkcom.glutenproject.com" },
     { "dest": "tgp-front.now.sh" }
   ]
 }
