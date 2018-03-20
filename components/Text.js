@@ -1,14 +1,15 @@
 // @flow
 import {css} from 'styled-components'
 import system from 'system-components'
-import theme from '../theme'
+import t from '../theme'
 import {layout, text} from '../utils/styled'
 
 const listStyles = () => css`
-  list-style-position: inside;
+  margin-left: ${t.space[4]};
+  padding-left: 0;
 
   & > li + li {
-    margin-top: ${theme.space[2]};
+    margin-top: ${t.space[2]};
   }
 `
 
@@ -17,7 +18,7 @@ const pStyles = () => css`
     ${props =>
       typeof props.mt === 'undefined' && typeof props.m === 'undefined'
         ? css`
-            margin-top: ${theme.space[3]};
+            margin-top: ${t.space[3]};
           `
         : null};
   }
@@ -32,8 +33,7 @@ const Text = system(
   ...layout
 ).extend`
   ${props => props.is === 'p' && pStyles()}
-  ${props => props.is === 'ul' && listStyles()}
-
+  ${props => (props.is === 'ul' || props.is === 'ol') && listStyles()}
 `
 
 Text.displayName = 'Text'

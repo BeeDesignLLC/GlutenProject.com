@@ -13,7 +13,7 @@ export default class extends React.Component<Props> {
     return (
       <App title="The Gluten Project Privacy Policy">
         <Box area="main">
-          <Heading is="h1" fontSize={6} fontStyle="italic" color="black">
+          <Heading is="h1" fontSize={6} fontStyle="italic" color="black" mt={3}>
             Privacy
           </Heading>
 

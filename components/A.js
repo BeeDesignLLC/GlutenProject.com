@@ -15,11 +15,13 @@ const menuStyles = () => css`
 
   & > span {
     align-self: flex-end;
+    flex: 1;
   }
 
   & > svg {
     align-self: center;
     margin-right: ${theme.space[3]};
+    flex-shrink: 0;
   }
 
   &:hover {

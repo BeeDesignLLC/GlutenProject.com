@@ -12,7 +12,7 @@ import SearchBox from '../components/SearchBox'
 import SecondaryText from '../components/SecondaryText'
 import Link from 'next/link'
 import A from './A'
-import {HomeIcon, ManifestoIcon, WhoIcon, HelpIcon} from './Icons'
+import {HomeIcon, ManifestoIcon, WhoIcon, MealDeliveryIcon, HelpIcon} from './Icons'
 import Mailchimp from './Mailchimp'
 import ShareButtons from './ShareButtons'
 import MasterGrid from './MasterGrid'
@@ -109,6 +109,12 @@ class Page extends React.Component<Props> {
                 <span>home</span>
               </A>
             </Link>
+            <Link href="/gluten-free-meal-delivery" passHref prefetch>
+              <A menu mt={4}>
+                <MealDeliveryIcon />
+                <span>Meal Delivery</span>
+              </A>
+            </Link>
             <Link href="/manifesto" passHref prefetch>
               <A menu mt={4}>
                 <ManifestoIcon />
@@ -118,7 +124,7 @@ class Page extends React.Component<Props> {
             <Link href="/who" passHref prefetch>
               <A menu mt={4}>
                 <WhoIcon />
-                <span style={{width: '100%'}}>who&rsquo;s behind this</span>
+                <span>who&rsquo;s behind this</span>
               </A>
             </Link>
             <A

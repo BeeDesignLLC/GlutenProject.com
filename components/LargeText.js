@@ -1,11 +1,27 @@
 // @flow
 import system from 'system-components'
 import {css} from 'styled-components'
-import theme from '../theme'
+import t from '../theme'
 import {layout, text} from '../utils/styled'
 
 const listStyles = () => css`
-  padding-left: ${theme.space[4]};
+  margin-left: ${t.space[4]};
+  padding-left: 0;
+
+  & > li + li {
+    margin-top: ${t.space[1]};
+  }
+`
+
+const pStyles = () => css`
+  & + & {
+    ${props =>
+      typeof props.mt === 'undefined' && typeof props.m === 'undefined'
+        ? css`
+            margin-top: ${t.space[3]};
+          `
+        : null};
+  }
 `
 
 const LargeText = system(
@@ -19,15 +35,8 @@ const LargeText = system(
   line-height: 3.2ex;
   max-width: 35em;
 
-  ${props => props.is === 'ul' && listStyles()}
-
-  & + & {
-    margin-top: ${theme.space[3]};
-  }
-
-  & > li + li {
-    margin-top: ${theme.space[2]};
-  }
+  ${props => props.is === 'p' && pStyles()}
+  ${props => (props.is === 'ul' || props.is === 'ol') && listStyles()}
 `
 
 LargeText.displayName = 'LargeText'
