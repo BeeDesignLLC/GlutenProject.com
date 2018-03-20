@@ -98,7 +98,7 @@ export default class extends React.Component<Props> {
           <LargeText mt={4}>
             Each delivery contains multiple dinners. Each dinner’s recipe is randomly
             chosen. Unfortunately you can’t opt out of certain recipes or ingredients
-            (like eggs). You can only customize your protein.
+            (like eggs). But you can customize your protein.
           </LargeText>
           <LargeText mt={3}>
             The 2-person plan contains 3 dinners (6 servings) per box. The family plan
@@ -118,7 +118,7 @@ export default class extends React.Component<Props> {
           </LargeText>
 
           <Heading is="h3" mt={4}>
-            Green Chef’s Allergan Statement
+            Green Chef’s Allergen Statement
           </Heading>
           <LargeText>
             “Our ingredients are processed and packaged in the same facility, and
