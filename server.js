@@ -35,7 +35,7 @@ const server = micro(
     const parsedUrl = parse(req.url, true)
     const {pathname, query} = parsedUrl
 
-    if (pathname === '/product') {
+    if (pathname === '/product' || pathname === '/search') {
       res.setHeader('Location', '/')
       return micro.send(res, 301)
     }
