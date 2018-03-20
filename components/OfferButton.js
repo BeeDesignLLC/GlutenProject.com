@@ -10,7 +10,9 @@ type Props = {
     price: number,
     merchant: string,
     quantity: number,
+    isAffiliate: boolean,
   },
+  slug: string,
 }
 
 const RefinedButton = Button.extend`
@@ -22,7 +24,7 @@ const RefinedButton = Button.extend`
   text-overflow: ellipsis;
 `
 
-export default ({offer, ...props}: Props) => {
+export default ({offer, slug, ...props}: Props) => {
   let lead = ''
   if (isPresent(offer.quantity) && offer.quantity > 1) {
     lead += `(${offer.quantity}) `
@@ -36,8 +38,29 @@ export default ({offer, ...props}: Props) => {
 
   const link = '/link/offer/' + offer.id
 
+  const trackClick = () => {
+    if (window.location.host === 'glutenproject.com') {
+      const eventName = offer.isAffiliate
+        ? 'clicked-affiliate-product'
+        : 'clicked-product'
+      window.Intercom && window.Intercom('trackEvent', eventName)
+      window.gtag &&
+        window.gtag('event', eventName, {
+          event_category: 'engagement',
+          event_label: slug,
+        })
+    }
+  }
+
   return (
-    <RefinedButton is="a" href={link} target="_blank" rel="noopener nofollow" {...props}>
+    <RefinedButton
+      is="a"
+      href={link}
+      target="_blank"
+      rel="noopener nofollow"
+      onClick={trackClick}
+      {...props}
+    >
       <strong style={{marginRight: 4}}>{lead}</strong>
       {`from ${offer.merchant}`}
     </RefinedButton>

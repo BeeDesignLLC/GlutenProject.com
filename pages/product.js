@@ -18,6 +18,7 @@ import IngredientList from '../components/IngredientList'
 
 type Props = {
   data: any,
+  url: any,
 }
 
 const productQuery = gql`
@@ -81,8 +82,16 @@ class ProductPage extends React.Component<Props> {
     })
   }
 
+  componentDidMount() {
+    window.gtag &&
+      window.gtag('event', 'view-product', {
+        event_category: 'engagement',
+        event_label: this.props.url.query.slug,
+      })
+  }
+
   render() {
-    const {data: {error, Product: product, productImages}} = this.props
+    const {data: {error, Product: product, productImages}, url: {query}} = this.props
     if (error) {
       alert('gql error' + error)
     }
@@ -177,7 +186,9 @@ class ProductPage extends React.Component<Props> {
             alignItems="center"
             maxWidth="100%"
           >
-            {offers.map(offer => <OfferButton offer={offer} key={offer.id} mb={2} />)}
+            {offers.map(offer => (
+              <OfferButton offer={offer} key={offer.id} slug={query.slug} mb={2} />
+            ))}
 
             <SecondaryText>
               <A
