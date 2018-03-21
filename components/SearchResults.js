@@ -21,8 +21,11 @@ const ProductGrid = Grid.extend`
   grid-gap: ${theme.space[4]};
   z-index: 1;
   width: 100%;
-  max-width: 65rem;
   justify-content: center;
+
+  @media (min-width: ${themeGet('breakpoints.1')}) {
+    max-width: 65rem;
+  }
 
   @media (min-width: ${themeGet('breakpoints.2')}) {
     grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
