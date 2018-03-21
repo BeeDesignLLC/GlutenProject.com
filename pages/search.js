@@ -21,8 +21,7 @@ type Props = {
   initialResultsState: Object,
 }
 
-//$FlowFixMe
-class Search extends React.unstable_AsyncComponent<Props> {
+class Search extends React.Component<Props> {
   static async getInitialProps({query}: Object) {
     const initialSearchState = {query: query.q}
     const initialResultsState = await findResultsState(AppForSSR, {initialSearchState})

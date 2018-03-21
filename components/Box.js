@@ -5,7 +5,6 @@ import {layout} from '../utils/styled'
 const Box = system(
   {
     flexDirection: 'column',
-    maxWidth: '100%',
     blacklist: [
       'justifySelf',
       'alignSelf',

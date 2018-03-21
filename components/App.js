@@ -12,7 +12,8 @@ type Props = {
   initialResultsState: Object,
 }
 
-class App extends React.Component<Props> {
+//$FlowFixMe
+class App extends React.unstable_AsyncComponent<Props> {
   componentDidMount() {
     this.props.router.prefetch('/search')
 
