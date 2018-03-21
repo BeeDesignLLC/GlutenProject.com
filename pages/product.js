@@ -176,7 +176,7 @@ class ProductPage extends React.Component<Props> {
                   target="_blank"
                   rel="noopener"
                 >
-                  {product.brand.name + ' Allergan Statement'}
+                  {product.brand.name + ' Allergen Statement'}
                 </A>
               </Text>
             )}
