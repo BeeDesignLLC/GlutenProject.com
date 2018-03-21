@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react'
-import Head from 'next/head'
 import App from '../components/App'
 import Box from '../components/Box'
 import Heading from '../components/Heading'
@@ -13,14 +12,10 @@ type Props = {}
 export default class extends React.Component<Props> {
   render() {
     return (
-      <App title="Certified Gluten-Free Meal Delivery Services | The Gluten Project">
-        <Head>
-          <meta
-            name="description"
-            content="Order without any fear of being glutened! Here you'll find every certified-gluten free meal delivery service."
-          />
-        </Head>
-
+      <App
+        title="Certified Gluten-Free Meal Delivery Services | The Gluten Project"
+        description="Order without any fear of being glutened! Here you'll find every certified-gluten free meal delivery service."
+      >
         <Box area="main">
           <Heading is="h1" fontSize={5} fontStyle="italic" color="black" mt={3}>
             Certified Gluten-Free Meal Delivery Services

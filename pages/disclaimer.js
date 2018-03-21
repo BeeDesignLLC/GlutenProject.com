@@ -10,7 +10,10 @@ type Props = {}
 export default class extends React.Component<Props> {
   render() {
     return (
-      <App title="The Gluten Project Legal Disclaimer">
+      <App
+        title="The Gluten Project Legal Disclaimer"
+        description="Read our entire legal disclaimer."
+      >
         <Box area="main">
           <Heading is="h1" fontSize={6} fontStyle="italic" color="black" mt={3}>
             Legal Disclaimer

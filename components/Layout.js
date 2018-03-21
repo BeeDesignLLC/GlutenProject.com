@@ -16,10 +16,12 @@ import {HomeIcon, ManifestoIcon, WhoIcon, MealDeliveryIcon, HelpIcon} from './Ic
 import Mailchimp from './Mailchimp'
 import ShareButtons from './ShareButtons'
 import MasterGrid from './MasterGrid'
+import MetaDescriptions from './MetaDescriptions'
 
 type Props = {
   children?: React.Node,
   title?: string,
+  description?: string,
   router: Object,
   searchState: Object,
   searchResults: Object,
@@ -30,6 +32,7 @@ class Page extends React.Component<Props> {
     const {
       children,
       title = 'The Gluten Project',
+      description,
       router,
       searchState,
       searchResults,
@@ -40,11 +43,12 @@ class Page extends React.Component<Props> {
           searchState.query
         )} (safe for Celiac) | The Gluten Project`
       : title
-    const socialTitle = searchState.query
-      ? `${searchResults && searchResults.nbHits} Certified Gluten-Free ${titleize(
-          searchState.query
-        )} (safe for Celiac)`
-      : 'Find All Certified Gluten-Free Products'
+
+    const htmlDescription = searchState.query
+      ? `Comprehensive list of all certified gluten-free ${searchState.query} products.`
+      : description
+
+    const socialTitle = htmlTitle.replace(/ \| The Gluten Project$/, '')
 
     return (
       <MasterGrid
@@ -59,6 +63,7 @@ class Page extends React.Component<Props> {
           <title>{htmlTitle}</title>
           <meta property="og:title" content={socialTitle} />
           <meta name="twitter:title" content={socialTitle} />
+          <MetaDescriptions content={htmlDescription} />
         </Head>
 
         {children}
@@ -115,16 +120,16 @@ class Page extends React.Component<Props> {
                 <span>Meal Delivery</span>
               </A>
             </Link>
-            <Link href="/manifesto" passHref prefetch>
-              <A menu mt={4}>
-                <ManifestoIcon />
-                <span>manifesto</span>
-              </A>
-            </Link>
             <Link href="/who" passHref prefetch>
               <A menu mt={4}>
                 <WhoIcon />
                 <span>who&rsquo;s behind this</span>
+              </A>
+            </Link>
+            <Link href="/manifesto" passHref prefetch>
+              <A menu mt={4}>
+                <ManifestoIcon />
+                <span>manifesto</span>
               </A>
             </Link>
             <A

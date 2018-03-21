@@ -11,7 +11,10 @@ type Props = {}
 export default class extends React.Component<Props> {
   render() {
     return (
-      <App title="Manifesto of The Gluten Project">
+      <App
+        title="Manifesto of The Gluten Project"
+        description="We exist to fight for the millions living with gluten disorders and other food allergies."
+      >
         <HugeHeading>Manifesto</HugeHeading>
 
         <Box area="main">

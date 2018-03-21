@@ -12,7 +12,10 @@ type Props = {}
 export default class extends React.Component<Props> {
   render() {
     return (
-      <App title="Who's Behind The Gluten Project">
+      <App
+        title="Who's Behind The Gluten Project"
+        description="An ambitious young couple started The Gluten Project to solve their own problem. Click on through to see who they are!"
+      >
         <HugeHeading>Who</HugeHeading>
 
         <Box area="main" style={{overflowY: 'auto'}}>
