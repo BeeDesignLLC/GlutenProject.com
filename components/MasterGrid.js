@@ -188,7 +188,7 @@ const MasterGrid = Grid.extend`
     grid-template-columns: repeat(10, 1fr) repeat(2, minmax(5rem, 1fr));
     grid-template-rows: ${props =>
       props.path === '/product'
-        ? 'minmax(7.5rem, auto) auto auto auto auto auto '
+        ? 'minmax(7.5rem, auto) minmax(0,auto) minmax(0,auto) minmax(0,auto) minmax(0,auto) minmax(0,auto)'
         : 'minmax(7.5rem, auto) auto'};
     grid-gap: ${theme.space[5]};
   }
