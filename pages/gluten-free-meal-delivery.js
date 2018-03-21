@@ -4,6 +4,7 @@ import App from '../components/App'
 import Box from '../components/Box'
 import Heading from '../components/Heading'
 import LargeText from '../components/LargeText'
+import SmallText from '../components/SmallText'
 import Image from '../components/Image'
 import A from '../components/A'
 
@@ -113,9 +114,10 @@ export default class extends React.Component<Props> {
           </LargeText>
 
           <Heading is="h3" mt={4}>
-            Green Chef’s Allergen Statement
+            Green Chef’s Statement on Allergens Besides Gluten
           </Heading>
-          <LargeText>
+          <SmallText>(Gluten is not an allergen)</SmallText>
+          <LargeText mt={3}>
             “Our ingredients are processed and packaged in the same facility, and
             cross-contact with major food allergens may occur. While we follow
             industry-leading best practices in safe food handling, trace amounts of
