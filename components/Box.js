@@ -7,6 +7,7 @@ const Box = system(
     flexDirection: 'column',
     blacklist: [
       'justifySelf',
+      'alignSelf',
       'flexDirection',
       'flexWrap',
       'justifyContent',

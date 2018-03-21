@@ -5,6 +5,7 @@ import theme from '../theme'
 import {themeGet} from 'styled-system'
 import {connectInfiniteHits, connectStateResults} from 'react-instantsearch/connectors'
 import title from 'title'
+import isPresent from 'is-present'
 
 import Grid from '../components/Grid'
 import Box from '../components/Box'
@@ -58,19 +59,21 @@ const SearchResults = ({
         </Box>
       )}
 
-      <Box area="main" alignItems="center">
-        <ProductGrid mb={4}>
-          {hits.map(hit => <ProductPreview product={hit} key={hit.objectID} />)}
-        </ProductGrid>
+      {isPresent(searchResults.query) && (
+        <Box area="main" alignItems="center">
+          <ProductGrid mb={4}>
+            {hits.map(hit => <ProductPreview product={hit} key={hit.objectID} />)}
+          </ProductGrid>
 
-        {hasMore ? (
-          <Button onClick={refine} alignSelf="center">
-            Load More
-          </Button>
-        ) : (
-          <Text alignSelf="center">THE END</Text>
-        )}
-      </Box>
+          {hasMore ? (
+            <Button onClick={refine} alignSelf="center">
+              Load More
+            </Button>
+          ) : (
+            <Text alignSelf="center">THE END</Text>
+          )}
+        </Box>
+      )}
     </React.Fragment>
   )
 }

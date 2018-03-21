@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react'
+import ReactDOM from 'react-dom'
 import Link from 'next/link'
 import {connectSearchBox, connectStateResults} from 'react-instantsearch/connectors'
 import {withRouter} from 'next/router'
@@ -96,72 +97,107 @@ type Props = {
   area: string,
   router: Object,
 }
+type State = {
+  value: string,
+}
 
-const SearchBox = ({
-  currentRefinement,
-  refine,
-  searchResults,
-  area,
-  router: {pathname, push, query: {ssr}},
-}: Props) => (
-  <Wrapper area={area} flexDirection="row" alignItems="center">
-    <SearchForm
-      onSubmit={e => {
-        e.preventDefault()
-        window.document.activeElement.blur()
-        window.scrollTo(0, 0)
-      }}
-      onReset={e => {
-        e.preventDefault()
-        refine('')
+class SearchBox extends React.Component<Props, State> {
+  state = {
+    value: '',
+  }
 
-        const searchInput = window.document.querySelector('#global-product-search')
-        if (searchInput) searchInput.focus()
-      }}
-      action="."
-      role="search"
-    >
-      <Input
-        id="global-product-search"
-        value={ssr ? '' : currentRefinement}
-        placeholder="What can we find for you?"
-        onChange={e => refine(e.target.value)}
-        onFocus={() => {
-          if (pathname !== '/search') {
-            push('/search')
-          }
-        }}
-        type="search"
-      />
-      <label htmlFor="global-product-search">
-        <span className="screen-reader-text">Search The Gluten Project For:</span>
-      </label>
-      <SearchIconButton type="submit">
-        <span className="screen-reader-text">Search</span>
-      </SearchIconButton>
-      {currentRefinement && (
-        <ClearIconButton type="reset">
-          <span className="screen-reader-text">reset search</span>
-        </ClearIconButton>
-      )}
-    </SearchForm>
-    {currentRefinement &&
-      searchResults && (
-        <SmallText
-          width="50%"
-          style={{position: 'absolute', left: 'calc(100% + 0.6rem)', bottom: 10}}
-          className="mobile-hide"
+  syncUpdate(fn, cb) {
+    //$FlowFixMe
+    ReactDOM.flushSync(() => {
+      this.setState(fn, cb)
+    })
+  }
+
+  handleFocus = () => {
+    const {router} = this.props
+    if (router.pathname !== '/search') {
+      router.push('/search')
+    }
+  }
+
+  handleChange = ({target: {value}}) => {
+    this.syncUpdate(() => ({value}))
+    this.props.refine(value)
+    window.scrollTo(0, 0)
+  }
+
+  handleSubmit = event => {
+    window.document.activeElement.blur()
+    window.scrollTo(0, 0)
+    event.preventDefault()
+  }
+
+  handleReset = event => {
+    this.syncUpdate(() => ({value: ''}))
+    this.props.refine('')
+    window.scrollTo(0, 0)
+    event.preventDefault()
+
+    const searchInput = window.document.querySelector('#global-product-search')
+    if (searchInput) searchInput.focus()
+    // this._input.focus()
+  }
+
+  render() {
+    const {currentRefinement, searchResults, area} = this.props
+
+    // window.i = this._input
+    return (
+      <Wrapper area={area} flexDirection="row" alignItems="center">
+        <SearchForm
+          onSubmit={this.handleSubmit}
+          onReset={this.handleReset}
+          action="."
+          role="search"
         >
-          {searchResults.nbHits} results
-        </SmallText>
-      )}
+          <Input
+            id="global-product-search"
+            value={this.state.value}
+            onChange={this.handleChange}
+            onFocus={this.handleFocus}
+            placeholder="What can we find for you?"
+            type="search"
+            innerRef={r => {
+              //$FlowFixMe
+              this._input = r
+            }}
+          />
+          <label htmlFor="global-product-search">
+            <span className="screen-reader-text">Search The Gluten Project For:</span>
+          </label>
+          <SearchIconButton type="submit">
+            <span className="screen-reader-text">Search</span>
+          </SearchIconButton>
+          {currentRefinement && (
+            <ClearIconButton type="reset">
+              <span className="screen-reader-text">reset search</span>
+            </ClearIconButton>
+          )}
+        </SearchForm>
+        {currentRefinement &&
+          searchResults && (
+            <SmallText
+              width="50%"
+              style={{position: 'absolute', left: 'calc(100% + 0.6rem)', bottom: 10}}
+              className="mobile-hide"
+            >
+              {searchResults.nbHits} results
+            </SmallText>
+          )}
 
-    <Link href="/" passHref>
-      <A color="white" ml={2} className="mobile-show">
-        <HomeIcon />
-      </A>
-    </Link>
-  </Wrapper>
-)
+        <Link href="/" passHref>
+          <A color="white" ml={2} className="mobile-show">
+            <HomeIcon />
+          </A>
+        </Link>
+      </Wrapper>
+    )
+  }
+}
 
 export default withRouter(connectSearchBox(connectStateResults(SearchBox)))

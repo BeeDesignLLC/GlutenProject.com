@@ -28,6 +28,15 @@ const Text = system(
   {
     is: 'p',
     fontSize: 1,
+    blacklist: [
+      'justifySelf',
+      'alignSelf',
+      'flexDirection',
+      'justifyContent',
+      'alignItems',
+      'textAlign',
+      'lineHeight',
+    ],
   },
   ...text,
   ...layout

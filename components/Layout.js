@@ -88,7 +88,7 @@ class Page extends React.Component<Props> {
           alignItems={['center', 'flex-end']}
           px={[4, 0]}
         >
-          <SecondaryText fontStyle="normal" textAlign={['center', 'right']}>
+          <SecondaryText fontSize={0} fontStyle="normal" textAlign={['center', 'right']}>
             We are not endorsed by, authorized, or in any way officially connected with
             the{' '}
             <A href="http://www.gluten.org" target="_blank" rel="noopener">
@@ -195,7 +195,9 @@ class Page extends React.Component<Props> {
             Project will be sustainable over the long term. Thank you for using them! :)
           </SecondaryText>
           <Link href="/disclosure" passHref>
-            <A mt={2}>Full Affiliate Disclosure</A>
+            <A mt={2} fontStyle="italic">
+              Full Affiliate Disclosure
+            </A>
           </Link>
 
           <Logo mt={5} mx={['auto', 0]} mb={[4, 0]} />
