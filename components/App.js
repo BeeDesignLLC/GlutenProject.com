@@ -17,11 +17,13 @@ class App extends React.unstable_AsyncComponent<Props> {
   componentDidMount() {
     this.props.router.prefetch('/search')
 
-    window.Intercom('boot', {
-      app_id: 's97lyn5h',
-      horizontal_padding: 25,
-      vertical_padding: 25,
-    })
+    if (window.Intercom) {
+      window.Intercom('boot', {
+        app_id: 's97lyn5h',
+        horizontal_padding: 25,
+        vertical_padding: 25,
+      })
+    }
 
     this.props.router.onRouteChangeComplete = () => {
       if (window.location.host === 'glutenproject.com') {

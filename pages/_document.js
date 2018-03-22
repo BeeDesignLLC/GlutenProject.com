@@ -4,6 +4,7 @@ import Document, {Head, Main, NextScript} from 'next/document'
 import {ServerStyleSheet, injectGlobal} from 'styled-components'
 import theme from '../theme'
 import TrackingScripts from '../components/TrackingScripts'
+import Typekit from '../components/Typekit'
 
 // THIS IS FOR PREVENT SCROLL ON TAP
 // html,body{
@@ -136,14 +137,14 @@ export default class MyDocument extends Document {
           />
           <meta name="twitter:site" content="@glutenprojecthq" />
 
-          <link rel="stylesheet" href="https://use.typekit.net/eom3pqo.css" />
           {this.props.styleTags}
 
-          <TrackingScripts production={true} />
+          <Typekit />
         </Head>
         <body>
           <Main />
           <NextScript />
+          <TrackingScripts production={process.env.NODE_ENV === 'production'} />
         </body>
       </html>
     )
