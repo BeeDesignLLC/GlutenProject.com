@@ -25,12 +25,15 @@ const handleErrors = fn => async (req, res) => {
 
 const server = micro(
   handleErrors(async (req, res) => {
-    // WARNING WARNING WARNING WARNING WARNING WARNING WARNING
-    // This prevents search engines from indexing anything except for the production instance
-    if (req.headers.host !== 'tgp-front.now.sh') {
+    // WARNING      WARNING      WARNING      WARNING
+    if (req.headers.host === 'tgp-front.now.sh') {
+      app.setAssetPrefix('https://d3kbxi1bly2af7.cloudfront.net')
+    } else {
+      // This prevents search engines from indexing anything except for the production instance
       res.setHeader('x-robots-tag', 'noindex, nofollow')
+      app.setAssetPrefix('')
     }
-    // WARNING WARNING WARNING WARNING WARNING WARNING WARNING
+    // WARNING      WARNING      WARNING      WARNING
 
     const parsedUrl = parse(req.url, true)
     const {pathname, query} = parsedUrl
