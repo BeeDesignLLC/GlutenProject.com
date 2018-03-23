@@ -233,12 +233,7 @@ class OfferPreview extends React.Component<Props, State> {
             </IngredientsCard>
           )}
 
-        <Link
-          href={`/product?slug=${product.slug}`}
-          as={`/p/${product.slug}`}
-          passHref
-          prefetch
-        >
+        <Link href={`/product?slug=${product.slug}`} as={`/p/${product.slug}`} passHref>
           <Box is="a" height="100%" bg="white">
             <OfferGrid
               hasDetails={hasDetails}

@@ -6,21 +6,24 @@ export default () => (
     <script
       dangerouslySetInnerHTML={{
         __html: `
-				if (window.localStorage && window.localStorage._tk_cache) {
-					document.documentElement.classList.add('wf-active');
-					var script = document.createElement('script');
-					script.innerHTML = localStorage._tk_cache + ";(function () {var timeout = setTimeout(function () {document.documentElement.classList.remove('wf-active');}, 300); Typekit.load({ async: false, active: function () { clearTimeout(timeout); }});})();";
-					document.head.appendChild(script);
-				}
-				window._tk_onload = function () {
-					var req = new XMLHttpRequest()
-					req.addEventListener("load", function () {
-						window.localStorage._tk_cache = this.responseText;
-					});
-					req.open("GET", "https://use.typekit.net/eom3pqo.js");
-					req.send();
-				};
-			`,
+					if (window.localStorage && window.localStorage._tk_cache) {
+						document.documentElement.classList.add('wf-active');
+						var script = document.createElement('script');
+						script.innerHTML = localStorage._tk_cache + ";(function () {var timeout = setTimeout(function () {document.documentElement.classList.remove('wf-active');}, 300); Typekit.load({ async: false, active: function () { clearTimeout(timeout); }});})();";
+						document.head.appendChild(script);
+					}
+					window._tk_onload = function () {
+						setTimeout(function () {
+							//Trigger new request so response can be saved to local storage
+							var req = new XMLHttpRequest();
+							req.addEventListener("load", function () {
+								window.localStorage._tk_cache = this.responseText;
+							});
+							req.open("GET", "https://use.typekit.net/eom3pqo.js");
+							req.send();
+						}, 3000)
+					};
+				`,
       }}
     />
     <script
@@ -29,7 +32,13 @@ export default () => (
 					var ts = document.createElement('script');
 					ts.src = "https://use.typekit.net/eom3pqo.js";
           ts.async = true;
-					ts.onload = function() { Typekit.load({ async: true, loading: window._tk_onload }); };
+					ts.onload = function() {
+						if (window.localStorage && window.localStorage._tk_cache) {
+              window._tk_onload();
+						} else {
+							Typekit.load({async: true, loading: window._tk_onload});
+						}
+					};
 					document.head.appendChild(ts);
 				`,
       }}

@@ -17,6 +17,13 @@ class App extends React.unstable_AsyncComponent<Props> {
   componentDidMount() {
     this.props.router.prefetch('/search')
 
+    setTimeout(() => {
+      this.props.router.prefetch('/')
+      this.props.router.prefetch('/product')
+      this.props.router.prefetch('/gluten-free-meal-delivery')
+      this.props.router.prefetch('/who')
+    }, 1500)
+
     if (window.Intercom) {
       window.Intercom('boot', {
         app_id: 's97lyn5h',
@@ -27,7 +34,7 @@ class App extends React.unstable_AsyncComponent<Props> {
 
     this.props.router.onRouteChangeComplete = () => {
       if (window.location.host === 'glutenproject.com') {
-        window.Intercom('update')
+        window.Intercom && window.Intercom('update')
         window.gtag && window.gtag('event', 'page_view')
       }
     }

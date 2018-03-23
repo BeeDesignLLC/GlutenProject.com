@@ -108,25 +108,25 @@ class Page extends React.Component<Props> {
           my={[4, 0]}
         >
           <Box alignItems="flex-start">
-            <Link href="/" passHref prefetch>
+            <Link href="/" passHref>
               <A menu>
                 <HomeIcon />
                 <span>home</span>
               </A>
             </Link>
-            <Link href="/gluten-free-meal-delivery" passHref prefetch>
+            <Link href="/gluten-free-meal-delivery" passHref>
               <A menu mt={4}>
                 <MealDeliveryIcon />
                 <span>Meal Delivery</span>
               </A>
             </Link>
-            <Link href="/who" passHref prefetch>
+            <Link href="/who" passHref>
               <A menu mt={4}>
                 <WhoIcon />
                 <span>who&rsquo;s behind this</span>
               </A>
             </Link>
-            <Link href="/manifesto" passHref prefetch>
+            <Link href="/manifesto" passHref>
               <A menu mt={4}>
                 <ManifestoIcon />
                 <span>manifesto</span>

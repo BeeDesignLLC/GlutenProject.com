@@ -2,6 +2,7 @@
 import * as React from 'react'
 import Router from 'next/router'
 import debounce from 'debounce-fn'
+import isPresent from 'is-present'
 import {urlForQuery} from '../utils/misc'
 import {Configure} from 'react-instantsearch/dom'
 import InstantSearch from './InstantSearch'
@@ -29,46 +30,22 @@ const debouncedTrackSearch = debounce(
 class SearchBoss extends React.Component<Props, State> {
   state = {
     searchState: this.props.initialSearchState || {query: this.props.q || ''},
-    production: false,
+    production: true,
   }
 
   componentDidMount() {
-    this.setState({
-      searchState: {query: Router.query.q || ''},
-    })
-
     if (Router.pathname === '/search') {
       const searchInput = window.document.querySelector('#global-product-search')
       if (searchInput) searchInput.focus()
     }
 
-    if (window.location.host === 'glutenproject.com') {
-      this.setState({production: true})
-    }
-
-    Router.onRouteChangeComplete = () => {
-      if (
-        Router.asPath.startsWith('/search') ||
-        Router.asPath.startsWith('/certified-gluten-free')
-      ) {
-        const currentQuery =
-          (this.state.searchState.query && this.state.searchState.query.trim()) || ''
-        const urlQuery = (Router.query.q && Router.query.q.trim()) || ''
-        if (currentQuery != urlQuery) {
-          // console.log('UPDATE_FROM_URL')
-          this.setState(state => ({
-            searchState: {
-              ...state.searchState,
-              query: urlQuery,
-            },
-          }))
-        }
-      }
+    if (window.location.host !== 'glutenproject.com') {
+      this.setState({production: false})
     }
   }
 
   onSearchStateChange = (searchState: Object) => {
-    const newQuery = searchState.query.trim()
+    const newQuery = isPresent(searchState.query) ? searchState.query.trim() : ''
 
     if (!this.state.searchState.query && newQuery) {
       // Starting search
@@ -103,7 +80,10 @@ class SearchBoss extends React.Component<Props, State> {
       Router.push('/search', '/search', {
         shallow: true,
       })
-    } else if (this.state.searchState.query !== newQuery) {
+    } else if (
+      isPresent(this.state.searchState.query) &&
+      this.state.searchState.query !== newQuery
+    ) {
       // Changing search
       // console.log('CHANGE_SEARCH')
       debouncedRouterReplace(
