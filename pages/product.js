@@ -91,7 +91,7 @@ class ProductPage extends React.Component<Props> {
   }
 
   render() {
-    const {data: {error, Product: product, productImages}, url: {query}} = this.props
+    const {data: {error, Product: product, productImages = {}}, url: {query}} = this.props
     if (error) {
       alert('gql error' + error)
     }

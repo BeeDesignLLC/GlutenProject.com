@@ -5,11 +5,11 @@ import Image from './Image'
 
 type Props = {
   images: {
-    dpr1: string,
-    dpr2: string,
-    dpr3: string,
-    dpr4: string,
-    amazon: string,
+    dpr1?: string,
+    dpr2?: string,
+    dpr3?: string,
+    dpr4?: string,
+    amazon?: string,
   },
 }
 
@@ -29,9 +29,9 @@ export default ({images, ...props}: Props) => {
     tags.src = images.dpr1
     tags.srcSet = `
       ${images.dpr1} 1x,
-      ${images.dpr2} 2x,
-      ${images.dpr3} 3x,
-      ${images.dpr4} 4x
+      ${images.dpr2 || ''} 2x,
+      ${images.dpr3 || ''} 3x,
+      ${images.dpr4 || ''} 4x
     `
   } else if (images.amazon) {
     tags.src = images.amazon
