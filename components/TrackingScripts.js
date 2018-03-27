@@ -6,12 +6,14 @@ const GoogleAnalyticsScript = () => (
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107144503-2" />
     <script
       dangerouslySetInnerHTML={{
-        __html: `window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-107144503-2');
-`,
+        __html: `
+					setTimeout(function() {
+						window.dataLayer = window.dataLayer || [];
+						function gtag(){dataLayer.push(arguments);}
+						gtag('js', new Date());
+						gtag('config', 'UA-107144503-2');
+					}, 100);
+				`,
       }}
     />
   </React.Fragment>

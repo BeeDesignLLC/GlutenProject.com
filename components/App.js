@@ -15,14 +15,7 @@ type Props = {
 //$FlowFixMe
 class App extends React.unstable_AsyncComponent<Props> {
   componentDidMount() {
-    this.props.router.prefetch('/search')
-
-    setTimeout(() => {
-      this.props.router.prefetch('/')
-      this.props.router.prefetch('/product')
-      this.props.router.prefetch('/gluten-free-meal-delivery')
-      this.props.router.prefetch('/who')
-    }, 1500)
+    this.prefetchResources()
 
     if (window.Intercom) {
       window.Intercom('boot', {
@@ -44,6 +37,19 @@ class App extends React.unstable_AsyncComponent<Props> {
     if (window.Raven) {
       window.Raven.captureException(error, {extra: errorInfo})
     }
+  }
+
+  prefetchResources = async () => {
+    setTimeout(() => {
+      this.props.router.prefetch('/search')
+    }, 0)
+
+    setTimeout(() => {
+      this.props.router.prefetch('/')
+      this.props.router.prefetch('/product')
+      this.props.router.prefetch('/gluten-free-meal-delivery')
+      this.props.router.prefetch('/who')
+    }, 1500)
   }
 
   render() {
