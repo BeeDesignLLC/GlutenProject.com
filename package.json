@@ -9,12 +9,14 @@
   "scripts": {
     "start": "node server.js",
     "build": "next build",
+    "analyze": "BUNDLE_ANALYZE=both yarn build",
     "now-start": "NODE_ENV=production node server.js",
     "lint-format": "eslint --ext .js pages --fix",
     "test": "exit",
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "@zeit/next-bundle-analyzer": "^0.1.1",
     "apollo-boost": "0.1.3",
     "currency.js": "1.1.0",
     "debounce-fn": "1.0.0",
