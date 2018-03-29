@@ -13,15 +13,17 @@ export default () => (
 						document.head.appendChild(script);
 					}
 					window._tk_onload = function () {
-						setTimeout(function () {
-							//Trigger new request so response can be saved to local storage
-							var req = new XMLHttpRequest();
-							req.addEventListener("load", function () {
-								window.localStorage._tk_cache = this.responseText;
-							});
-							req.open("GET", "https://use.typekit.net/eom3pqo.js");
-							req.send();
-						}, 3000)
+            if (window.localStorage && window.localStorage._tk_cache) {
+              setTimeout(function () {
+                //Trigger new request so response can be saved to local storage
+                var req = new XMLHttpRequest();
+                req.addEventListener("load", function () {
+                  window.localStorage._tk_cache = this.responseText;
+                });
+                req.open("GET", "https://use.typekit.net/eom3pqo.js");
+                req.send();
+              }, 3000)
+            }
 					};
 				`,
       }}
