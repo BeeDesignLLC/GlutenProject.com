@@ -3,7 +3,7 @@
 
 # The Gluten Project
 
-<a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a> [![Greenkeeper badge](https://badges.greenkeeper.io/BeeDesignLLC/GlutenProject.com.svg)](https://greenkeeper.io/) 
+<a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
 
 **The first website in the world for browsing all 35,000+ certified gluten free products!**
