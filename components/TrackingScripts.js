@@ -9,10 +9,10 @@ const GoogleAnalyticsScript = () => (
         __html: `
 					setTimeout(function() {
 						window.dataLayer = window.dataLayer || [];
-						function gtag(){dataLayer.push(arguments);}
+						window.gtag = function (){dataLayer.push(arguments);}
 						gtag('js', new Date());
 						gtag('config', 'UA-107144503-2');
-					}, 100);
+					}, 0);
 				`,
       }}
     />
