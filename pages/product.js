@@ -183,7 +183,7 @@ class ProductPage extends React.Component<Props> {
           </Box>
         </Box>
 
-        <Box area="links" justifyContent="center">
+        <Box area="links" justifyContent="center" maxWidth="100%">
           <Box
             alignSelf={['center', 'center', 'center', 'flex-start']}
             alignItems="center"

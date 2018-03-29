@@ -18,15 +18,24 @@ const Input = system(
   height: 2rem;
   /* Non-standard font size to prevent iOS zoom-on-focus */
   font-size: 16px;
-  font-family: prenton, sans-serif;
   font-weight: 500;
   padding: 0 0.7rem;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+  html:not(.wf-active) & {
+    font-weight: 700;
+  }
 
   &::placeholder {
     color: black;
     font-style: italic;
     opacity: 0.5;
+  }
+
+  html:not(.wf-active) &::placeholder {
+    font-weight: 700;
+    letter-spacing: -1px;
+    word-spacing: -1px;
   }
 
   &:focus {

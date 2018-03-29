@@ -43,6 +43,12 @@ const Text = system(
 ).extend`
   ${props => props.is === 'p' && pStyles()}
   ${props => (props.is === 'ul' || props.is === 'ol') && listStyles()}
+
+  html:not(.wf-active) & {
+    line-height: 1.4;
+    letter-spacing: -0.4px;
+    word-spacing: -1px;
+  }
 `
 
 Text.displayName = 'Text'

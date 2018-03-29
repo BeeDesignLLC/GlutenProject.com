@@ -22,9 +22,16 @@ injectGlobal`
     -moz-osx-font-smoothing: grayscale;
   }
 
+
+  html.wf-active, html.wf-active input {
+    font-family: prenton, sans-serif;
+  }
+  html:not(.wf-active), html:not(.wf-active) input {
+    font-family: Trebuchet MS, sans-serif;
+  }
+
   * {
     appearance: none;
-    font-family: prenton, sans-serif;
     border: 0;
     box-sizing: border-box;
     margin: 0;

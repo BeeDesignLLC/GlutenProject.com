@@ -37,6 +37,13 @@ const LargeText = system(
 
   ${props => props.is === 'p' && pStyles()}
   ${props => (props.is === 'ul' || props.is === 'ol') && listStyles()}
+
+  html:not(.wf-active) & {
+    font-size: 20px;
+    letter-spacing: -0.6px
+    word-spacing: -0.9px
+    line-height: 2.9ex;
+  }
 `
 
 LargeText.displayName = 'LargeText'

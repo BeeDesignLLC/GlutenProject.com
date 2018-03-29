@@ -13,7 +13,13 @@ const Heading = system(
   },
   ...text,
   ...layout
-)
+).extend`
+  html:not(.wf-active) & {
+    line-height: 1.4
+    letter-spacing: -1px
+    word-spacing: -3px
+  }
+`
 
 Heading.displayName = 'Heading'
 export default Heading

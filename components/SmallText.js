@@ -7,11 +7,17 @@ const SmallText = system(
     is: 'p',
     fontSize: 0,
     color: 'grays.0',
+    letterSpacing: '0.08ex',
   },
   ...text,
   ...layout
 ).extend`
-  letter-spacing: 0.08ex;
+
+  html:not(.wf-active) & {
+    font-size: 12px;
+    word-spacing: -1.1px;
+    line-height: 1.5;
+  }
 `
 
 SmallText.displayName = 'SmallText'

@@ -9,6 +9,7 @@ import Logo from '../components/Logo'
 import PageHeading from '../components/PageHeading'
 import Heading from '../components/Heading'
 import SearchBox from '../components/SearchBox'
+import SmallText from '../components/SmallText'
 import SecondaryText from '../components/SecondaryText'
 import Link from 'next/link'
 import A from './A'
@@ -88,7 +89,7 @@ class Page extends React.Component<Props> {
           alignItems={['center', 'flex-end']}
           px={[4, 0]}
         >
-          <SecondaryText fontSize={0} fontStyle="normal" textAlign={['center', 'right']}>
+          <SmallText color="grays.2" textAlign={['center', 'right']} letterSpacing="0">
             We are not endorsed by, authorized, or in any way officially connected with
             the{' '}
             <A href="http://www.gluten.org" target="_blank" rel="noopener">
@@ -98,7 +99,7 @@ class Page extends React.Component<Props> {
             <A href="http://www.gfco.org/" target="_blank" rel="noopener">
               Gluten-Free Certification Organization
             </A>.
-          </SecondaryText>
+          </SmallText>
         </Aside>
 
         <Nav

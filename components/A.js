@@ -44,6 +44,12 @@ const menuStyles = () => css`
       margin-right: ${theme.space[2]};
     }
   }
+
+  html:not(.wf-active) & {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.45ex;
+  }
 `
 
 const buttonStyles = () => css`

@@ -30,7 +30,7 @@ const Button = system(
   flex-shrink: 0;
   letter-spacing: 0.15ex;
   outline: none;
-  padding: ${props => (props.tiny ? '0rem 0.5rem 0.1rem' : '0.25rem 0.6rem 0.25rem')};
+  padding: ${props => (props.tiny ? '0rem 0.5rem 0.1rem' : '0.45rem 0.6rem')};
   text-decoration: none;
 
   ${props => props.tiny && 'font-size: ' + theme.fontSizes[0] + ';'}

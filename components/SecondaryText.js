@@ -18,6 +18,13 @@ const SecondaryText = system(
   & + & {
     margin-top: ${theme.space[3]};
   }
+
+  html:not(.wf-active) & {
+    font-size: 15px;
+    letter-spacing: -0.6px;
+    word-spacing: -1.1px;
+    line-height: 1.5;
+  }
 `
 
 SecondaryText.displayName = 'SecondaryText'
