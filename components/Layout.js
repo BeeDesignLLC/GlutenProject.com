@@ -46,7 +46,9 @@ class Page extends React.Component<Props> {
       : title
 
     const htmlDescription = searchState.query
-      ? `Comprehensive list of all certified gluten-free ${searchState.query} products.`
+      ? `We've compiled the entire list of all certified gluten-free ${
+          searchState.query
+        } products in one place. Additionally, we have where to buy the product, ingredient lists, and reviews. This is your one-stop shop for everything gluten-free.`
       : description
 
     const socialTitle = htmlTitle.replace(/ \| The Gluten Project$/, '')

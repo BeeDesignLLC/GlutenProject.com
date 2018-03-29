@@ -12,8 +12,8 @@ export default class extends React.Component<Props> {
   render() {
     return (
       <App
-        title="Manifesto of The Gluten Project"
-        description="We exist to fight for the millions living with gluten disorders and other food allergies."
+        title="The Gluten Project Manifesto"
+        description="We exist to: Fight for the millions living with gluten disorders and other food allergies; Innovate on the experience of finding and buying allergy-safe products; Build a strong, supportive community of people who care."
       >
         <HugeHeading>Manifesto</HugeHeading>
 
