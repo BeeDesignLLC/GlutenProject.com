@@ -16,7 +16,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@zeit/next-bundle-analyzer": "^0.1.1",
+    "@zeit/next-bundle-analyzer": "0.1.1",
     "apollo-boost": "0.1.3",
     "currency.js": "1.1.0",
     "debounce-fn": "1.0.0",
