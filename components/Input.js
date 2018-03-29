@@ -17,6 +17,7 @@ const Input = system(
   caret-color: currentColor;
   height: 2rem;
   /* Non-standard font size to prevent iOS zoom-on-focus */
+  font-family: inherit;
   font-size: 16px;
   font-weight: 500;
   padding: 0 0.7rem;

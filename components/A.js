@@ -77,6 +77,7 @@ const Anchor = system(
 ).extend`
   cursor: pointer;
   fill: currentColor;
+  font-family: inherit;
   text-decoration: none;
 
   &:hover {

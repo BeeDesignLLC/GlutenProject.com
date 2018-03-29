@@ -22,11 +22,10 @@ injectGlobal`
     -moz-osx-font-smoothing: grayscale;
   }
 
-
-  html.wf-active, html.wf-active input {
+  html.wf-active {
     font-family: prenton, sans-serif;
   }
-  html:not(.wf-active), html:not(.wf-active) input {
+  html:not(.wf-active) {
     font-family: Trebuchet MS, sans-serif;
   }
 
