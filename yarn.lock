@@ -1859,9 +1859,9 @@ cssom@0.3.x, "cssom@>= 0.3.2 < 0.4.0":
   dependencies:
     cssom "0.3.x"
 
-currency.js@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/currency.js/-/currency.js-1.1.0.tgz#8f2746b4e4286a1b1eff87e79e7587e9af710b09"
+currency.js@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/currency.js/-/currency.js-1.1.1.tgz#7d1bb89e42e1b809cc7e46344f9eac07926a75ac"
 
 cyclist@~0.2.2:
   version "0.2.2"
