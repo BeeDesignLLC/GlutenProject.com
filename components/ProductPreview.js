@@ -247,8 +247,7 @@ class OfferPreview extends React.Component<Props, State> {
               </Box>
 
               {isPresent(product.thumbnails) &&
-                (isPresent(product.thumbnails.dpr1) ||
-                  isPresent(product.thumbnails.amazon)) && (
+                isPresent(product.thumbnails.dpr1) && (
                   <SquareBox area="image" p={4}>
                     <ProductImage
                       images={product.thumbnails}

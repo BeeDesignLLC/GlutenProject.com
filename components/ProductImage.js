@@ -9,7 +9,6 @@ type Props = {
     dpr2?: string,
     dpr3?: string,
     dpr4?: string,
-    amazon?: string,
   },
 }
 
@@ -33,8 +32,6 @@ export default ({images, ...props}: Props) => {
       ${images.dpr3 || ''} 3x,
       ${images.dpr4 || ''} 4x
     `
-  } else if (images.amazon) {
-    tags.src = images.amazon
   } else {
     //eslint-disable-next-line no-console
     console.log('No image found')

@@ -51,7 +51,6 @@ const productQuery = gql`
       dpr2
       dpr3
       dpr4
-      amazon
     }
   }
 `
@@ -122,7 +121,7 @@ class ProductPage extends React.Component<Props> {
           <Name>{product.name}</Name>
         </Box>
 
-        {(isPresent(productImages.dpr1) || isPresent(productImages.amazon)) && (
+        {isPresent(productImages.dpr1) && (
           <SquareBox area="image">
             <ProductImage
               images={productImages}
