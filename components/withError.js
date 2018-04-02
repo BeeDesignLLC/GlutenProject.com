@@ -12,7 +12,9 @@ export default (Component: PropTypes.node) =>
   class extends React.Component<Props> {
     static async getInitialProps(ctx: any) {
       const props = await Component.getInitialProps(ctx)
-      if (isPresent(ctx.res)) ctx.res.statusCode = props.statusCode
+      if (isPresent(props.statusCode) && isPresent(ctx.res)) {
+        ctx.res.statusCode = props.statusCode
+      }
       return props
     }
 
