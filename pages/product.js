@@ -3,6 +3,7 @@ import * as React from 'react'
 import gql from 'graphql-tag'
 import apollo from '../lib/apollo'
 import isPresent from 'is-present'
+import withError from '../components/withError'
 import App from '../components/App'
 import t from '../theme'
 import Box from '../components/Box'
@@ -75,10 +76,16 @@ const WhiteBox = Box.extend`
 
 class ProductPage extends React.Component<Props> {
   static async getInitialProps({query}: any) {
-    return await apollo.query({
+    const result = await apollo.query({
       query: productQuery,
       variables: {slug: query.slug},
     })
+
+    let statusCode
+    if (!isPresent(result.data.Product)) {
+      statusCode = 404
+    }
+    return {statusCode, ...result}
   }
 
   componentDidMount() {
@@ -241,4 +248,4 @@ The problem is: `
   }
 }
 
-export default ProductPage
+export default withError(ProductPage)
