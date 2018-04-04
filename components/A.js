@@ -75,7 +75,6 @@ const Anchor = system(
   ...text,
   ...layout
 ).extend`
-  cursor: pointer;
   fill: currentColor;
   font-family: inherit;
   text-decoration: none;
