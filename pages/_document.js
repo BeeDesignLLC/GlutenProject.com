@@ -70,10 +70,6 @@ injectGlobal`
     text-decoration:underline;
   }
 
-  [role="button"], button {
-    cursor: pointer;
-  }
-
   .fullscreen {
     min-height: 100vh;
     overflow: hidden;
