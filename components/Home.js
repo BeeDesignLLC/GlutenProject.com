@@ -87,7 +87,7 @@ export default class extends React.Component<Props> {
                   href={`/search?q=${item.toLowerCase()}`}
                   as={urlForQuery(item)}
                 >
-                  <A>Gluten-free {item}</A>
+                  <A color="greenDark">Gluten-free {item}</A>
                 </Link>
                 <br />
               </React.Fragment>
