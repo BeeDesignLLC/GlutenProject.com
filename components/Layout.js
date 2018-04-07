@@ -178,6 +178,7 @@ class Page extends React.Component<Props> {
           <SecondaryText>
             <A
               is="button"
+              color="green"
               onClick={() => {
                 if (window.Intercom) {
                   window.Intercom('showNewMessage')

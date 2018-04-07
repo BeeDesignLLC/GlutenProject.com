@@ -2,7 +2,7 @@
 import * as React from 'react'
 import Document, {Head, Main, NextScript} from 'next/document'
 import {ServerStyleSheet, injectGlobal} from 'styled-components'
-import theme from '../theme'
+import t from '../theme'
 import TrackingScripts from '../components/TrackingScripts'
 import Typekit from '../components/Typekit'
 
@@ -43,8 +43,13 @@ injectGlobal`
 
   a {
     color: inherit;
-		text-decoration: none;
+    text-decoration-skip: edges;
+    text-decoration-color: ${t.colors.grays[3]};
 	}
+
+  a:hover {
+    text-decoration-color: currentColor;
+  }
 
   [tabindex], a, area, button, input, label, select, summary, textarea {
     touch-action: manipulation;
@@ -75,12 +80,12 @@ injectGlobal`
     overflow: hidden;
   }
 
-  @media (max-width: ${theme.breakpoints[0]}) {
+  @media (max-width: ${t.breakpoints[0]}) {
     .mobile-hide {
 			display: none !important;
 		}
 	}
-  @media (min-width: ${theme.breakpoints[0]}) {
+  @media (min-width: ${t.breakpoints[0]}) {
     .mobile-show {
 			display: none !important;
 		}

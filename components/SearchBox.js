@@ -28,10 +28,9 @@ const Input = BaseInput.extend`
   @media (max-width: ${themeGet('breakpoints.0')}) {
     background-color: ${themeGet('colors.greenDark')};
     color: white;
-    caret-color: white;
 
     &:focus {
-      border: 3px solid ${themeGet('colors.white')};
+      border: 3px solid white;
     }
 
     &::placeholder {

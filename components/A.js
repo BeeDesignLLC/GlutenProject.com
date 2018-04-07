@@ -12,6 +12,7 @@ const menuStyles = () => css`
   font-size: ${theme.fontSizes[1]};
   font-weight: 500;
   text-transform: uppercase;
+  text-decoration: none;
 
   & > span {
     align-self: flex-end;
@@ -26,15 +27,9 @@ const menuStyles = () => css`
 
   &:hover {
     color: ${theme.colors.greenDark};
-    text-decoration: none;
   }
 
-  ${props =>
-    props.isActive
-      ? null
-      : css`
-          color: ${theme.colors.grays[2]};
-        `};
+  color: ${props => (props.isActive ? theme.colors.greenDark : theme.colors.grays[2])};
 
   @media (min-width: ${theme.breakpoints[0]}) {
     font-size: 1.6ex;
@@ -69,7 +64,6 @@ const buttonStyles = () => css`
 const Anchor = system(
   {
     is: 'a',
-    color: 'green',
     blacklist: ['isActive', 'menu'],
   },
   ...text,
@@ -77,11 +71,6 @@ const Anchor = system(
 ).extend`
   fill: currentColor;
   font-family: inherit;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
 
   ${props => props.is === 'button' && buttonStyles}
   ${props => props.menu && menuStyles}

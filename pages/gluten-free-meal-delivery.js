@@ -67,6 +67,7 @@ export default class extends React.Component<Props> {
                 href="http://www.anrdoezrs.net/click-8542692-13200134"
                 target="_blank"
                 rel="noopener"
+                color="greenDark"
               >
                 Gluten-free
               </A>
@@ -76,6 +77,7 @@ export default class extends React.Component<Props> {
                 href="http://www.anrdoezrs.net/click-8542692-13200142"
                 target="_blank"
                 rel="noopener"
+                color="greenDark"
               >
                 Paleo
               </A>
@@ -85,6 +87,7 @@ export default class extends React.Component<Props> {
                 href="http://www.anrdoezrs.net/click-8542692-13200156"
                 target="_blank"
                 rel="noopener"
+                color="greenDark"
               >
                 Keto
               </A>

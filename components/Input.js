@@ -41,7 +41,7 @@ const Input = system(
 
   &:focus {
     outline: none;
-    border: 3px solid ${t.colors.blue};
+    border: 3px solid ${t.colors.greenDark};
     padding: 0 11px;
 
     &::placeholder {
