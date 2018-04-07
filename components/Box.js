@@ -22,6 +22,7 @@ const Box = system(
 ).extend`
   display: flex;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
+  text-decoration: none;
 `
 
 export const Header = Box.withComponent('header')

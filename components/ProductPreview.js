@@ -63,6 +63,7 @@ const Card = Box.extend`
   border: 1px solid white;
   padding: ${t.space[3]};
   transition: transform 0.15s ease;
+  will-change: transform;
 
   ${props =>
     props.showBorder &&
@@ -73,7 +74,8 @@ const Card = Box.extend`
   ${props =>
     props.clicked &&
     css`
-      transform: scale(1.05);
+      border: 1px solid ${t.colors.green};
+      transform: scale(1.02);
     `};
 
   @media (hover: hover) {

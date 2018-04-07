@@ -47,7 +47,7 @@ injectGlobal`
     text-decoration-color: ${t.colors.grays[3]};
 	}
 
-  a:hover {
+  a:hover, a:active {
     text-decoration-color: currentColor;
   }
 
