@@ -1,6 +1,6 @@
 // @flow
 import system from 'system-components'
-import theme from '../theme'
+import t from '../theme'
 import {layout, text} from '../utils/styled'
 
 const Input = system(
@@ -20,7 +20,7 @@ const Input = system(
   font-family: inherit;
   font-size: 16px;
   font-weight: 500;
-  padding: 0 0.7rem;
+  padding: 3px 12px;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 
   html:not(.wf-active) & {
@@ -41,14 +41,16 @@ const Input = system(
 
   &:focus {
     outline: none;
+    border: 3px solid ${t.colors.blue};
+    padding: 0 11px;
 
     &::placeholder {
       opacity: 0.5;
     }
   }
 
-  @media (min-width: ${theme.breakpoints[0]}) {
-    font-size: ${theme.fontSizes[1]};
+  @media (min-width: ${t.breakpoints[0]}) {
+    font-size: ${t.fontSizes[1]};
   }
 `
 

@@ -34,7 +34,7 @@ class SearchBoss extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    if (Router.pathname === '/search') {
+    if (!Router.query.ssr && Router.pathname === '/search') {
       const searchInput = window.document.querySelector('#global-product-search')
       if (searchInput) searchInput.focus()
     }

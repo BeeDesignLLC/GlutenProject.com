@@ -13,16 +13,26 @@ import {HomeIcon} from './Icons'
 import {default as BaseInput} from './Input'
 
 const Input = BaseInput.extend`
-  padding: 0 1rem 0 2.2rem;
+  padding: 0 16px 0 35px;
   height: 2.5rem;
+  caret-color: black;
 
   &::placeholder {
     opacity: 1;
   }
 
+  &:focus {
+    padding: 0 15px 0 34px;
+  }
+
   @media (max-width: ${themeGet('breakpoints.0')}) {
     background-color: ${themeGet('colors.greenDark')};
     color: white;
+    caret-color: white;
+
+    &:focus {
+      border: 3px solid ${themeGet('colors.white')};
+    }
 
     &::placeholder {
       color: white;
@@ -173,7 +183,7 @@ class SearchBox extends React.Component<Props, State> {
           <SearchIconButton type="submit">
             <span className="screen-reader-text">Search</span>
           </SearchIconButton>
-          {currentRefinement && (
+          {this.state.value && (
             <ClearIconButton type="reset">
               <span className="screen-reader-text">reset search</span>
             </ClearIconButton>

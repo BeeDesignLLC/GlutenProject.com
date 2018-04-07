@@ -33,6 +33,8 @@ export default {
     greenLight: '#C5E8DF',
     grays: ['#1E1E1E', '#383D41', '#555E68', '#888F96', '#BFC2C6'],
     offwhite: '#F9F9F9',
+    blue: '#1C7ED6',
+    yellow: '#FFE349',
   },
   lineHeights: ['3ex'],
 }
