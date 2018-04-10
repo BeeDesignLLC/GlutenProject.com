@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
 import gql from 'graphql-tag'
+import {JSONLD, Product, Generic} from 'react-structured-data'
 import apollo from '../lib/apollo'
 import isPresent from 'is-present'
 import withError from '../components/withError'
@@ -243,9 +244,42 @@ The problem is: `
             liability for inaccuracies or misstatements about products.
           </SmallText>
         </Box>
+
+        <JSONLD>
+          <Product
+            name={product.name}
+            brand={product.brand.name}
+            image={productImages.dpr1}
+            description={product.description}
+          >
+            <Generic
+              type="offers"
+              jsonldtype="AggregateOffer"
+              schema={{
+                lowPrice: lowestPrice(product.offers),
+                highPrice: highestPrice(product.offers),
+                priceCurrency: 'USD',
+                offerCount: product.offers.length,
+              }}
+            />
+          </Product>
+        </JSONLD>
       </App>
     )
   }
+}
+
+const lowestPrice = offers => {
+  if (!offers.length) return null
+  const prices = offers.map(offer => offer.price).sort()
+  if (!prices.length) return null
+  return prices[0]
+}
+const highestPrice = offers => {
+  if (!offers.length) return null
+  const prices = offers.map(offer => offer.price).sort()
+  if (!prices.length) return null
+  return prices[prices.length - 1]
 }
 
 export default withError(ProductPage)

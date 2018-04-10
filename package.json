@@ -33,6 +33,7 @@
     "react": "16.2.0",
     "react-dom": "16.2.0",
     "react-instantsearch": "5.0.3",
+    "react-structured-data": "flybayer/react-structured-data#fix-ssr",
     "styled-components": "3.2.5",
     "styled-css-grid": "0.8.2",
     "styled-system": "2.2.1",

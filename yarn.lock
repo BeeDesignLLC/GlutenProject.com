@@ -5095,6 +5095,13 @@ react-instantsearch@5.0.3:
     lodash "^4.17.4"
     prop-types "^15.5.10"
 
+react-structured-data@flybayer/react-structured-data#fix-ssr:
+  version "0.0.7"
+  resolved "https://codeload.github.com/flybayer/react-structured-data/tar.gz/94dee29961053113dd25f9774b10b2d626153f13"
+  dependencies:
+    prop-types "^15.6.0"
+    react "^16.2.0"
+
 react@16.2.0:
   version "16.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.2.0.tgz#a31bd2dab89bff65d42134fa187f24d054c273ba"
@@ -5104,7 +5111,7 @@ react@16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react@>=16.0.0:
+react@>=16.0.0, react@^16.2.0:
   version "16.3.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.3.1.tgz#4a2da433d471251c69b6033ada30e2ed1202cfd8"
   dependencies:
