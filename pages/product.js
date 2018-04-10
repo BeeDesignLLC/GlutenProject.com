@@ -249,7 +249,7 @@ The problem is: `
           <Product
             name={product.name}
             brand={product.brand.name}
-            image={productImages.dpr1}
+            image={productImages && productImages.dpr1}
             description={product.description}
           >
             <Generic
