@@ -98,10 +98,9 @@ class ProductPage extends React.Component<Props> {
   }
 
   render() {
-    const {data: {error, Product: product, productImages = {}}, url: {query}} = this.props
-    if (error) {
-      alert('gql error' + error)
-    }
+    let {data: {Product: product, productImages}, url: {query}} = this.props
+
+    if (!isPresent(productImages)) productImages = {}
 
     const offers = product.offers.slice().sort((a, b) => {
       if (!isPresent(a.price) && !isPresent(b.price)) {
@@ -249,7 +248,7 @@ The problem is: `
           <Product
             name={product.name}
             brand={product.brand.name}
-            image={productImages && productImages.dpr1}
+            image={productImages.dpr1}
             description={product.description}
           >
             <Generic
