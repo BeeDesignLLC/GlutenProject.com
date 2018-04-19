@@ -57,7 +57,7 @@ const SearchResults = ({
           </Heading>
           <LargeText color="grays.3">
             All {searchResults && `${searchResults.nbHits} `}products have been certified
-            gluten-free by GFCO as of January 2017.
+            gluten-free as of January 2017 or later.
           </LargeText>
         </Box>
       )}

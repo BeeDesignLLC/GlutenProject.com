@@ -26,8 +26,8 @@ export default class extends React.Component<Props> {
             Until late 2017, only gluten-eaters could order an easy meal from anywhere
             online. Thankfully meal delivery services are starting to cater to those of us
             with severe gluten intolerances! All delivery services listed have been
-            certified by Gluten Intolerance Group’s GFFS program. We’ll update the list as
-            more obtain certification.
+            certified gluten-free by a third party. We’ll update the list as more obtain
+            certification.
           </LargeText>
 
           <Heading is="h2" fontSize={4} mt={5}>

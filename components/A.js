@@ -13,6 +13,7 @@ const menuStyles = () => css`
   font-weight: 500;
   text-transform: uppercase;
   text-decoration: none;
+  color: ${props => (props.isActive ? theme.colors.greenDark : theme.colors.grays[2])};
 
   & > span {
     align-self: flex-end;
@@ -28,8 +29,6 @@ const menuStyles = () => css`
   &:hover {
     color: ${theme.colors.greenDark};
   }
-
-  color: ${props => (props.isActive ? theme.colors.greenDark : theme.colors.grays[2])};
 
   @media (min-width: ${theme.breakpoints[0]}) {
     font-size: 1.6ex;

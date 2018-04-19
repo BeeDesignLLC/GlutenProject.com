@@ -114,7 +114,7 @@ class ProductPage extends React.Component<Props> {
       }
     })
 
-    const gfCertString = product.gfCerts.includes('GFCO') ? '10ppm GFCO' : ''
+    const gfCertString = product.gfCerts.includes('GFCO') ? '10ppm' : ''
 
     return (
       <App
