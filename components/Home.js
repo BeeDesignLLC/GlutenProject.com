@@ -33,7 +33,7 @@ export default class extends React.Component<Props> {
           </LargeText>
           <LargeText is="ul" mt={4}>
             <li>
-              Product&rsquo;s gluten-free certification valid as of{' '}
+              Products&rsquo; gluten-free certification valid as of{' '}
               <strong>January 2017</strong> or later
             </li>
             <li>Other gluten-free certifications coming soon!</li>
