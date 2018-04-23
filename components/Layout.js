@@ -92,8 +92,7 @@ class Page extends React.Component<Props> {
           px={[4, 0]}
         >
           <SmallText color="grays.2" textAlign={['center', 'right']} letterSpacing="0">
-            We are not endorsed by, authorized, or in any way officially connected with
-            the{' '}
+            We are not endorsed by, authorized, or in any way connected with the{' '}
             <A href="http://www.gluten.org" target="_blank" rel="noopener">
               Gluten Intolerance Group
             </A>{' '}
