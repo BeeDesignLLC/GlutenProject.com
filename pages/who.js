@@ -33,7 +33,10 @@ export default class extends React.Component<Props> {
 
           <LargeText>
             Brandon is an entrepreneur, designer, developer, and independent consultant.
-            He’s passionate about business and aviation. Follow him on Twitter{' '}
+            He’s passionate about business and aviation and is also building{' '}
+            <A href="https://acornbookmarks.com" target="_blank" rel="noopener">
+              Acorn Bookmark Manager
+            </A>. Follow him on Twitter{' '}
             <A href="https://twitter.com/beedesignllc" target="_blank" rel="noopener">
               @beedesignllc
             </A>.
