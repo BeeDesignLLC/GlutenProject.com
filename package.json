@@ -35,7 +35,7 @@
     "react-instantsearch": "5.0.3",
     "react-structured-data": "flybayer/react-structured-data#fix-ssr",
     "styled-css-grid": "0.8.2",
-    "system-components": "^2.0.2",
+    "system-components": "2.0.3",
     "title": "3.2.0",
     "upper-case-first": "1.1.2"
   },
