@@ -98,7 +98,10 @@ class ProductPage extends React.Component<Props> {
   }
 
   render() {
-    let {data: {Product: product, productImages}, url: {query}} = this.props
+    let {
+      data: {Product: product, productImages},
+      url: {query},
+    } = this.props
 
     if (!isPresent(productImages)) productImages = {}
 
