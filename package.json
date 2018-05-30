@@ -60,7 +60,7 @@
     "raven": "raven-js"
   },
   "engines": {
-    "node": "9"
+    "node": "10"
   },
   "eslintConfig": {
     "parser": "babel-eslint",
