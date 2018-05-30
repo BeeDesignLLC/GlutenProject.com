@@ -13,8 +13,7 @@ type Props = {
 }
 
 //$FlowFixMe
-// class App extends React.unstable_AsyncMode<Props> {
-class App extends React.Component<Props> {
+class App extends React.unstable_AsyncComponent<Props> {
   componentDidMount() {
     this.prefetchResources()
 
