@@ -12,8 +12,7 @@ type Props = {
   initialResultsState: Object,
 }
 
-//$FlowFixMe
-class App extends React.unstable_AsyncComponent<Props> {
+class App extends React.Component<Props> {
   componentDidMount() {
     this.prefetchResources()
 
@@ -55,15 +54,18 @@ class App extends React.unstable_AsyncComponent<Props> {
   render() {
     const {router, ...props} = this.props
     return (
-      <ThemeProvider theme={theme}>
-        <SearchBoss
-          q={router && router.query.q}
-          initialSearchState={this.props.initialSearchState}
-          initialResultsState={this.props.initialResultsState}
-        >
-          <Layout {...props} />
-        </SearchBoss>
-      </ThemeProvider>
+      //$FlowFixMe
+      <React.unstable_AsyncMode>
+        <ThemeProvider theme={theme}>
+          <SearchBoss
+            q={router && router.query.q}
+            initialSearchState={this.props.initialSearchState}
+            initialResultsState={this.props.initialResultsState}
+          >
+            <Layout {...props} />
+          </SearchBoss>
+        </ThemeProvider>
+      </React.unstable_AsyncMode>
     )
   }
 }
