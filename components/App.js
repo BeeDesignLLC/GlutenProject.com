@@ -1,5 +1,5 @@
 // @flow
-import * as React from 'react'
+import React from 'react'
 import {withRouter} from 'next/router'
 import {ThemeProvider} from 'styled-components'
 import SearchBoss from './SearchBoss'
@@ -13,7 +13,8 @@ type Props = {
 }
 
 //$FlowFixMe
-class App extends React.unstable_AsyncMode<Props> {
+// class App extends React.unstable_AsyncMode<Props> {
+class App extends React.Component<Props> {
   componentDidMount() {
     this.prefetchResources()
 

@@ -45,11 +45,13 @@ const SearchResults = ({
   hits,
   hasMore,
   refine,
-  router: {query: {ssr, q}},
+  router: {
+    query: {ssr, q},
+  },
   searchResults,
 }: Props) => {
   return (
-    <React.Fragment>
+    <>
       {ssr && (
         <Box area="heading" mt={3}>
           <Heading is="h1" fontSize={[4, 3]} fontStyle="italic" color="black">
@@ -77,7 +79,7 @@ const SearchResults = ({
           )}
         </Box>
       )}
-    </React.Fragment>
+    </>
   )
 }
 

@@ -15,7 +15,7 @@ export default class extends React.Component<Props> {
   render() {
     const {...props} = this.props
     return (
-      <React.Fragment>
+      <>
         <Box area="main" flexDirection="column" {...props}>
           <Heading
             is="h1"
@@ -93,7 +93,7 @@ export default class extends React.Component<Props> {
         </Box>
 
         <HugeHeading is="h2">The Gluten Project</HugeHeading>
-      </React.Fragment>
+      </>
     )
   }
 }

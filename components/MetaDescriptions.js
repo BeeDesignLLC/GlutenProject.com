@@ -9,9 +9,9 @@ type Props = {
 }
 
 export default ({content = defaultContent}: Props) => (
-  <React.Fragment>
+  <>
     <meta name="description" content={content} />
     <meta property="og:description" content={content} />
     <meta name="twitter:description" content={content} />
-  </React.Fragment>
+  </>
 )

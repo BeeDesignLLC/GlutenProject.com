@@ -155,7 +155,7 @@ class ProductPage extends React.Component<Props> {
 
           <Box mt={[4, 6]}>
             <WhiteBox>
-              <React.Fragment>
+              <>
                 <Heading
                   is="h2"
                   fontSize={2}
@@ -171,7 +171,7 @@ class ProductPage extends React.Component<Props> {
                 ) : (
                   <Text fontStyle="italic">Unknown</Text>
                 )}
-              </React.Fragment>
+              </>
             </WhiteBox>
             {isPresent(product.facilityStatement) && (
               <Text color="grays.1" mt={3} mb={1} mx={3}>

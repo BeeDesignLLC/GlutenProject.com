@@ -2,7 +2,7 @@
 import * as React from 'react'
 
 const GoogleAnalyticsScript = () => (
-  <React.Fragment>
+  <>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107144503-2" />
     <script
       dangerouslySetInnerHTML={{
@@ -16,7 +16,7 @@ const GoogleAnalyticsScript = () => (
 				`,
       }}
     />
-  </React.Fragment>
+  </>
 )
 
 const IntercomScript = () => (
@@ -33,10 +33,10 @@ type Props = {
 
 const TrackingScripts = ({production}: Props) =>
   production ? (
-    <React.Fragment>
+    <>
       <IntercomScript />
       <GoogleAnalyticsScript />
-    </React.Fragment>
+    </>
   ) : null
 
 export default TrackingScripts

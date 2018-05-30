@@ -16,6 +16,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "@babel/preset-flow": "7.0.0-beta.44",
     "@zeit/next-bundle-analyzer": "0.1.1",
     "apollo-boost": "0.1.7",
     "currency.js": "1.1.4",
@@ -34,12 +35,16 @@
     "react-dom": "16.4.0",
     "react-instantsearch": "5.0.3",
     "react-structured-data": "flybayer/react-structured-data#fix-ssr",
+    "styled-components": "3.3.0",
     "styled-css-grid": "0.9.0",
-    "system-components": "2.0.3",
+    "system-components": "^2.0.3",
     "title": "3.3.0",
     "upper-case-first": "1.1.2"
   },
   "devDependencies": {
+    "@babel/core": "7.0.0-beta.44",
+    "@babel/plugin-transform-flow-strip-types": "7.0.0-beta.44",
+    "@babel/preset-flow": "7.0.0-beta.44",
     "babel-eslint": "8.2.3",
     "babel-plugin-styled-components": "1.5.1",
     "eslint": "4.19.1",

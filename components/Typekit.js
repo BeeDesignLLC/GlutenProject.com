@@ -2,7 +2,7 @@
 import * as React from 'react'
 
 export default () => (
-  <React.Fragment>
+  <>
     <script
       dangerouslySetInnerHTML={{
         __html: `
@@ -50,5 +50,5 @@ export default () => (
 				`,
       }}
     />
-  </React.Fragment>
+  </>
 )

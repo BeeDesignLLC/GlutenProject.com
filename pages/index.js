@@ -1,5 +1,5 @@
 // @flow
-import * as React from 'react'
+import React from 'react'
 import Head from 'next/head'
 import App from '../components/App'
 import Home from '../components/Home'
