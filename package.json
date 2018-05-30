@@ -42,7 +42,7 @@
     "upper-case-first": "1.1.2"
   },
   "devDependencies": {
-    "babel-eslint": "8.2.2",
+    "babel-eslint": "8.2.3",
     "babel-plugin-styled-components": "1.5.1",
     "eslint": "4.19.1",
     "eslint-config-prettier": "2.9.0",
