@@ -5018,7 +5018,7 @@ raven-js@3.25.2:
   version "3.25.2"
   resolved "https://registry.yarnpkg.com/raven-js/-/raven-js-3.25.2.tgz#d3ad1c694f70855dda6f705204ee6ab76ba62884"
 
-raven@^2.6.2:
+raven@2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/raven/-/raven-2.6.2.tgz#c92f30890e2dfcd15258d184e43e39326e58032e"
   dependencies:
@@ -5944,7 +5944,7 @@ symbol-tree@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.2.tgz#ae27db38f660a7ae2e1c3b7d1bc290819b8519e6"
 
-system-components@^2.0.3:
+system-components@2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/system-components/-/system-components-2.0.3.tgz#39fa5051c7f276f6b7b0ea990e5fdaef98949343"
   dependencies:
