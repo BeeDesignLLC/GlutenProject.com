@@ -29,7 +29,7 @@
     "path-match": "1.2.4",
     "path-to-regexp": "2.2.1",
     "prop-types": "15.6.1",
-    "raven": "^2.6.2",
+    "raven": "2.6.2",
     "raven-js": "3.25.2",
     "react": "16.4.0",
     "react-dom": "16.4.0",
@@ -37,7 +37,7 @@
     "react-structured-data": "flybayer/react-structured-data#fix-ssr",
     "styled-components": "3.3.0",
     "styled-css-grid": "0.9.0",
-    "system-components": "^2.0.3",
+    "system-components": "2.0.3",
     "title": "3.3.0",
     "upper-case-first": "1.1.2"
   },
