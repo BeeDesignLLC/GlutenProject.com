@@ -16,7 +16,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@babel/preset-flow": "7.0.0-beta.44",
+    "@babel/preset-flow": "7.0.0-beta.49",
     "@zeit/next-bundle-analyzer": "0.1.1",
     "apollo-boost": "0.1.7",
     "currency.js": "1.1.4",
@@ -42,9 +42,9 @@
     "upper-case-first": "1.1.2"
   },
   "devDependencies": {
-    "@babel/core": "7.0.0-beta.44",
-    "@babel/plugin-transform-flow-strip-types": "7.0.0-beta.44",
-    "@babel/preset-flow": "7.0.0-beta.44",
+    "@babel/core": "7.0.0-beta.49",
+    "@babel/plugin-transform-flow-strip-types": "7.0.0-beta.49",
+    "@babel/preset-flow": "7.0.0-beta.49",
     "babel-eslint": "8.2.3",
     "babel-plugin-styled-components": "1.5.1",
     "eslint": "4.19.1",
