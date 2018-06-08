@@ -206,16 +206,14 @@ class ProductPage extends React.Component<Props> {
               <A
                 is="button"
                 onClick={() => {
-                  if (window.Intercom) {
-                    window.Intercom(
-                      'showNewMessage',
-                      `Product ${window.location} (${product.id})
-
-The problem is: `
-                    )
+                  if (window.drift) {
+                    window.drift.api.showWelcomeMessage({
+                      message: `Feedback on ${window.location} (${product.id}).
+The problem is: `,
+                    })
                   } else {
                     alert(
-                      'It seems Intercom is being blocked by one of your browser extensions. Whitelist Intercom to message us :)'
+                      'It seems Drift is being blocked by one of your browser extensions. Whitelist Drift to message us :)'
                     )
                   }
                 }}

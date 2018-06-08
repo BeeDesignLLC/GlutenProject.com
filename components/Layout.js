@@ -138,11 +138,11 @@ class Page extends React.Component<Props> {
               menu
               is="button"
               onClick={() => {
-                if (window.Intercom) {
-                  window.Intercom('showNewMessage')
+                if (window.drift) {
+                  window.drift.api.goToNewConversation()
                 } else {
                   alert(
-                    'It seems Intercom is being blocked by one of your browser extensions. Whitelist Intercom to chat with us :)'
+                    'It seems Drift is being blocked by one of your browser extensions. Whitelist Drift to chat with us :)'
                   )
                 }
               }}
@@ -179,11 +179,11 @@ class Page extends React.Component<Props> {
               is="button"
               color="green"
               onClick={() => {
-                if (window.Intercom) {
-                  window.Intercom('showNewMessage')
+                if (window.drift) {
+                  window.drift.api.goToNewConversation()
                 } else {
                   alert(
-                    'It seems Intercom is being blocked by one of your browser extensions. Whitelist Intercom to chat with us :)'
+                    'It seems Drift is being blocked by one of your browser extensions. Whitelist Drift to chat with us :)'
                   )
                 }
               }}

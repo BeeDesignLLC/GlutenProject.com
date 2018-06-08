@@ -22,7 +22,6 @@ const debouncedRouterReplace = debounce(Router.replace, {wait: 700})
 const debouncedTrackSearch = debounce(
   query => {
     window.gtag && window.gtag('event', 'search', {search_term: query})
-    window.Intercom && window.Intercom('trackEvent', 'searched')
   },
   {wait: 700}
 )

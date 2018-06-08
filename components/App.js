@@ -16,17 +16,8 @@ class App extends React.Component<Props> {
   componentDidMount() {
     this.prefetchResources()
 
-    if (window.Intercom) {
-      window.Intercom('boot', {
-        app_id: 's97lyn5h',
-        horizontal_padding: 25,
-        vertical_padding: 25,
-      })
-    }
-
     this.props.router.onRouteChangeComplete = () => {
       if (window.location.host === 'glutenproject.com') {
-        window.Intercom && window.Intercom('update')
         window.gtag && window.gtag('event', 'page_view')
       }
     }

@@ -16,19 +16,17 @@ import IngredientList from './IngredientList'
 import ProductImage from './ProductImage'
 import {USD} from '../utils/currency'
 
-const handleIntercomMessage = (hit: Object) => {
-  if (window.Intercom) {
-    window.Intercom(
-      'showNewMessage',
-      `Where can I buy:
+const handleChatMessage = (hit: Object) => {
+  if (window.drift) {
+    window.drift.api.showWelcomeMessage({
+      message: `I can help you find:
 ${hit.brandName}. ${hit.name}
-
 📣
-We'll find this product for you on-demand until we add its link on the site. Make sure to leave your email!`
-    )
+We are finding products on-demand until we add its link on the site. Make sure to leave your email!`,
+    })
   } else {
     alert(
-      'It seems Intercom is being blocked by one of your browser extensions. Whitelist Intercom to chat with us :)'
+      'It seems Drift is being blocked by one of your browser extensions. Whitelist Drift to chat with us :)'
     )
   }
 }
@@ -124,11 +122,7 @@ const SimplePreview = ({product, ...props}: Props) => (
           Where to Buy
         </Button>
       ) : (
-        <Button
-          area="find"
-          alignSelf="center"
-          onClick={() => handleIntercomMessage(product)}
-        >
+        <Button area="find" alignSelf="center" onClick={() => handleChatMessage(product)}>
           Find
         </Button>
       )}

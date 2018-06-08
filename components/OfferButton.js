@@ -43,7 +43,6 @@ export default ({offer, slug, ...props}: Props) => {
       const eventName = offer.isAffiliate
         ? 'clicked-affiliate-product'
         : 'clicked-product'
-      window.Intercom && window.Intercom('trackEvent', eventName)
       window.gtag &&
         window.gtag('event', eventName, {
           event_category: 'engagement',
