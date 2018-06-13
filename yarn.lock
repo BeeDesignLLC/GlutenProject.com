@@ -5643,9 +5643,9 @@ symbol-observable@^1.0.2, symbol-observable@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
 
-system-components@2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/system-components/-/system-components-2.0.3.tgz#39fa5051c7f276f6b7b0ea990e5fdaef98949343"
+system-components@2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/system-components/-/system-components-2.0.4.tgz#c9615afd78d48ecc1c713f614cf14fcd3315ec05"
   dependencies:
     clean-tag "^1.0.3"
     styled-components ">=3.0.0"
