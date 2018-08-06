@@ -5743,9 +5743,9 @@ timers-browserify@^2.0.4:
   dependencies:
     setimmediate "^1.0.4"
 
-title@3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/title/-/title-3.3.0.tgz#fddd9a572e9ead55feaf7de44e2bbc5e11c9455d"
+title@3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/title/-/title-3.3.2.tgz#6623b741918e52e6a05bfb5bc7dfa55b78f0fcf3"
   dependencies:
     arg "1.0.0"
     chalk "2.3.0"
