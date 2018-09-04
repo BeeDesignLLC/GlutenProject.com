@@ -29,7 +29,7 @@
     "path-match": "1.2.4",
     "path-to-regexp": "2.2.1",
     "prop-types": "15.6.1",
-    "raven": "2.6.2",
+    "raven": "2.6.4",
     "raven-js": "3.26.2",
     "react": "16.4.1",
     "react-dom": "16.4.1",
