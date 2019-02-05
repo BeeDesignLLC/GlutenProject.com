@@ -33,7 +33,7 @@
     "raven-js": "3.26.2",
     "react": "16.4.1",
     "react-dom": "16.4.1",
-    "react-instantsearch": "5.1.0",
+    "react-instantsearch": "5.4.0",
     "react-structured-data": "flybayer/react-structured-data#fix-ssr",
     "styled-components": "3.3.2",
     "styled-css-grid": "0.11.0",
