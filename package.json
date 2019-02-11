@@ -37,7 +37,7 @@
     "react-structured-data": "flybayer/react-structured-data#fix-ssr",
     "styled-components": "3.3.2",
     "styled-css-grid": "0.11.0",
-    "system-components": "2.0.4",
+    "system-components": "3.0.3",
     "title": "3.3.0",
     "upper-case-first": "1.1.2"
   },
