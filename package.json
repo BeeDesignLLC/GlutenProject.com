@@ -24,7 +24,7 @@
     "graphql": "0.13.2",
     "is-present": "1.0.0",
     "isomorphic-fetch": "2.2.1",
-    "micro": "9.3.2",
+    "micro": "9.4.1",
     "next": "6.0.3",
     "path-match": "1.2.4",
     "path-to-regexp": "2.2.1",
