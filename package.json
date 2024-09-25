@@ -27,7 +27,7 @@
     "micro": "9.3.2",
     "next": "6.0.3",
     "path-match": "1.2.4",
-    "path-to-regexp": "2.2.1",
+    "path-to-regexp": "2.3.0",
     "prop-types": "15.6.1",
     "raven": "2.6.2",
     "raven-js": "3.26.2",

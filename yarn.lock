@@ -4553,9 +4553,10 @@ path-to-regexp@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-2.1.0.tgz#7e30f9f5b134bd6a28ffc2e3ef1e47075ac5259b"
 
-path-to-regexp@2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-2.2.1.tgz#90b617025a16381a879bc82a38d4e8bdeb2bcf45"
+path-to-regexp@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-2.3.0.tgz#690d682cb9e2dde26d25f41bcc2b4774b67d1fa2"
+  integrity sha512-wWRwboLa//uIppXIodKsl+qe4zAUNHwGBZUIkc32xR64fcSqGXCnxEZ3Fyl8M2muy9fq+mv2BQbFmZB3hZ4Bfg==
 
 path-to-regexp@^1.0.0:
   version "1.7.0"
